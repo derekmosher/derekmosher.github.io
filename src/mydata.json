@@ -1,8 +1,25 @@
 {
   "items": [
+
+    {
+      "title": "Ice Age",
+      "description": "Adobe Edge. Nice smooth fun animation.",
+      "thumbPath": "https://derekmosher.github.io/work_to_display/iceAge/thumb.jpg",
+      "filePath": "https://derekmosher.github.io/work_to_display/iceAge/index.html",
+      "w": 300,
+      "h": 250
+    },
+    {
+      "title": "Sleepy Hollow",
+      "description": "HTML, CSS, Javascript.",
+      "thumbPath": "https://derekmosher.github.io/work_to_display/sleepyHollow/thumb.jpg",
+      "filePath": "https://derekmosher.github.io/work_to_display/sleepyHollow/index.html",
+      "w": 300,
+      "h": 250
+    },
     {
       "title": "Creable",
-      "description": "Html, css, javascript",
+      "description": "Html, css, javascript. Concept, art, and animation.",
       "thumbPath": "https://derekmosher.github.io/work_to_display/creable/thumb2.jpg",
       "filePath": "https://derekmosher.github.io/work_to_display/creable/index.html",
       "w": 700,
@@ -10,11 +27,19 @@
     },
     {
       "title": "Masters of Sex ",
-      "description": "interesting kaleidoscope effect",
+      "description":  "Html, css, javascript. Interesting kaleidoscope effect",
       "thumbPath": "thumb_mastersofsex.jpg",
       "filePath": "https://derekmosher.github.io/work_to_display/mastersofsex/index.html",
       "w": 160,
       "h": 600
+    },
+    {
+      "title": "Bones",
+      "description": "Adobe Edge",
+      "thumbPath": "https://derekmosher.github.io/work_to_display/bones/thumb_bones.jpg",
+      "filePath": "https://derekmosher.github.io/work_to_display/bones/index.html",
+      "w": 300,
+      "h": 250
     },
     {
       "title": "Int Champ Cup",
@@ -25,12 +50,12 @@
       "h": 250
     },
     {
-      "title": "Manchester Sea",
-      "description": "Html, css, javascript",
-      "thumbPath": "thumb_mbts.jpg",
-      "filePath": "https://derekmosher.github.io/work_to_display/manchesterBySea/index.html",
-      "w": 300,
-      "h": 600
+      "title": "The Magician",
+      "description": "HTML, CSS, Javascript",
+      "thumbPath": "https://derekmosher.github.io/work_to_display/magician/thumb.jpg",
+      "filePath": "https://derekmosher.github.io/work_to_display/magician/index.html",
+      "w": 970,
+      "h": 250
     },
     {
       "title": "Animated Gifs",
