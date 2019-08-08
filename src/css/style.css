@@ -581,10 +581,9 @@ a.read-more:hover {
     line-height: 30px;
 }
 
-.popup h2 {
+.popup .h2 {
     margin-top: 0;
     color: #fff;
-
 }
 
 .popup .close {
