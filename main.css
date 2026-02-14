@@ -1,0 +1,200 @@
+body { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+
+:root {
+  --bg: #0e0e0e;
+  --surface: #1a1a1a;
+  --text: #f0ece4;
+  --accent: #d4ff2b;
+  --accent2: #7a7a6e;
+}
+
+.font-display { font-family: 'DM Serif Display', Georgia, serif; }
+.font-body { font-family: 'Instrument Sans', sans-serif; }
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }
+#app-wrapper { scroll-behavior: smooth; }
+
+/* Stagger reveal animations */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.anim-fade-up {
+  animation: fadeSlideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+.anim-fade {
+  animation: fadeIn 1s ease forwards;
+  opacity: 0;
+}
+.anim-scale {
+  animation: scaleIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.25s; }
+.delay-3 { animation-delay: 0.4s; }
+.delay-4 { animation-delay: 0.55s; }
+.delay-5 { animation-delay: 0.7s; }
+.delay-6 { animation-delay: 0.85s; }
+
+/* Gallery hover */
+.gallery-item {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
+}
+.gallery-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+.gallery-item .overlay {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.gallery-item:hover .overlay {
+  opacity: 1;
+}
+
+/* Video card hover */
+.video-card {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.video-card:hover {
+  transform: scale(1.03);
+}
+.video-card .play-btn {
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.video-card:hover .play-btn {
+  transform: scale(1.15);
+  background: var(--accent);
+}
+
+.hero-cta {
+  background: var(--bg);
+  color: var(--accent);
+  border: 0.5px solid var(--accent);
+  border-radius: 6px;
+  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+}
+
+.hero-cta:hover {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+/* Marquee */
+.marquee-track {
+  animation: marquee 20s linear infinite;
+  display: flex;
+  width: max-content;
+  letter-spacing: 0.06em;
+}
+
+/* Nav link underline */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+#contact-email-link {
+  background: var(--accent);
+  color: var(--bg);
+  border: 1px solid var(--bg);
+  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+}
+
+#contact-email-link:hover {
+  background: var(--bg);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+#contact a[aria-label="SoundCloud"] img {
+  filter: brightness(0) saturate(0) invert(58%);
+  transition: filter 0.25s ease;
+}
+
+#contact a[aria-label="SoundCloud"]:hover img {
+  filter: brightness(0) saturate(0) invert(100%);
+}
+
+#contact a[aria-label="Behance"] img {
+  filter: brightness(0) saturate(0) invert(58%);
+  transition: filter 0.25s ease;
+}
+
+#contact a[aria-label="Behance"]:hover img {
+  filter: brightness(0) saturate(0) invert(100%);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent2); border-radius: 3px; }
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox.active {
+  display: flex;
+}
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+}
+.lightbox-content {
+  position: relative;
+  z-index: 101;
+  max-width: 90%;
+  max-height: 85%;
+  animation: scaleIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Intersection observer reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@view-transition { navigation: auto; }

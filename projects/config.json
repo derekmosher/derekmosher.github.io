@@ -1,0 +1,42 @@
+{
+  "project-01": {
+    "type": "Project:",
+    "client": "BlueAlly",
+    "title": "Barracuda -Email Security Campaign",
+    "description": "Concepting, storyboarding, design, and animation for a B2B email security campaign. You give me fun copy like: phishing, spam, and malware. Then then ask how to bring it alive. Wow, this is nothing but FUN for me.",
+    "thumbnail": "projects/project-01/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-01"
+  },
+  "project-02": {
+    "type": "Project:",
+    "client": "BlueAlly",
+    "title": "Cisco - E-Rate Campaign",
+    "description": "Concepting, storyboarding, design, and animation. The client says, \"We want to use this type of stock vector art that we own, and it needs to tell a story that matches our copy.\" Problem is, most of it doesn't work. So, BAM I'm modifying and drawing most to the vector art on the fly. I'm not even sure they knew how much I had to do to pull this off. Regardless, I had a blast doing it.",
+    "thumbnail": "projects/project-02/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-02"
+  },
+  "project-03": {
+    "type": "Project:",
+    "client": "WynnBet",
+    "title": "Wynn Slots - Mobile App Graphics",
+    "description": "Concepting and designing mobile game thumbnails. These were easily my favorite projects at WynnBet. While other designers put minimal effort into these, I obsessed with them. I quickly got all this work. And when I was not available, I often was asked to redo others' work.",
+    "thumbnail": "projects/project-03/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-03"
+  },
+  "project-04": {
+    "type": "Project:",
+    "client": "BlueAlly",
+    "title": "Xfinity Center - Stadium Billboard Video Ads",
+    "description": "When your client calls you unexpectedly at 9am and asks - Can you do a basketball stadium video? OH and... done by 3pm... and with no assets... and no final copy.",
+    "thumbnail": "projects/project-04/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-04"
+  },
+  "project-05": {
+    "type": "Project:",
+    "client": "",
+    "title": "Project 05",
+    "description": "",
+    "thumbnail": "projects/project-05/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-05"
+  }
+}
