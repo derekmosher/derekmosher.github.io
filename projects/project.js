@@ -162,13 +162,14 @@ async function loadImagesFromFolder() {
           try {
             const imgResponse = await fetch(normalizedThumbnail, { method: 'HEAD' });
             if (imgResponse.ok) {
-              portfolioItems.push({
+              const newItem = {
                 ...item,
                 src: normalizedSrc,
                 thumbnail: normalizedThumbnail
-              });
+              };
+              portfolioItems.push(newItem);
               loadedCount += 1;
-              renderPortfolioGrid();
+              appendPortfolioItemToGrid(newItem, portfolioItems.length - 1);
             }
           } catch (e) {
             // Image doesn't exist, skip it
@@ -264,7 +265,7 @@ async function loadImagesFromFolder() {
     for (const detected of detectedImages) {
       portfolioItems.push(detected);
       loadedCount += 1;
-      renderPortfolioGrid();
+      appendPortfolioItemToGrid(detected, portfolioItems.length - 1);
     }
     return loadedCount;
   }
@@ -652,28 +653,35 @@ function renderPortfolioGrid() {
   grid.innerHTML = '';
 
   portfolioItems.forEach((item, i) => {
-    const div = document.createElement('div');
-    div.className = `portfolio-item reveal ${item.large ? 'large' : ''}`;
-    div.style.transitionDelay = `${i * 0.1}s`;
-
-    if (item.type === 'image') {
-      div.innerHTML = `
-        <img src="${item.thumbnail}" alt="${item.title}" loading="lazy" />
-      `;
-    } else if (item.type === 'video') {
-      div.innerHTML = `
-        <video src="${item.src}" poster="${item.thumbnail}" style="width: 100%; height: 100%; object-fit: cover;"></video>
-        <div class="absolute inset-0 flex items-center justify-center" style="background: rgba(0,0,0,0.3);">
-          <svg width="60" height="60" fill="currentColor" style="color: white; opacity: 0.8;">
-            <polygon points="0 0 60 30 0 60" />
-          </svg>
-        </div>
-      `;
-    }
-
-    div.addEventListener('click', () => openPortfolioLightbox(item));
-    grid.appendChild(div);
+    appendPortfolioItemToGrid(item, i);
   });
+}
+
+function appendPortfolioItemToGrid(item, index) {
+  const grid = document.getElementById('portfolio-grid');
+  if (!grid) return;
+
+  const div = document.createElement('div');
+  div.className = `portfolio-item reveal ${item.large ? 'large' : ''}`;
+  div.style.transitionDelay = `${index * 0.1}s`;
+
+  if (item.type === 'image') {
+    div.innerHTML = `
+      <img src="${item.thumbnail}" alt="${item.title}" loading="lazy" />
+    `;
+  } else if (item.type === 'video') {
+    div.innerHTML = `
+      <video src="${item.src}" poster="${item.thumbnail}" style="width: 100%; height: 100%; object-fit: cover;"></video>
+      <div class="absolute inset-0 flex items-center justify-center" style="background: rgba(0,0,0,0.3);">
+        <svg width="60" height="60" fill="currentColor" style="color: white; opacity: 0.8;">
+          <polygon points="0 0 60 30 0 60" />
+        </svg>
+      </div>
+    `;
+  }
+
+  div.addEventListener('click', () => openPortfolioLightbox(item));
+  grid.appendChild(div);
 }
 
 // Open lightbox
