@@ -1,0 +1,10 @@
+[
+  {
+    "id": "project-01-video-1",
+    "type": "video",
+    "src": "video/bones.mp4",
+    "thumbnail": "",
+    "title": "Bones",
+    "description": "Autoplay demo video"
+  }
+]
