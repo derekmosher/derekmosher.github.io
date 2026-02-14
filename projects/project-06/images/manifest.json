@@ -1,0 +1,74 @@
+[
+  {
+    "id": "project-06-1",
+    "type": "image",
+    "src": "images/07.jpg",
+    "thumbnail": "images/07.jpg",
+    "title": "",
+    "description": "",
+    "large": true
+  },
+  {
+    "id": "project-06-2",
+    "type": "image",
+    "src": "images/08.jpg",
+    "thumbnail": "images/08.jpg",
+    "title": "",
+    "description": "",
+    "large": false
+  },
+  {
+    "id": "project-06-3",
+    "type": "image",
+    "src": "images/11.jpg",
+    "thumbnail": "images/11.jpg",
+    "title": "",
+    "description": "",
+    "large": false
+  },
+  {
+    "id": "project-06-4",
+    "type": "image",
+    "src": "images/23.jpg",
+    "thumbnail": "images/23.jpg",
+    "title": "",
+    "description": "",
+    "large": false
+  },
+  {
+    "id": "project-06-5",
+    "type": "image",
+    "src": "images/27.jpg",
+    "thumbnail": "images/27.jpg",
+    "title": "",
+    "description": "",
+    "large": false
+  },
+  {
+    "id": "project-06-6",
+    "type": "image",
+    "src": "images/29.jpg",
+    "thumbnail": "images/29.jpg",
+    "title": "",
+    "description": "",
+    "large": false
+  },
+  {
+    "id": "project-06-7",
+    "type": "image",
+    "src": "images/31.jpg",
+    "thumbnail": "images/31.jpg",
+    "title": "",
+    "description": "",
+    "large": false
+  },
+  {
+    "id": "project-06-8",
+    "type": "image",
+    "src": "images/33.jpg",
+    "thumbnail": "images/33.jpg",
+    "title": "",
+    "description": "",
+    "large": false
+  }
+]
