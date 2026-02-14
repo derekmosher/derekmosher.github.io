@@ -33,10 +33,20 @@
   },
   "project-05": {
     "type": "Project:",
-    "client": "",
-    "title": "Project 05",
-    "description": "",
+    "client": "NBC",
+    "title": "Constantine - Social Media",
+    "description": "Social Media Campaign for NBC's Constantine. I built these in After Effects.",
     "thumbnail": "projects/project-05/project-thumbnail.jpg",
     "link": "projects/project.html?project=project-05"
+  },
+  "project-06": {
+    "type": "Project:",
+    "client": "Self Published on Amazon",
+    "title": "The Creepy Little TV Guy - illustrated book", 
+    "description": "As a kid I loved to draw. Later I even had a comic strip for a few years in a local newspaper. This was a true passion project to write and illustrate my own children's book. Self Published on Amazon.",
+    "descriptionLink": "https://amzn.to/3OiTne3",
+    "descriptionLinkText": "Self Published on Amazon",
+    "thumbnail": "projects/project-06/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-06"
   }
 }

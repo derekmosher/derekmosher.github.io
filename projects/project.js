@@ -61,23 +61,75 @@ async function loadPortfolioConfig() {
     const clientEl = document.getElementById('portfolio-client');
     const descEl = document.getElementById('portfolio-description');
 
-    const setMetaLine = (element, label, value) => {
+    const setMetaLine = (element, label, value, link) => {
       if (!element || !value) return;
       element.innerHTML = '';
       const labelSpan = document.createElement('span');
       labelSpan.className = 'meta-label';
       labelSpan.textContent = label;
-      const valueSpan = document.createElement('span');
-      valueSpan.className = 'meta-value';
-      valueSpan.textContent = ` ${value}`;
+      let valueSpan;
+      if (link) {
+        valueSpan = document.createElement('a');
+        valueSpan.className = 'meta-value';
+        valueSpan.href = link;
+        valueSpan.target = '_blank';
+        valueSpan.rel = 'noopener noreferrer';
+        valueSpan.style.textDecoration = 'underline';
+        valueSpan.style.textUnderlineOffset = '2px';
+        valueSpan.textContent = ` ${value}`;
+      } else {
+        valueSpan = document.createElement('span');
+        valueSpan.className = 'meta-value';
+        valueSpan.textContent = ` ${value}`;
+      }
       element.appendChild(labelSpan);
       element.appendChild(valueSpan);
     };
 
     if (typeEl && projectConfig.title) setMetaLine(typeEl, 'PROJECT:', projectConfig.title);
     else if (typeEl && projectConfig.type) setMetaLine(typeEl, 'PROJECT:', projectConfig.type.replace(/:$/, ''));
-    if (clientEl && projectConfig.client) setMetaLine(clientEl, 'CLIENT:', projectConfig.client);
-    if (descEl && projectConfig.description) setMetaLine(descEl, 'DESCRIPTION:', projectConfig.description);
+    if (clientEl && projectConfig.client) setMetaLine(clientEl, 'CLIENT:', projectConfig.client, projectConfig.clientLink);
+    if (descEl && projectConfig.description) {
+      if (projectConfig.descriptionLink && projectConfig.descriptionLinkText && projectConfig.description.includes(projectConfig.descriptionLinkText)) {
+        descEl.innerHTML = '';
+        const labelSpan = document.createElement('span');
+        labelSpan.className = 'meta-label';
+        labelSpan.textContent = 'DESCRIPTION:';
+        descEl.appendChild(labelSpan);
+
+        const full = projectConfig.description;
+        const linkText = projectConfig.descriptionLinkText;
+        const linkStart = full.indexOf(linkText);
+        const before = full.slice(0, linkStart);
+        const after = full.slice(linkStart + linkText.length);
+
+        if (before) {
+          const beforeSpan = document.createElement('span');
+          beforeSpan.className = 'meta-value';
+          beforeSpan.textContent = ` ${before}`;
+          descEl.appendChild(beforeSpan);
+        }
+
+        const linkEl = document.createElement('a');
+        linkEl.className = 'meta-value';
+        linkEl.href = projectConfig.descriptionLink;
+        linkEl.target = '_blank';
+        linkEl.rel = 'noopener noreferrer';
+        linkEl.style.textDecoration = 'underline';
+        linkEl.style.textUnderlineOffset = '2px';
+        linkEl.textContent = `${before ? '' : ' '}${linkText}`;
+        descEl.appendChild(linkEl);
+
+        if (after) {
+          const afterSpan = document.createElement('span');
+          afterSpan.className = 'meta-value';
+          afterSpan.textContent = after;
+          descEl.appendChild(afterSpan);
+        }
+      } else {
+        setMetaLine(descEl, 'DESCRIPTION:', projectConfig.description, projectConfig.descriptionLink);
+      }
+    }
 
     if (projectConfig.title) {
       document.title = `${projectConfig.title} - Derek Mosher`;
