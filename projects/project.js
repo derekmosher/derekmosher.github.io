@@ -146,6 +146,7 @@ async function loadPortfolioConfig() {
 async function loadImagesFromFolder() {
   const imageFolder = `${activeProjectFolder || resolveProjectFolder()}/images/`;
   const imageExtensions = ['png', 'jpg', 'jpeg', 'gif', 'webp'];
+  let loadedCount = 0;
   
   // Try to fetch a manifest file first (set up by server or manually)
   try {
@@ -153,32 +154,29 @@ async function loadImagesFromFolder() {
     if (response.ok) {
       const manifestItems = await response.json();
       if (Array.isArray(manifestItems) && manifestItems.length > 0) {
-        // Verify that manifest images actually exist before loading
-        const verifiedItems = [];
+        setProjectLoaderText('Loading images...');
+        // Verify and render sequentially so images appear as soon as they are loaded
         for (const item of manifestItems) {
           const normalizedThumbnail = normalizeProjectAssetPath(activeProjectFolder || resolveProjectFolder(), item.thumbnail || item.src);
           const normalizedSrc = normalizeProjectAssetPath(activeProjectFolder || resolveProjectFolder(), item.src || item.thumbnail);
           try {
             const imgResponse = await fetch(normalizedThumbnail, { method: 'HEAD' });
             if (imgResponse.ok) {
-              verifiedItems.push({
+              portfolioItems.push({
                 ...item,
                 src: normalizedSrc,
                 thumbnail: normalizedThumbnail
               });
+              loadedCount += 1;
+              renderPortfolioGrid();
             }
           } catch (e) {
             // Image doesn't exist, skip it
             console.log(`Image not found: ${normalizedThumbnail}`);
           }
         }
-        
-        if (verifiedItems.length > 0) {
-          // Append images to any existing items (e.g., videos may already be present)
-          portfolioItems = portfolioItems.concat(verifiedItems);
-          renderPortfolioGrid();
-          return;
-        }
+
+        return loadedCount;
       }
     }
   } catch (e) {
@@ -262,12 +260,16 @@ async function loadImagesFromFolder() {
   }
 
   if (detectedImages.length > 0) {
-    // Append detected images to existing portfolio items
-    portfolioItems = portfolioItems.concat(detectedImages);
+    setProjectLoaderText('Loading images...');
+    for (const detected of detectedImages) {
+      portfolioItems.push(detected);
+      loadedCount += 1;
+      renderPortfolioGrid();
+    }
+    return loadedCount;
   }
 
-  // Render (if there are any items now)
-  renderPortfolioGrid();
+  return loadedCount;
 }
 
 // Detect and load videos from the video/ folder (videos are shown first in the grid)
@@ -359,6 +361,7 @@ async function loadVideosFromFolder() {
   }
 
   if (detectedVideos.length > 0) {
+    setProjectLoaderText('Loading video...');
     // Render the first detected video above banners (do NOT duplicate into the image grid)
     const vid = detectedVideos[0];
     const videoContainer = document.getElementById('video-container');
@@ -512,6 +515,8 @@ async function loadVideosFromFolder() {
       console.log('Rendered video in video-container:', vid.src);
     }
   }
+
+  return detectedVideos.length;
 }
 
 // Load HTML banners from the banners/ folder if present
@@ -552,8 +557,10 @@ async function loadBannersFromFolder() {
 
   if (found.length === 0) {
     container.style.display = 'none';
-    return;
+    return 0;
   }
+
+  setProjectLoaderText('Loading banners...');
 
   container.innerHTML = '';
   container.style.display = 'flex';
@@ -623,6 +630,8 @@ async function loadBannersFromFolder() {
     wrapper.appendChild(btn);
     container.appendChild(wrapper);
   });
+
+  return found.length;
 }
 
 // Helper function to extract readable title from filename
@@ -708,11 +717,8 @@ function hideProjectLoader() {
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     await loadPortfolioConfig();
-    setProjectLoaderText('Loading video...');
     await loadVideosFromFolder();
-    setProjectLoaderText('Loading banners...');
     await loadBannersFromFolder();
-    setProjectLoaderText('Loading images...');
     await loadImagesFromFolder();
   } finally {
     hideProjectLoader();
