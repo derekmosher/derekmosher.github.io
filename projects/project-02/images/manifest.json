@@ -1,12 +1,11 @@
 [
   {
-    "id": "project-01-1",
+    "id": "project-02-1",
     "type": "image",
     "src": "images/storyboard.jpg",
     "thumbnail": "images/storyboard.jpg",
-    "title": "Storyboard",
+    "title": "storyboard",
     "description": "",
     "large": true
   }
- 
 ]
