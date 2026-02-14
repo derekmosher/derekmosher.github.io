@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" style="height: 100%;">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    window.location.replace('../project.html?project=project-03' + window.location.hash);
+  </script>
+  <title>Project - Derek Mosher</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../main.css">
+  <link rel="stylesheet" href="project.css">
+  <script src="../../shared/top-nav.js" defer></script>
+  <script src="../../shared/footer.js" defer></script>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="font-body flex flex-col" style="background: var(--bg); color: var(--text); height: 100%; margin: 0; min-height: 100vh;">
+  <div id="app-wrapper" class="w-full overflow-auto">
+    <!-- Navigation (shared with main) -->
+    <div id="top-nav-mount"></div>
+
+    <!-- Portfolio Content -->
+    <section id="portfolio-content" class="w-full max-w-7xl mx-auto px-6 py-24" style="padding-top: 120px;">
+      <div class="reveal mb-16">
+        <p id="portfolio-client" class="text-sm tracking-widest mb-3" style="color: var(--accent);"><span class="meta-label">CLIENT:</span> <span class="meta-value"></span></p>
+        <p id="portfolio-type" class="text-sm tracking-widest mb-3" style="color: var(--accent);"><span class="meta-label">PROJECT:</span> <span class="meta-value">FEATURED WORK</span></p>
+        <p id="portfolio-description" class="text-sm tracking-widest" style="color: var(--accent);"><span class="meta-label">DESCRIPTION:</span> <span class="meta-value">Project description goes here</span></p>
+        <div id="video-container" class="mt-6 mb-4" style="display: none;"></div>
+        <div id="banners-container" class="mt-8" aria-live="polite" style="display: none;"></div>
+      </div>
+
+      <!-- Images & Video Grid -->
+      <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Images will be populated by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="portfolio-lightbox" class="portfolio-lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+      <div class="lightbox-backdrop" id="portfolio-lightbox-backdrop"></div>
+      <div class="lightbox-content">
+        <button id="portfolio-lightbox-close" class="absolute -top-12 right-0 text-white text-sm tracking-widest uppercase hover:opacity-70 transition-opacity" aria-label="Close preview">Close ✕</button>
+        <div id="portfolio-lightbox-body" class="rounded-xl overflow-hidden" style="max-width: 900px;"></div>
+      </div>
+    </div>
+
+    <!-- Footer (shared with main) -->
+    <div id="footer-mount"></div>
+  </div>
+
+  <script src="project.js"></script>
+ </body>
+</html>
