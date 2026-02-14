@@ -223,7 +223,7 @@ function renderGallery() {
       </div>
       <div class="overlay absolute inset-0 flex flex-col justify-end p-6" style="background: linear-gradient(transparent 30%, rgba(14,14,14,0.97));">
         <p class="text-sm tracking-widest uppercase mb-1" style="color: var(--accent);">${project.client}</p>
-        <p class="font-display text-xl" style="color: var(--text);">${project.title}</p>
+        <p class="font-display text-xl" style="color: var(--text); letter-spacing: 0.04em;">${project.title}</p>
       </div>
     `;
     
