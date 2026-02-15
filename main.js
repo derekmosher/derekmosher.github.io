@@ -1,3 +1,10 @@
+const isMobileView = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+const isTouchDevice = 'ontouchstart' in window || (navigator.maxTouchPoints || 0) > 0;
+const isMobileUserAgent = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || '');
+const isMobile = isMobileView || (isTouchDevice && isMobileUserAgent);
+document.documentElement.classList.toggle('is-mobile', isMobile);
+document.documentElement.dataset.device = isMobile ? 'mobile' : 'desktop';
+
 // Gallery data with detailed project info
 const galleryItems = [
   { 

@@ -1,4 +1,5 @@
-body { box-sizing: border-box; }
+body { box-sizing: border-box; overflow-x: hidden; }
+*, *::before, *::after { box-sizing: inherit; }
 html, body {
   height: 100%;
   margin: 0;
@@ -21,7 +22,12 @@ body { font-size: 16px; }
 
 /* Smooth scroll */
 html { scroll-behavior: smooth; }
-#app-wrapper { scroll-behavior: smooth; }
+#app-wrapper { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+
+img, video, svg, iframe {
+  max-width: 100%;
+  height: auto;
+}
 
 /* Stagger reveal animations */
 @keyframes fadeSlideUp {
@@ -207,6 +213,8 @@ html { scroll-behavior: smooth; }
 @view-transition { navigation: auto; }
 
 @media (max-width: 640px) {
+  html { font-size: clamp(14px, 3.8vw, 16px); }
+
   #hero-name {
     font-size: clamp(2.75rem, 12vw, 4.25rem);
     line-height: 1.05;
@@ -218,5 +226,61 @@ html { scroll-behavior: smooth; }
 
   #hero-tagline {
     font-size: clamp(0.75rem, 3.5vw, 0.95rem);
+  }
+
+  #work-title,
+  #about-title,
+  #contact-title {
+    font-size: clamp(1.85rem, 7vw, 2.6rem);
+    line-height: 1.1;
+  }
+
+  #about-desc,
+  #contact p,
+  #portfolio-description {
+    font-size: clamp(0.95rem, 3.8vw, 1.1rem);
+    line-height: 1.5;
+  }
+
+  #work p,
+  #about p,
+  #contact p {
+    letter-spacing: 0.04em;
+  }
+
+  .hero-cta,
+  #contact-email-link {
+    font-size: clamp(0.95rem, 4vw, 1.1rem);
+    padding: 10px 16px;
+    max-width: 100%;
+  }
+
+  #contact-email-link {
+    display: inline-block;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  #contact .flex {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  #contact a[aria-label="LinkedIn"],
+  #contact a[aria-label="SoundCloud"],
+  #contact a[aria-label="Behance"] {
+    width: 44px;
+    height: 44px;
+  }
+
+  .marquee-track {
+    letter-spacing: 0.04em;
+    animation-duration: 28s;
+  }
+}
+
+@media (max-width: 480px) {
+  #hero-name {
+    font-size: clamp(2.25rem, 10.5vw, 3.5rem);
   }
 }
