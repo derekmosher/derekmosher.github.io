@@ -20,6 +20,10 @@ body { font-size: 16px; }
 .font-display { font-family: 'DM Serif Display', Georgia, serif; }
 .font-body { font-family: 'Instrument Sans', sans-serif; }
 
+.hero-section {
+  min-height: 100vh;
+}
+
 /* Smooth scroll */
 html { scroll-behavior: smooth; }
 #app-wrapper { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
@@ -215,17 +219,40 @@ img, video, svg, iframe {
 @media (max-width: 640px) {
   html { font-size: clamp(14px, 3.8vw, 16px); }
 
+  #hero {
+    padding-top: 96px;
+    padding-bottom: 72px;
+  }
+
+  .hero-inner {
+    max-width: 26rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   #hero-name {
-    font-size: clamp(2.75rem, 12vw, 4.25rem);
-    line-height: 1.05;
+    font-size: clamp(3rem, 12.5vw, 5rem);
+    line-height: 1.02;
   }
 
   #hero-subtitle {
-    font-size: clamp(1rem, 4.5vw, 1.5rem);
+    font-size: clamp(1.05rem, 4.2vw, 1.5rem);
+    line-height: 1.45;
   }
 
   #hero-tagline {
-    font-size: clamp(0.75rem, 3.5vw, 0.95rem);
+    font-size: clamp(0.78rem, 3.6vw, 0.95rem);
+    letter-spacing: 0.18em;
+  }
+
+  .hero-actions {
+    margin-top: 36px;
+    gap: 12px;
+  }
+
+  .hero-cta {
+    min-width: 38%;
+    text-align: center;
   }
 
   #work-title,
@@ -242,10 +269,52 @@ img, video, svg, iframe {
     line-height: 1.5;
   }
 
+  #about .grid {
+    gap: 28px;
+  }
+
+  .about-caption {
+    left: 16px;
+    right: 16px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+
+  .about-caption-text {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    white-space: nowrap;
+  }
+
   #work p,
   #about p,
   #contact p {
     letter-spacing: 0.04em;
+  }
+
+  #work,
+  #about,
+  #contact {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  #work .reveal,
+  #about .reveal,
+  #contact .reveal {
+    margin-bottom: 32px;
+  }
+
+  #work-title,
+  #about-title,
+  #contact-title {
+    margin-top: 4px;
+    margin-bottom: 16px;
+  }
+
+  #work .grid,
+  #about .grid {
+    row-gap: 28px;
   }
 
   .hero-cta,
@@ -259,6 +328,16 @@ img, video, svg, iframe {
     display: inline-block;
     white-space: normal;
     word-break: break-word;
+  }
+
+  #contact {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #contact > div {
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   #contact .flex {
@@ -277,10 +356,68 @@ img, video, svg, iframe {
     letter-spacing: 0.04em;
     animation-duration: 28s;
   }
+
+  .marquee-track {
+    font-size: 1.1rem;
+  }
+
+  #shared-footer {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  #shared-footer-content {
+    gap: 6px;
+    text-align: center;
+  }
+
+  #project-detail-page {
+    padding-top: 72px;
+  }
+
+  #project-detail-page .space-y-16 {
+    row-gap: 48px;
+  }
+
+  header > nav {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  #nav-name {
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+  }
+
+  #mobile-menu-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  #mobile-menu-btn svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  #mobile-menu {
+    padding-top: 8px;
+    padding-bottom: 12px;
+    gap: 12px;
+  }
+
+  #mobile-menu a {
+    padding: 6px 0;
+  }
 }
 
 @media (max-width: 480px) {
   #hero-name {
-    font-size: clamp(2.25rem, 10.5vw, 3.5rem);
+    font-size: clamp(2.9rem, 12.8vw, 4.6rem);
+  }
+
+  #hero {
+    padding-top: 88px;
+    padding-bottom: 64px;
   }
 }
