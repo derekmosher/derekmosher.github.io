@@ -26,7 +26,13 @@ body { font-size: 16px; }
 
 /* Smooth scroll */
 html { scroll-behavior: smooth; }
-#app-wrapper { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+#app-wrapper {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
 
 img, video, svg, iframe {
   max-width: 100%;
@@ -74,6 +80,7 @@ img, video, svg, iframe {
 /* Gallery hover */
 .gallery-item {
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
+  will-change: transform;
 }
 .gallery-item:hover {
   transform: translateY(-8px) scale(1.02);
@@ -90,12 +97,14 @@ img, video, svg, iframe {
 /* Video card hover */
 .video-card {
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 .video-card:hover {
   transform: scale(1.03);
 }
 .video-card .play-btn {
   transition: transform 0.3s ease, background 0.3s ease;
+  will-change: transform, background;
 }
 .video-card:hover .play-btn {
   transform: scale(1.15);
@@ -178,6 +187,14 @@ img, video, svg, iframe {
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--accent2); border-radius: 3px; }
 
+/* Android scrollbar fallback */
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent2) var(--bg);
+  }
+}
+
 /* Lightbox */
 .lightbox {
   position: fixed;
@@ -217,7 +234,16 @@ img, video, svg, iframe {
 @view-transition { navigation: auto; }
 
 @media (max-width: 640px) {
-  html { font-size: clamp(14px, 3.8vw, 16px); }
+  html { 
+    font-size: clamp(14px, 3.8vw, 16px);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+  }
 
   #hero {
     padding-top: 96px;
@@ -408,6 +434,28 @@ img, video, svg, iframe {
 
   #mobile-menu a {
     padding: 6px 0;
+  }
+
+  /* Reduce animation intensity on mobile for better performance */
+  .gallery-item:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+
+  .video-card:hover {
+    transform: scale(1.02);
+  }
+
+  .video-card:hover .play-btn {
+    transform: scale(1.1);
+  }
+
+  /* Disable animations on Android if user prefers reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-item,
+    .video-card,
+    .video-card .play-btn {
+      transition: none !important;
+    }
   }
 }
 

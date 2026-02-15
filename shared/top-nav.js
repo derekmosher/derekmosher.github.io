@@ -9,7 +9,7 @@
   const contactHref = isProjectPage ? '../index.html#contact' : '#contact';
 
   mount.innerHTML = `
-    <header class="fixed top-0 left-0 w-full z-50" style="background: rgba(14,14,14,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.05);">
+    <header class="fixed top-0 left-0 w-full z-50" style="background: rgba(14,14,14,0.9); border-bottom: 1px solid rgba(255,255,255,0.05);">
       <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="${homeHref}" class="flex items-center gap-2 hover:opacity-70 transition-opacity" id="nav-logo" style="background: none; border: none; cursor: pointer; padding: 0; text-decoration: none;">
           <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent);">
@@ -25,7 +25,7 @@
           <a href="${contactHref}" class="nav-link hover:text-white transition-colors" style="color: var(--accent);">Contact</a>
         </div>
 
-        <button id="mobile-menu-btn" class="md:hidden" style="color: var(--text);" aria-label="Open menu">
+        <button id="mobile-menu-btn" class="md:hidden" style="color: var(--text); -webkit-tap-highlight-color: transparent;" aria-label="Open menu" type="button">
           <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M3 6h18M3 12h18M3 18h18" />
           </svg>
@@ -33,9 +33,9 @@
       </nav>
 
       <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 flex flex-col gap-3 text-sm" style="color: var(--accent2);">
-        <a href="${workHref}" class="hover:text-white transition-colors">Work</a>
-        <a href="${aboutHref}" class="hover:text-white transition-colors">About</a>
-        <a href="${contactHref}" class="hover:text-white transition-colors" style="color: var(--accent);">Contact</a>
+        <a href="${workHref}" class="hover:text-white transition-colors" style="-webkit-tap-highlight-color: transparent;">Work</a>
+        <a href="${aboutHref}" class="hover:text-white transition-colors" style="-webkit-tap-highlight-color: transparent;">About</a>
+        <a href="${contactHref}" class="hover:text-white transition-colors" style="color: var(--accent); -webkit-tap-highlight-color: transparent;">Contact</a>
       </div>
     </header>
   `;

@@ -1,9 +1,20 @@
 const isMobileView = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
 const isTouchDevice = 'ontouchstart' in window || (navigator.maxTouchPoints || 0) > 0;
 const isMobileUserAgent = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || '');
+const isAndroid = /Android/i.test(navigator.userAgent || '');
 const isMobile = isMobileView || (isTouchDevice && isMobileUserAgent);
 document.documentElement.classList.toggle('is-mobile', isMobile);
+document.documentElement.classList.toggle('is-android', isAndroid);
 document.documentElement.dataset.device = isMobile ? 'mobile' : 'desktop';
+
+// Disable smooth scrolling on Android for better performance
+if (isAndroid) {
+  document.documentElement.style.scrollBehavior = 'auto';
+  const appWrapper = document.getElementById('app-wrapper');
+  if (appWrapper) {
+    appWrapper.style.scrollBehavior = 'auto';
+  }
+}
 
 // Gallery data with detailed project info
 const galleryItems = [
@@ -377,7 +388,12 @@ function initMainNavInteractions() {
       e.preventDefault();
       const headerHeight = document.querySelector('header')?.offsetHeight || 0;
       const targetTop = targetEl.offsetTop - headerHeight;
-      wrapper.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
+      // Use different scrolling method for Android
+      if (isAndroid) {
+        wrapper.scrollTop = Math.max(0, targetTop);
+      } else {
+        wrapper.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
+      }
     });
   });
 }
@@ -396,7 +412,10 @@ const observer = new IntersectionObserver((entries) => {
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1 });
+}, { 
+  threshold: 0.1,
+  rootMargin: '50px'
+});
 
 function observeReveals() {
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
