@@ -2,6 +2,7 @@
 let portfolioItems = [];
 let activeProjectFolder = null;
 let activeProjectConfig = null;
+const manifestCacheBuster = Date.now().toString();
 
 function resolveProjectFolder() {
   const queryProject = new URLSearchParams(window.location.search).get('project');
@@ -157,7 +158,7 @@ async function loadImagesFromFolder() {
   
   // Try to fetch a manifest file first (set up by server or manually)
   try {
-    const response = await fetch(imageFolder + 'manifest.json');
+    const response = await fetch(imageFolder + 'manifest.json?v=' + manifestCacheBuster);
     if (response.ok) {
       const manifestItems = await response.json();
       if (Array.isArray(manifestItems) && manifestItems.length > 0) {
@@ -292,7 +293,7 @@ async function loadVideosFromFolder() {
 
   // Try manifest first
   try {
-    const resp = await fetch(videoFolder + 'manifest.json');
+    const resp = await fetch(videoFolder + 'manifest.json?v=' + manifestCacheBuster);
     if (resp.ok) {
       const m = await resp.json();
       if (Array.isArray(m) && m.length > 0) {
