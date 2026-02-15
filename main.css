@@ -5,9 +5,14 @@ html, body {
   margin: 0;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 html { font-size: 16px; }
-body { font-size: 16px; }
+body { 
+  font-size: 16px;
+  transform: translateZ(0); /* Force hardware acceleration on Android */
+}
 
 :root {
   --bg: #0e0e0e;
@@ -22,6 +27,8 @@ body { font-size: 16px; }
 
 .hero-section {
   min-height: 100vh;
+  /* Android Chrome viewport fix */
+  min-height: calc(var(--vh, 1vh) * 100);
 }
 
 /* Smooth scroll */
@@ -238,11 +245,17 @@ img, video, svg, iframe {
     font-size: clamp(14px, 3.8vw, 16px);
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    /* Android Chrome font rendering fix */
+    -webkit-font-feature-settings: "kern" 1;
+    font-feature-settings: "kern" 1;
   }
 
   * {
     -webkit-tap-highlight-color: transparent;
     tap-highlight-color: transparent;
+    /* Prevent Android Chrome layout shifts */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 
   #hero {
@@ -447,6 +460,20 @@ img, video, svg, iframe {
 
   .video-card:hover .play-btn {
     transform: scale(1.1);
+  }
+
+  /* Android Chrome specific fixes */
+  .is-android-chrome {
+    /* Force GPU acceleration on Android Chrome */
+    transform: translate3d(0,0,0);
+  }
+  
+  .is-android-chrome .hero-section,
+  .is-android-chrome #work,
+  .is-android-chrome #about,
+  .is-android-chrome #contact {
+    /* Prevent layout shifts on Android Chrome */
+    contain: layout style paint;
   }
 
   /* Disable animations on Android if user prefers reduced motion */

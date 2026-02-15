@@ -2,17 +2,42 @@ const isMobileView = window.matchMedia && window.matchMedia('(max-width: 768px)'
 const isTouchDevice = 'ontouchstart' in window || (navigator.maxTouchPoints || 0) > 0;
 const isMobileUserAgent = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || '');
 const isAndroid = /Android/i.test(navigator.userAgent || '');
+const isAndroidChrome = isAndroid && /Chrome/i.test(navigator.userAgent || '');
 const isMobile = isMobileView || (isTouchDevice && isMobileUserAgent);
 document.documentElement.classList.toggle('is-mobile', isMobile);
 document.documentElement.classList.toggle('is-android', isAndroid);
+document.documentElement.classList.toggle('is-android-chrome', isAndroidChrome);
 document.documentElement.dataset.device = isMobile ? 'mobile' : 'desktop';
 
-// Disable smooth scrolling on Android for better performance
-if (isAndroid) {
+// Fix Android Chrome viewport height issues
+function setVH() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+if (isAndroidChrome) {
+  // Disable smooth scrolling on Android Chrome for better performance
   document.documentElement.style.scrollBehavior = 'auto';
   const appWrapper = document.getElementById('app-wrapper');
   if (appWrapper) {
     appWrapper.style.scrollBehavior = 'auto';
+  }
+  
+  // Set initial viewport height
+  setVH();
+  
+  // Update on resize/orientation change
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(setVH, 100);
+  });
+  
+  // Force font load on Android Chrome
+  if ('fonts' in document) {
+    document.fonts.ready.then(() => {
+      document.body.classList.add('fonts-loaded');
+    });
   }
 }
 
@@ -388,9 +413,16 @@ function initMainNavInteractions() {
       e.preventDefault();
       const headerHeight = document.querySelector('header')?.offsetHeight || 0;
       const targetTop = targetEl.offsetTop - headerHeight;
-      // Use different scrolling method for Android
-      if (isAndroid) {
+      // Use different scrolling method for Android Chrome
+      if (isAndroidChrome) {
+        // Force immediate scroll on Android Chrome
         wrapper.scrollTop = Math.max(0, targetTop);
+        // Small delay to ensure scroll completes
+        setTimeout(() => {
+          if (Math.abs(wrapper.scrollTop - targetTop) > 10) {
+            wrapper.scrollTop = Math.max(0, targetTop);
+          }
+        }, 50);
       } else {
         wrapper.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
       }
