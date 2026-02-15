@@ -4,6 +4,9 @@
     "client": "BlueAlly",
     "title": "Barracuda -Email Security Campaign",
     "description": "Concepting, storyboarding, design, and animation for a B2B email security campaign. You give me fun copy like: phishing, spam, and malware. Then then ask how to bring it alive. Wow, this is nothing but FUN for me.",
+    "hasImages": false,
+    "hasBanners": true,
+    "hasVideo": false,
     "thumbnail": "projects/project-01/project-thumbnail.jpg",
     "link": "projects/project.html?project=project-01"
   },
@@ -12,6 +15,9 @@
     "client": "BlueAlly",
     "title": "Cisco - E-Rate Campaign",
     "description": "Concepting, storyboarding, design, and animation. The client says, \"We want to use this type of stock vector art that we own, and it needs to tell a story that matches our copy.\" Problem is, most of it doesn't work. So, BAM I'm modifying and drawing most to the vector art on the fly. I'm not even sure they knew how much I had to do to pull this off. Regardless, I had a blast doing it.",
+    "hasImages": true,
+    "hasBanners": true,
+    "hasVideo": false,
     "thumbnail": "projects/project-02/project-thumbnail.jpg",
     "link": "projects/project.html?project=project-02"
   },
@@ -20,22 +26,31 @@
     "client": "WynnBet",
     "title": "Wynn Slots - Mobile App Graphics",
     "description": "Concepting and designing mobile game thumbnails. These were easily my favorite projects at WynnBet. While other designers put minimal effort into these, I obsessed with them. I quickly got all this work. And when I was not available, I often was asked to redo others' work.",
+    "hasImages": true,
+    "hasBanners": false,
+    "hasVideo": false,
     "thumbnail": "projects/project-03/project-thumbnail.jpg",
     "link": "projects/project.html?project=project-03"
   },
-  "project-04": {
+  "project-07": {
     "type": "Project:",
-    "client": "BlueAlly",
-    "title": "Xfinity Center - Stadium Billboard Video Ads",
-    "description": "When your client calls you unexpectedly at 9am and asks - Can you do a basketball stadium video? OH and... done by 3pm... and with no assets... and no final copy.",
-    "thumbnail": "projects/project-04/project-thumbnail.jpg",
-    "link": "projects/project.html?project=project-04"
+    "client": "Wynn Resorts",
+    "title": "Awakening 30 second video", 
+    "description": "Using Premiere Pro and After Effects, I edited footage for this 30 second spot.",
+    "hasImages": false,
+    "hasBanners": false,
+    "hasVideo": true,
+    "thumbnail": "projects/project-07/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-07"
   },
   "project-05": {
     "type": "Project:",
     "client": "NBC",
     "title": "Constantine - Social Media",
     "description": "Social Media Campaign for NBC's Constantine. I built these in After Effects.",
+    "hasImages": true,
+    "hasBanners": false,
+    "hasVideo": false,
     "thumbnail": "projects/project-05/project-thumbnail.jpg",
     "link": "projects/project.html?project=project-05"
   },
@@ -46,7 +61,21 @@
     "description": "As a kid I loved to draw. Later I even had a comic strip for a few years in a local newspaper. This was a true passion project to write and illustrate my own children's book. Self Published on Amazon.",
     "descriptionLink": "https://amzn.to/3OiTne3",
     "descriptionLinkText": "Self Published on Amazon",
+    "hasImages": true,
+    "hasBanners": false,
+    "hasVideo": false,
     "thumbnail": "projects/project-06/project-thumbnail.jpg",
     "link": "projects/project.html?project=project-06"
+  },
+  "project-04": {
+    "type": "Project:",
+    "client": "BlueAlly",
+    "title": "Xfinity Center - Stadium Billboard Video Ads",
+    "description": "When your client calls you unexpectedly at 9am and asks - Can you do a basketball stadium video? OH and... done by 3pm... and with no assets... and no final copy.",
+    "hasImages": true,
+    "hasBanners": false,
+    "hasVideo": true,
+    "thumbnail": "projects/project-04/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-04"
   }
 }

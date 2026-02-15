@@ -2,10 +2,55 @@
   {
     "id": "project-02-1",
     "type": "image",
-    "src": "images/storyboard.jpg",
-    "thumbnail": "images/storyboard.jpg",
-    "title": "storyboard",
+    "src": "images/storyboard_1.jpg",
+    "thumbnail": "images/storyboard_1.jpg",
+    "title": "storyboard 1",
     "description": "",
-    "large": true
+    "large": false
+  },
+  {
+    "id": "project-02-2",
+    "type": "image",
+    "src": "images/storyboard_2.jpg",
+    "thumbnail": "images/storyboard_2.jpg",
+    "title": "storyboard 2",
+    "description": "",
+    "large": false
+  },
+  {
+    "id": "project-02-3",
+    "type": "image",
+    "src": "images/storyboard_3.jpg",
+    "thumbnail": "images/storyboard_3.jpg",
+    "title": "storyboard 3",
+    "description": "",
+    "large": false
+  },
+  {
+    "id": "project-02-4",
+    "type": "image",
+    "src": "images/storyboard_4.jpg",
+    "thumbnail": "images/storyboard_4.jpg",
+    "title": "storyboard 4",
+    "description": "",
+    "large": false
+  },
+  {
+    "id": "project-02-5",
+    "type": "image",
+    "src": "images/storyboard_5.jpg",
+    "thumbnail": "images/storyboard_5.jpg",
+    "title": "storyboard 5",
+    "description": "",
+    "large": false
+  },
+  {
+    "id": "project-02-6",
+    "type": "image",
+    "src": "images/storyboard_6.jpg",
+    "thumbnail": "images/storyboard_6.jpg",
+    "title": "storyboard 6",
+    "description": "",
+    "large": false
   }
 ]

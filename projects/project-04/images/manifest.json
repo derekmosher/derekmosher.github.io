@@ -6,7 +6,7 @@
     "thumbnail": "images/outside.jpg",
     "title": "outside",
     "description": "",
-    "large": true
+    "large": false
   },
   {
     "id": "project-04-2",

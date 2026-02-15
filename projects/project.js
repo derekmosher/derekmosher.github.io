@@ -1,6 +1,7 @@
 // Portfolio page data - will be auto-loaded from images folder
 let portfolioItems = [];
 let activeProjectFolder = null;
+let activeProjectConfig = null;
 
 function resolveProjectFolder() {
   const queryProject = new URLSearchParams(window.location.search).get('project');
@@ -55,6 +56,8 @@ async function loadPortfolioConfig() {
       console.log('No entry for', projectFolder, 'in config.json');
       return;
     }
+
+    activeProjectConfig = projectConfig;
 
     // Update HTML elements with config data
     const typeEl = document.getElementById('portfolio-type');
@@ -144,6 +147,10 @@ async function loadPortfolioConfig() {
 
 // Function to auto-detect and load images from the images folder
 async function loadImagesFromFolder() {
+  if (activeProjectConfig && activeProjectConfig.hasImages === false) {
+    return 0;
+  }
+
   const imageFolder = `${activeProjectFolder || resolveProjectFolder()}/images/`;
   const imageExtensions = ['png', 'jpg', 'jpeg', 'gif', 'webp'];
   let loadedCount = 0;
@@ -275,6 +282,10 @@ async function loadImagesFromFolder() {
 
 // Detect and load videos from the video/ folder (videos are shown first in the grid)
 async function loadVideosFromFolder() {
+  if (activeProjectConfig && activeProjectConfig.hasVideo === false) {
+    return 0;
+  }
+
   const videoFolder = `${activeProjectFolder || resolveProjectFolder()}/video/`;
   const videoExtensions = ['mp4', 'webm', 'mov', 'ogv'];
   const detectedVideos = [];
@@ -522,6 +533,10 @@ async function loadVideosFromFolder() {
 
 // Load HTML banners from the banners/ folder if present
 async function loadBannersFromFolder() {
+  if (activeProjectConfig && activeProjectConfig.hasBanners === false) {
+    return 0;
+  }
+
   // Render order: 300x600, 160x600, 300x250, 728x90
   const sizes = ['300x600','160x600','300x250','728x90'];
   const bannersRoot = `${activeProjectFolder || resolveProjectFolder()}/banners/`;
