@@ -47,25 +47,26 @@
     "type": "Project:",
     "client": "Wynn Resorts",
     "title": "Graphic Design", 
-    "description": "I created 1000s of graphics for a variety of projects at Wynn Resorts. This includes the website, social media, banner ads, digital signage, and more. I frequently used AI in Adobe Photoshop to extend images, and move elements to make are photographs work in all size requirements.",
+    "description": "I created 10s of thousands of graphics for a variety of projects at Wynn Resorts, including our show Awakening and all our resort restaurants. This includes the website, social media, banner ads, digital signage, and more. I frequently used AI in Adobe Photoshop to extend images, and move elements to make are photographs work in all size requirements.",
     "hasImages": true,
     "hasBanners": false,
     "hasVideo": true,
     "thumbnail": "projects/project-08/project-thumbnail.jpg",
     "link": "projects/project.html?project=project-08"
   },
-  "project-05": {
+
+  "project-04": {
     "type": "Project:",
-    "client": "NBC",
-    "title": "Constantine - Social Media",
-    "description": "Social Media Campaign for NBC's Constantine. I built these in After Effects.",
+    "client": "BlueAlly",
+    "title": "Xfinity Center - Stadium Billboard Video Ads",
+    "description": "When your client calls you unexpectedly at 9am and asks - Can you do a basketball stadium video? OH and... done by 3pm... and with no assets... and no final copy.",
     "hasImages": true,
     "hasBanners": false,
-    "hasVideo": false,
-    "thumbnail": "projects/project-05/project-thumbnail.jpg",
-    "link": "projects/project.html?project=project-05"
+    "hasVideo": true,
+    "thumbnail": "projects/project-04/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-04"
   },
-  "project-06": {
+    "project-06": {
     "type": "Project:",
     "client": "Self Published on Amazon",
     "title": "The Creepy Little TV Guy - illustrated book", 
@@ -78,15 +79,15 @@
     "thumbnail": "projects/project-06/project-thumbnail.jpg",
     "link": "projects/project.html?project=project-06"
   },
-  "project-04": {
+    "project-05": {
     "type": "Project:",
-    "client": "BlueAlly",
-    "title": "Xfinity Center - Stadium Billboard Video Ads",
-    "description": "When your client calls you unexpectedly at 9am and asks - Can you do a basketball stadium video? OH and... done by 3pm... and with no assets... and no final copy.",
+    "client": "NBC",
+    "title": "Constantine - Social Media",
+    "description": "Social Media Campaign for NBC's Constantine. I built these in After Effects.",
     "hasImages": true,
     "hasBanners": false,
-    "hasVideo": true,
-    "thumbnail": "projects/project-04/project-thumbnail.jpg",
-    "link": "projects/project.html?project=project-04"
+    "hasVideo": false,
+    "thumbnail": "projects/project-05/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-05"
   }
 }
