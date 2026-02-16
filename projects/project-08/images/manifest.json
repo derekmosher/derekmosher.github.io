@@ -1,0 +1,155 @@
+[
+  {
+    "id": "project-08-1",
+    "type": "image",
+    "src": "images/Revelry_CarouselAd_4_1080x1920_9x16.jpg",
+    "thumbnail": "images/Revelry_CarouselAd_4_1080x1920_9x16.jpg",
+    "title": "Revelry Carousel Ad - 9:16 Format",
+    "description": "",
+    "large": true
+  },
+  {
+    "id": "project-08-2",
+    "type": "image",
+    "src": "images/Revelry_CarouselAd_4_1x1.jpg",
+    "thumbnail": "images/Revelry_CarouselAd_4_1x1.jpg",
+    "title": "Revelry Carousel Ad - Square Format",
+    "description": "",
+    "large": false
+  },
+  {
+    "id": "project-08-3",
+    "type": "image",
+    "src": "images/Revelry_CarouselAd_6_1080x1920_9x16.jpg",
+    "thumbnail": "images/Revelry_CarouselAd_6_1080x1920_9x16.jpg",
+    "title": "Revelry Carousel Ad 6 - 9:16 Format",
+    "description": "",
+    "large": true
+  },
+  {
+    "id": "project-08-4",
+    "type": "image",
+    "src": "images/aft_cocktail_deck-the_pier_lake_view_night_v01_1080x1920.jpg",
+    "thumbnail": "images/aft_cocktail_deck-the_pier_lake_view_night_v01_1080x1920.jpg",
+    "title": "Aft Cocktail Deck - The Pier Lake View Night",
+    "description": "",
+    "large": true
+  },
+  {
+    "id": "project-08-5",
+    "type": "image",
+    "src": "images/bar Parasol-Couple Standing_1080x1920.jpg",
+    "thumbnail": "images/bar Parasol-Couple Standing_1080x1920.jpg",
+    "title": "Bar Parasol - Couple Standing",
+    "description": "",
+    "large": true
+  },
+  {
+    "id": "project-08-6",
+    "type": "image",
+    "src": "images/casa Playa-Short Rib Suadero V01_1080x1920.jpg",
+    "thumbnail": "images/casa Playa-Short Rib Suadero V01_1080x1920.jpg",
+    "title": "Casa Playa - Short Rib Suadero",
+    "description": "",
+    "large": true
+  },
+  {
+    "id": "project-08-7",
+    "type": "image",
+    "src": "images/encore Spa-Womens Wet Area Chairs Duo_1080x1920.jpg",
+    "thumbnail": "images/encore Spa-Womens Wet Area Chairs Duo_1080x1920.jpg",
+    "title": "Encore Spa - Women's Wet Area Chairs Duo",
+    "description": "",
+    "large": true
+  },
+  {
+    "id": "project-08-8",
+    "type": "image",
+    "src": "images/jardin-Patio Couple_1080x1920.jpg",
+    "thumbnail": "images/jardin-Patio Couple_1080x1920.jpg",
+    "title": "Jardin - Patio Couple",
+    "description": "",
+    "large": true
+  },
+  {
+    "id": "project-08-9",
+    "type": "image",
+    "src": "images/lobby Bar-Couple Walking_1080x1080.jpg",
+    "thumbnail": "images/lobby Bar-Couple Walking_1080x1080.jpg",
+    "title": "Lobby Bar - Couple Walking",
+    "description": "",
+    "large": false
+  },
+  {
+    "id": "project-08-10",
+    "type": "image",
+    "src": "images/mizumi-Sashimi Plate_1080x1920.jpg",
+    "thumbnail": "images/mizumi-Sashimi Plate_1080x1920.jpg",
+    "title": "Mizumi - Sashimi Plate",
+    "description": "",
+    "large": true
+  },
+  {
+    "id": "project-08-11",
+    "type": "image",
+    "src": "images/pisces-Patio DAY_1080x1920.jpg",
+    "thumbnail": "images/pisces-Patio DAY_1080x1920.jpg",
+    "title": "Pisces - Patio Day",
+    "description": "",
+    "large": true
+  },
+  {
+    "id": "project-08-12",
+    "type": "image",
+    "src": "images/terrace Pointe Cafe-Brunch Group_1080x1920.jpg",
+    "thumbnail": "images/terrace Pointe Cafe-Brunch Group_1080x1920.jpg",
+    "title": "Terrace Pointe Cafe - Brunch Group",
+    "description": "",
+    "large": true
+  },
+  {
+    "id": "project-08-13",
+    "type": "image",
+    "src": "images/wazuzu-Toast Group_1080x1920.jpg",
+    "thumbnail": "images/wazuzu-Toast Group_1080x1920.jpg",
+    "title": "Wazuzu - Toast Group",
+    "description": "",
+    "large": true
+  },
+  {
+    "id": "project-08-14",
+    "type": "image",
+    "src": "images/wynn Pool-Tower Suite Cabanas_1080x1920.jpg",
+    "thumbnail": "images/wynn Pool-Tower Suite Cabanas_1080x1920.jpg",
+    "title": "Wynn Pool - Tower Suite Cabanas",
+    "description": "",
+    "large": true
+  },
+  {
+    "id": "project-08-15",
+    "type": "image",
+    "src": "images/wynn_autumnEscape_exterior_vertical_700x1600px.jpg",
+    "thumbnail": "images/wynn_autumnEscape_exterior_vertical_700x1600px.jpg",
+    "title": "Wynn Autumn Escape - Exterior Vertical",
+    "description": "",
+    "large": true
+  },
+  {
+    "id": "project-08-16",
+    "type": "image",
+    "src": "images/wynn_summerBestRate_pool_vertical_700x1600px.jpg",
+    "thumbnail": "images/wynn_summerBestRate_pool_vertical_700x1600px.jpg",
+    "title": "Wynn Summer Best Rate - Pool Vertical",
+    "description": "",
+    "large": true
+  },
+  {
+    "id": "project-08-17",
+    "type": "image",
+    "src": "images/wynn_summerBestRate_video_540x960px.jpg",
+    "thumbnail": "images/wynn_summerBestRate_video_540x960px.jpg",
+    "title": "Wynn Summer Best Rate - Video Format",
+    "description": "",
+    "large": false
+  }
+]

@@ -43,6 +43,17 @@
     "thumbnail": "projects/project-07/project-thumbnail.jpg",
     "link": "projects/project.html?project=project-07"
   },
+    "project-08": {
+    "type": "Project:",
+    "client": "Wynn Resorts",
+    "title": "Graphic Design", 
+    "description": "I created 1000s of graphics for a variety of projects at Wynn Resorts for the website, social media, banner ads, digital signage, and more. I frequently used AI in Adobe Photoshop to extend images and resign and move elements to make are photographs in all scenerios",
+    "hasImages": true,
+    "hasBanners": false,
+    "hasVideo": true,
+    "thumbnail": "projects/project-08/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-08"
+  },
   "project-05": {
     "type": "Project:",
     "client": "NBC",
