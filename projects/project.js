@@ -374,95 +374,12 @@ async function loadVideosFromFolder() {
   }
 
   if (detectedVideos.length > 0) {
-    setProjectLoaderText('Loading video...');
-    // Render the first detected video above banners (do NOT duplicate into the image grid)
-    const vid = detectedVideos[0];
+    setProjectLoaderText('Loading videos...');
+    // Render ALL detected videos above banners (do NOT duplicate into the image grid)
     const videoContainer = document.getElementById('video-container');
     if (videoContainer) {
       videoContainer.innerHTML = '';
       videoContainer.style.display = 'block';
-
-      const videoWrapper = document.createElement('div');
-      videoWrapper.className = 'video-wrapper';
-      videoWrapper.style.width = '100%';
-      videoWrapper.style.display = 'flex';
-      videoWrapper.style.flexDirection = 'column';
-      videoWrapper.style.alignItems = 'center';
-
-      const videoEl = document.createElement('video');
-      videoEl.src = vid.src;
-      if (vid.thumbnail) videoEl.poster = vid.thumbnail;
-      videoEl.autoplay = true; // autoplay muted for browser compatibility
-      videoEl.muted = true;
-      videoEl.loop = true;
-      videoEl.playsInline = true;
-      videoEl.preload = 'auto';
-      videoEl.style.width = '100%';
-      videoEl.style.height = 'auto';
-      videoEl.style.maxWidth = '100%';
-      videoEl.style.maxHeight = '72vh';
-      videoEl.style.borderRadius = '0.75rem';
-      videoEl.style.objectFit = 'contain';
-      videoEl.style.display = 'block';
-
-      // Controls container
-      const controls = document.createElement('div');
-      controls.className = 'video-controls';
-      controls.style.display = 'flex';
-      controls.style.alignItems = 'center';
-      controls.style.gap = '8px';
-      controls.style.marginTop = '8px';
-
-      // Play/Pause button
-      const btnPlay = document.createElement('button');
-      btnPlay.className = 'vc-btn vc-play';
-      btnPlay.type = 'button';
-      btnPlay.textContent = 'Pause';
-      btnPlay.title = 'Play/Pause';
-
-      // Progress slider
-      const progress = document.createElement('input');
-      progress.type = 'range';
-      progress.className = 'vc-range';
-      progress.min = 0;
-      progress.max = 100;
-      progress.value = 0;
-      progress.step = 0.1;
-      progress.style.flex = '1';
-
-      // Time display (current / duration)
-      const timeEl = document.createElement('div');
-      timeEl.className = 'vc-time';
-      timeEl.textContent = '0:00 / 0:00';
-      timeEl.style.minWidth = '90px';
-      timeEl.style.textAlign = 'center';
-
-      // Mute/Unmute button
-      const btnMute = document.createElement('button');
-      btnMute.className = 'vc-btn vc-mute';
-      btnMute.type = 'button';
-      btnMute.textContent = 'Unmute';
-      btnMute.title = 'Toggle audio';
-
-      controls.appendChild(btnPlay);
-      controls.appendChild(progress);
-      controls.appendChild(timeEl);
-      controls.appendChild(btnMute);
-
-      videoWrapper.appendChild(videoEl);
-      videoWrapper.appendChild(controls);
-      videoContainer.appendChild(videoWrapper);
-
-      // Wire up controls
-      btnPlay.addEventListener('click', () => {
-        if (videoEl.paused) {
-          videoEl.play();
-          btnPlay.textContent = 'Pause';
-        } else {
-          videoEl.pause();
-          btnPlay.textContent = 'Play';
-        }
-      });
 
       // Helper to format time
       function formatTime(s) {
@@ -472,60 +389,148 @@ async function loadVideosFromFolder() {
         return `${min}:${sec}`;
       }
 
-      // Update progress and time display as video plays
-      videoEl.addEventListener('timeupdate', () => {
-        if (videoEl.duration && !isSeeking) {
-          progress.max = videoEl.duration;
-          progress.value = videoEl.currentTime;
-          timeEl.textContent = `${formatTime(videoEl.currentTime)} / ${formatTime(videoEl.duration)} `;
+      // Render each video separately
+      detectedVideos.forEach((vid, index) => {
+        const videoWrapper = document.createElement('div');
+        videoWrapper.className = 'video-wrapper';
+        videoWrapper.style.width = '100%';
+        videoWrapper.style.display = 'flex';
+        videoWrapper.style.flexDirection = 'column';
+        videoWrapper.style.alignItems = 'center';
+        if (index > 0) {
+          videoWrapper.style.marginTop = '2rem';
         }
-      });
 
-      // Allow seeking
-      let isSeeking = false;
-      progress.addEventListener('input', () => {
-        isSeeking = true;
-        videoEl.currentTime = Number(progress.value);
-        timeEl.textContent = `${formatTime(Number(progress.value))} / ${formatTime(videoEl.duration || 0)}`;
-      });
-      progress.addEventListener('change', () => { isSeeking = false; });
+        const videoEl = document.createElement('video');
+        videoEl.src = vid.src;
+        if (vid.thumbnail) videoEl.poster = vid.thumbnail;
+        videoEl.autoplay = true; // autoplay muted for browser compatibility
+        videoEl.muted = true;
+        videoEl.loop = true;
+        videoEl.playsInline = true;
+        videoEl.preload = 'auto';
+        videoEl.style.width = '100%';
+        videoEl.style.height = 'auto';
+        videoEl.style.maxWidth = '100%';
+        videoEl.style.maxHeight = '72vh';
+        videoEl.style.borderRadius = '0.75rem';
+        videoEl.style.objectFit = 'contain';
+        videoEl.style.display = 'block';
 
-      // Mute toggle
-      btnMute.addEventListener('click', () => {
-        videoEl.muted = !videoEl.muted;
+        // Controls container
+        const controls = document.createElement('div');
+        controls.className = 'video-controls';
+        controls.style.display = 'flex';
+        controls.style.alignItems = 'center';
+        controls.style.gap = '8px';
+        controls.style.marginTop = '8px';
+
+        // Play/Pause button
+        const btnPlay = document.createElement('button');
+        btnPlay.className = 'vc-btn vc-play';
+        btnPlay.type = 'button';
+        btnPlay.textContent = 'Pause';
+        btnPlay.title = 'Play/Pause';
+
+        // Progress slider
+        const progress = document.createElement('input');
+        progress.type = 'range';
+        progress.className = 'vc-range';
+        progress.min = 0;
+        progress.max = 100;
+        progress.value = 0;
+        progress.step = 0.1;
+        progress.style.flex = '1';
+
+        // Time display (current / duration)
+        const timeEl = document.createElement('div');
+        timeEl.className = 'vc-time';
+        timeEl.textContent = '0:00 / 0:00';
+        timeEl.style.minWidth = '90px';
+        timeEl.style.textAlign = 'center';
+
+        // Mute/Unmute button
+        const btnMute = document.createElement('button');
+        btnMute.className = 'vc-btn vc-mute';
+        btnMute.type = 'button';
+        btnMute.textContent = 'Unmute';
+        btnMute.title = 'Toggle audio';
+
+        controls.appendChild(btnPlay);
+        controls.appendChild(progress);
+        controls.appendChild(timeEl);
+        controls.appendChild(btnMute);
+
+        videoWrapper.appendChild(videoEl);
+        videoWrapper.appendChild(controls);
+        videoContainer.appendChild(videoWrapper);
+
+        // Wire up controls
+        btnPlay.addEventListener('click', () => {
+          if (videoEl.paused) {
+            videoEl.play();
+            btnPlay.textContent = 'Pause';
+          } else {
+            videoEl.pause();
+            btnPlay.textContent = 'Play';
+          }
+        });
+
+        // Update progress and time display as video plays
+        let isSeeking = false;
+        videoEl.addEventListener('timeupdate', () => {
+          if (videoEl.duration && !isSeeking) {
+            progress.max = videoEl.duration;
+            progress.value = videoEl.currentTime;
+            timeEl.textContent = `${formatTime(videoEl.currentTime)} / ${formatTime(videoEl.duration)} `;
+          }
+        });
+
+        // Allow seeking
+        progress.addEventListener('input', () => {
+          isSeeking = true;
+          videoEl.currentTime = Number(progress.value);
+          timeEl.textContent = `${formatTime(Number(progress.value))} / ${formatTime(videoEl.duration || 0)}`;
+        });
+        progress.addEventListener('change', () => { isSeeking = false; });
+
+        // Mute toggle
+        btnMute.addEventListener('click', () => {
+          videoEl.muted = !videoEl.muted;
+          btnMute.textContent = videoEl.muted ? 'Unmute' : 'Mute';
+        });
+
+        // Ensure labels match initial state
+        btnPlay.textContent = videoEl.paused ? 'Play' : 'Pause';
         btnMute.textContent = videoEl.muted ? 'Unmute' : 'Mute';
+
+        // Initialize time once metadata is available
+        if (videoEl.readyState >= 1) {
+          timeEl.textContent = `${formatTime(videoEl.currentTime)} / ${formatTime(videoEl.duration || 0)}`;
+          progress.max = videoEl.duration || 0;
+          progress.value = videoEl.currentTime || 0;
+        }
+
+        // When metadata is loaded, set progress max
+        videoEl.addEventListener('loadedmetadata', () => {
+          if (videoEl.duration) progress.max = videoEl.duration;
+        });
+
+        // Clicking video toggles play/pause
+        videoEl.addEventListener('click', () => {
+          if (videoEl.paused) { videoEl.play(); btnPlay.textContent = 'Pause'; }
+          else { videoEl.pause(); btnPlay.textContent = 'Play'; }
+        });
+
+        // Keep play/pause button in sync with playback state
+        videoEl.addEventListener('play', () => { btnPlay.textContent = 'Pause'; });
+        videoEl.addEventListener('pause', () => { btnPlay.textContent = 'Play'; });
+        videoEl.addEventListener('ended', () => { btnPlay.textContent = 'Play'; });
+
+        // Try to start playback (some browsers require a play() call even when autoplay=true)
+        try { videoEl.play().catch(() => {}); } catch (e) {}
+        console.log('Rendered video in video-container:', vid.src);
       });
-
-      // Ensure labels match initial state
-      btnPlay.textContent = videoEl.paused ? 'Play' : 'Pause';
-      btnMute.textContent = videoEl.muted ? 'Unmute' : 'Mute';
-
-      // Initialize time once metadata is available
-      if (videoEl.readyState >= 1) {
-        timeEl.textContent = `${formatTime(videoEl.currentTime)} / ${formatTime(videoEl.duration || 0)}`;
-        progress.max = videoEl.duration || 0;
-        progress.value = videoEl.currentTime || 0;
-      }
-
-      // When metadata is loaded, set progress max
-      videoEl.addEventListener('loadedmetadata', () => {
-        if (videoEl.duration) progress.max = videoEl.duration;
-      });
-
-      // Clicking video toggles play/pause
-      videoEl.addEventListener('click', () => {
-        if (videoEl.paused) { videoEl.play(); btnPlay.textContent = 'Pause'; }
-        else { videoEl.pause(); btnPlay.textContent = 'Play'; }
-      });
-
-      // Keep play/pause button in sync with playback state
-      videoEl.addEventListener('play', () => { btnPlay.textContent = 'Pause'; });
-      videoEl.addEventListener('pause', () => { btnPlay.textContent = 'Play'; });
-      videoEl.addEventListener('ended', () => { btnPlay.textContent = 'Play'; });
-
-      // Try to start playback (some browsers require a play() call even when autoplay=true)
-      try { videoEl.play().catch(() => {}); } catch (e) {}
-      console.log('Rendered video in video-container:', vid.src);
     }
   }
 
