@@ -79,6 +79,17 @@
     "thumbnail": "projects/project-06/project-thumbnail.jpg",
     "link": "projects/project.html?project=project-06"
   },
+    "project-09": {
+    "type": "Project:",
+    "client": "Real California Milk",
+    "title": "Real California Milk - Website Animation Headers",
+    "description": "While working at Deutsch, I got to do a lot of creative work for Real California Milk. This was one of my favorite projects. I created a variety of animated headers for their website. I used a combination of frame by frame animation to some procedural generation algorithms to create rain and water sprinkler effects!",
+    "hasImages": false,
+    "hasBanners": false,
+    "hasVideo": true,
+    "thumbnail": "projects/project-09/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-09"
+  },
     "project-05": {
     "type": "Project:",
     "client": "NBC",
