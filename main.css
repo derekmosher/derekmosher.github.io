@@ -144,6 +144,9 @@ img, video, svg, iframe {
 .nav-link {
   position: relative;
 }
+.nav-link {
+  color: var(--accent) !important;
+}
 .nav-link::after {
   content: '';
   position: absolute;

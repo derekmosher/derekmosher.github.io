@@ -1,3 +1,59 @@
+.banner-item iframe[src*="728x90"] {
+  width: 728px !important;
+  min-width: 728px !important;
+  max-width: none !important;
+  height: 90px !important;
+  min-height: 90px !important;
+  max-height: none !important;
+  display: block !important;
+}
+/* Force correct banner iframe dimensions for each size */
+.banner-item iframe[src*="300x600"] {
+  width: 300px !important;
+  min-width: 300px !important;
+  max-width: none !important;
+  height: 600px !important;
+  min-height: 600px !important;
+  max-height: none !important;
+  display: block !important;
+}
+.banner-item iframe[src*="160x600"] {
+  width: 160px !important;
+  min-width: 160px !important;
+  max-width: none !important;
+  height: 600px !important;
+  min-height: 600px !important;
+  max-height: none !important;
+  display: block !important;
+}
+.banner-item iframe[src*="300x250"] {
+  width: 300px !important;
+  min-width: 300px !important;
+  max-width: none !important;
+  height: 250px !important;
+  min-height: 250px !important;
+  max-height: none !important;
+  display: block !important;
+}
+/* Ensure banners and iframes are flush with the top and have no extra spacing */
+#banners-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  top: 0 !important;
+  position: static !important;
+  box-sizing: content-box !important;
+  display: block !important;
+}
+.banner-item,
+.banner-item iframe {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  top: 0 !important;
+  position: static !important;
+  box-sizing: content-box !important;
+}
 /* Portfolio Page Styles */
 
 #portfolio-grid {
@@ -157,9 +213,12 @@ footer {
 
 /* Banner replay button styles */
 .banner-item {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
+  display: inline-block !important;
+  vertical-align: top !important;
+  margin-top: 24px !important;
+  margin-bottom: 24px !important;
+  margin-right: 16px !important;
+  padding-top: 0 !important;
 }
 
 .banner-replay-btn {

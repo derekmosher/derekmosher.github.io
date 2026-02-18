@@ -62,6 +62,7 @@ async function loadPortfolioConfig() {
 
     // Update HTML elements with config data
     const typeEl = document.getElementById('portfolio-type');
+    const agencyEl = document.getElementById('portfolio-agency');
     const clientEl = document.getElementById('portfolio-client');
     const descEl = document.getElementById('portfolio-description');
 
@@ -92,6 +93,7 @@ async function loadPortfolioConfig() {
 
     if (typeEl && projectConfig.title) setMetaLine(typeEl, 'PROJECT:', projectConfig.title);
     else if (typeEl && projectConfig.type) setMetaLine(typeEl, 'PROJECT:', projectConfig.type.replace(/:$/, ''));
+    if (agencyEl && projectConfig.agency) setMetaLine(agencyEl, 'AGENCY:', projectConfig.agency);
     if (clientEl && projectConfig.client) setMetaLine(clientEl, 'CLIENT:', projectConfig.client, projectConfig.clientLink);
     if (descEl && projectConfig.description) {
       if (projectConfig.descriptionLink && projectConfig.descriptionLinkText && projectConfig.description.includes(projectConfig.descriptionLinkText)) {
@@ -307,7 +309,9 @@ async function loadVideosFromFolder() {
               src: normalizedSrc,
               thumbnail: normalizedThumbnail,
               title: item.title || 'Video',
-              description: item.description || ''
+              description: item.description || '',
+              width: item.width,
+              height: item.height
             });
           }
         }
@@ -409,10 +413,13 @@ async function loadVideosFromFolder() {
         videoEl.loop = true;
         videoEl.playsInline = true;
         videoEl.preload = 'auto';
+        // If manifest specifies width/height, use them and set as max size with !important
+        if (vid.width) videoEl.style.setProperty('max-width', vid.width + 'px', 'important');
+        else videoEl.style.setProperty('max-width', '100%', 'important');
+        if (vid.height) videoEl.style.setProperty('max-height', vid.height + 'px', 'important');
+        else videoEl.style.setProperty('max-height', '72vh', 'important');
         videoEl.style.width = '100%';
         videoEl.style.height = 'auto';
-        videoEl.style.maxWidth = '100%';
-        videoEl.style.maxHeight = '72vh';
         videoEl.style.borderRadius = '0.75rem';
         videoEl.style.objectFit = 'contain';
         videoEl.style.display = 'block';
@@ -591,32 +598,30 @@ async function loadBannersFromFolder() {
   container.style.alignItems = 'center';
 
   found.forEach(b => {
-    const [w, h] = b.size.split('x').map(n => Number(n) || 0);
+    // Prefer width/height from manifest if available, else parse from size string
+    const w = (typeof b.width === 'number' && b.width > 0) ? b.width : (b.size ? Number((b.size.split('x')[0]) || 0) : 0);
+    const h = (typeof b.height === 'number' && b.height > 0) ? b.height : (b.size ? Number((b.size.split('x')[1]) || 0) : 0);
     const wrapper = document.createElement('div');
     wrapper.className = 'banner-item';
     wrapper.style.width = `${w}px`;
-    // Add a small buffer to height so the iframe content doesn't produce a scrollbar
-    const heightBuffer = 12; // pixels of extra space to avoid scrollbars
-    const replayButtonSpace = 34; // space to accommodate the replay button
-    // Make wrapper allow visible overflow so the replay button is not clipped
+    wrapper.style.height = `${h}px`;
     wrapper.style.overflow = 'visible';
-    wrapper.style.height = `${h + heightBuffer + replayButtonSpace}px`;
     wrapper.style.border = '1px solid rgba(255,255,255,0.04)';
     wrapper.style.background = 'transparent';
     wrapper.style.display = 'flex';
     wrapper.style.flexDirection = 'column';
     wrapper.style.alignItems = 'center';
-    wrapper.style.justifyContent = 'center';
+    wrapper.style.justifyContent = 'flex-start';
 
     const iframe = document.createElement('iframe');
     iframe.src = b.path;
-    iframe.width = w || '300';
-    // Make the iframe slightly taller than the declared banner height
-    iframe.height = (h ? (h + heightBuffer) : 250);
+    iframe.width = w;
+    iframe.height = h;
     iframe.scrolling = 'no';
     iframe.style.display = 'block';
     iframe.style.lineHeight = '0';
     iframe.style.border = '0';
+    iframe.style.position = 'relative';
     iframe.loading = 'lazy';
     iframe.sandbox = 'allow-scripts allow-same-origin allow-popups';
 
@@ -627,7 +632,7 @@ async function loadBannersFromFolder() {
     btn.className = 'banner-replay-btn';
     btn.textContent = 'Replay';
     btn.setAttribute('aria-label', `Replay banner ${b.size}`);
-    btn.style.marginTop = '0px';
+    btn.style.marginTop = '12px';
     btn.style.fontSize = '12px';
     btn.style.padding = '6px 10px';
     btn.style.borderRadius = '6px';
