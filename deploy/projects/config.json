@@ -1,0 +1,137 @@
+{
+  "project-01": {
+    "type": "Project:",    
+    "agency": "BlueAlly",
+    "client": "Barracuda",
+    "title": "Email Security Campaign",
+    "description": "Concepting, storyboarding, design, and animation for a B2B email security campaign. You give me fun copy like: phishing, spam, and malware. Then then ask how to bring it alive. Wow, this is nothing but FUN for me.",
+    "hasImages": false,
+    "hasBanners": true,
+    "hasVideo": false,
+    "thumbnail": "projects/project-01/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-01"
+  },
+  "project-02": {
+    "type": "Project:", 
+    "agency": "BlueAlly",
+    "client": "Cisco",
+    "title": "E-Rate Campaign",
+    "description": "Concepting, storyboarding, design, and animation. The client says, \"We want to use this type of stock vector art that we own, and it needs to tell a story that matches our copy.\" Problem is, most of it doesn't work. So, BAM I'm modifying and drawing most to the vector art on the fly. I'm not even sure they knew how much I had to do to pull this off. Regardless, I had a blast doing it.",
+    "hasImages": true,
+    "hasBanners": true,
+    "hasVideo": false,
+    "thumbnail": "projects/project-02/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-02"
+  },
+  "project-03": {
+    "type": "Project:",    
+    "agency": "WynnBet",
+    "client": "Wynn Slots",
+    "title": "Mobile app graphics",
+    "description": "Concepting and designing mobile game thumbnails. These were easily my favorite projects at WynnBet. While other designers put minimal effort into these, I obsessed with them. I quickly got all this work. And when I was not available, I often was asked to redo others' work.",
+    "hasImages": true,
+    "hasBanners": false,
+    "hasVideo": false,
+    "thumbnail": "projects/project-03/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-03"
+  },
+  "project-07": {
+    "type": "Project:",    
+    "agency": "Wynn Resorts",
+    "client": "Awakening - Show at Wynn Las Vegas",
+    "title": "Awakening promotional video", 
+    "description": "Using Premiere Pro and After Effects, I edited footage for this 30 second spot.",
+    "hasImages": false,
+    "hasBanners": false,
+    "hasVideo": true,
+    "thumbnail": "projects/project-07/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-07"
+  },
+    "project-08": {
+    "type": "Project:",    
+    "agency": "Wynn Resorts",
+    "client": "Wynn Resorts Las Vegas",
+    "title": "Graphic Design", 
+    "description": "I created 10s of thousands of graphics for a variety of projects at Wynn Resorts, including our show Awakening and all our resort restaurants. This includes the website, social media, banner ads, digital signage, and more. I frequently used AI in Adobe Photoshop to extend images, and move elements to make are photographs work in all size requirements.",
+    "hasImages": true,
+    "hasBanners": false,
+    "hasVideo": false,
+    "thumbnail": "projects/project-08/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-08"
+  },
+
+  "project-04": {
+    "type": "Project:",    
+    "agency": "BlueAlly",
+    "client": "BlueAlly",
+    "title": "Xfinity Center - Stadium Billboard Video Ads",
+    "description": "When your client calls you unexpectedly at 9am and asks - Can you do a basketball stadium video? OH and... done by 3pm... and with no assets... and no final copy.",
+    "hasImages": true,
+    "hasBanners": false,
+    "hasVideo": true,
+    "thumbnail": "projects/project-04/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-04"
+  },
+    "project-06": {
+    "type": "Project:",    
+    "agency": "Self",
+    "client": "Self",
+    "title": "The Creepy Little TV Guy - illustrated book", 
+    "description": "As a kid I loved to draw. Later I even had a comic strip for a few years in a local newspaper. This was a true passion project to write and illustrate my own children's book. Self Published on Amazon.",
+    "descriptionLink": "https://amzn.to/3OiTne3",
+    "descriptionLinkText": "Self Published on Amazon",
+    "hasImages": true,
+    "hasBanners": false,
+    "hasVideo": false,
+    "thumbnail": "projects/project-06/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-06"
+  },
+    "project-09": {
+    "type": "Project:",    
+    "agency": "Deutsch",
+    "client": "Real California Milk",
+    "title": "Website Animation Headers, banners, and full website.",
+    "description": "While working at Deutsch, I got to do a lot of creative work for Real California Milk. The website headers and banners were some of my favorite projects. I used a combination of frame by frame animation to some procedural generation algorithms to create rain and water sprinkler effects! I also created their entire website which was very successful.",
+    "hasImages": false,
+    "hasBanners": false,
+    "hasVideo": true,
+    "thumbnail": "projects/project-09/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-09"
+  },
+    "project-11": {
+    "type": "Project:",      
+    "agency": "TBWA Chiat Day & Deutsch",
+    "client": "PlayStation",
+    "title": "Banner ads and social media.",
+    "description": "My all time favorite client was PlayStation. I got to work on game ads and websites for some of the biggest games in the world. I had a blast doing it. I even won award with 2007 God of War 2 campaign.",
+    "hasImages": false,
+    "hasBanners": false,
+    "hasVideo": true,
+    "thumbnail": "projects/project-11/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-11"
+  },
+    "project-05": {
+    "type": "Project:",    
+    "agency": "The Refinery Creative",
+    "client": "NBC",
+    "title": "Constantine - Social Media",
+    "description": "Social Media Campaign for NBC's Constantine. I built these in After Effects.",
+    "hasImages": true,
+    "hasBanners": false,
+    "hasVideo": false,
+    "thumbnail": "projects/project-05/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-05"
+  },
+    "project-10": {
+    "type": "Project:",      
+    "agency": "InSync PLUS",
+    "client": "DreamWorks",
+    "title": "Banner ads and social media.",
+    "description": "Created all the animation in After Effects. So much fun working with these assets.",
+    "hasImages": false,
+    "hasBanners": false,
+    "hasVideo": true,
+    "thumbnail": "projects/project-10/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-10"
+  }
+}
