@@ -1,0 +1,10 @@
+{
+  "name": "portfolio-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+     "gen-manifest": "node scripts/gen-manifest.js",
+    "deploy": "cp -R ./* ../deploy/",
+     "ship": "echo 'Shipping project...'"
+  }
+}
