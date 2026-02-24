@@ -1,0 +1,50 @@
+[
+  {
+    "id": "video-1",
+    "type": "video",
+    "src": "video/heavenly.mp4",
+    "thumbnail": "",
+    "title": "Heavenly Sword",
+    "description": "",
+    "width": 300,
+    "height": 600,
+    "autoplay": true,
+    "loop": false
+  },
+  {
+    "id": "video-2",
+    "type": "video",
+    "src": "video/psp.mp4",
+    "thumbnail": "",
+    "title": "PlayStation Greatest Hits - PSP",
+    "description": "",
+    "width": 320,
+    "height": "auto",
+    "autoplay": true,
+    "loop": false
+  },
+  {
+    "id": "video-3",
+    "type": "video",
+    "src": "video/warhawk screen capture.mp4",
+    "thumbnail": "",
+    "title": "Warhawk",
+    "description": "",
+    "width": 640,
+    "height": 360,
+    "autoplay": true,
+    "loop": false
+  },
+  {
+    "id": "video-4",
+    "type": "video",
+    "src": "video/daxter capture.mp4",
+    "thumbnail": "",
+    "title": "Daxter Website",
+    "description": "",
+    "width": 640,
+    "height": 360,
+    "autoplay": true,
+    "loop": false
+  }
+]

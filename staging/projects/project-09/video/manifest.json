@@ -1,0 +1,61 @@
+[
+  {
+    "id": "video-1",
+    "type": "video",
+    "src": "video/californiaMilk_apr.mp4",
+    "thumbnail": "",
+    "title": "California Milk - April",
+    "description": ""
+   },
+
+  {
+    "id": "video-2",
+    "type": "video",
+    "src": "video/californiaMilk_aug.mp4",
+    "thumbnail": "",
+    "title": "California Milk - August",
+    "description": ""
+  },
+  {
+    "id": "video-3",
+    "type": "video",
+    "src": "video/californiaMilk_sep.mp4",
+    "thumbnail": "",
+    "title": "California Milk - September",
+    "description": ""
+  },
+    {
+    "id": "video-4",
+    "type": "video",
+    "src": "video/californiaMilk_oct.mp4",
+    "thumbnail": "",
+    "title": "California Milk - October",
+    "description": ""
+  },
+  {
+    "id": "video-5",
+    "type": "video",
+    "src": "video/milk_160x600.mp4",
+    "thumbnail": "",
+    "title": "California Milk banner - 1600x600",
+    "description": ""
+  },
+  {
+    "id": "video-6",
+    "type": "video",
+    "src": "video/milk_300x250.mp4",
+    "thumbnail": "",
+    "title": "California Milk banner - 300x250",
+    "description": "",
+    "width": 300,
+    "height": 250
+  },
+  { 
+  "id": "video-7",
+    "type": "video",
+    "src": "video/website.mp4",
+    "thumbnail": "",
+    "title": "California Milk website",
+    "description": ""
+  }
+]
