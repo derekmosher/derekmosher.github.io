@@ -25,13 +25,8 @@ function normalizeProjectAssetPath(projectFolder, assetPath) {
   if (/^(https?:)?\/\//i.test(assetPath) || assetPath.startsWith('/')) return assetPath;
 
   const normalized = assetPath.replace(/^\.\//, '');
-  // If assetPath starts with 'video/', use video folder
-  if (normalized.startsWith('video/')) {
-    return `${projectFolder}/video/${normalized.slice(6)}`;
-  }
-  // Otherwise, use images folder
-  const filename = normalized.split('/').pop();
-  return `${projectFolder}/images/${filename}`;
+  if (normalized.startsWith(`${projectFolder}/`)) return normalized;
+  return `${projectFolder}/${normalized}`;
 }
 
 // Function to load portfolio metadata from config file
@@ -316,9 +311,7 @@ async function loadVideosFromFolder() {
               title: item.title || 'Video',
               description: item.description || '',
               width: item.width,
-              height: item.height,
-              autoplay: typeof item.autoplay === 'boolean' ? item.autoplay : false,
-              loop: typeof item.loop === 'boolean' ? item.loop : false
+              height: item.height
             });
           }
         }
@@ -415,9 +408,9 @@ async function loadVideosFromFolder() {
         const videoEl = document.createElement('video');
         videoEl.src = vid.src;
         if (vid.thumbnail) videoEl.poster = vid.thumbnail;
-        videoEl.muted = true; // Set muted before autoplay for browser compatibility
-        videoEl.autoplay = !!vid.autoplay;
-        videoEl.loop = !!vid.loop;
+        videoEl.autoplay = true; // autoplay muted for browser compatibility
+        videoEl.muted = true;
+        videoEl.loop = true;
         videoEl.playsInline = true;
         videoEl.preload = 'auto';
         // If manifest specifies width/height, use them and set as max size with !important
@@ -528,17 +521,6 @@ async function loadVideosFromFolder() {
         // When metadata is loaded, set progress max
         videoEl.addEventListener('loadedmetadata', () => {
           if (videoEl.duration) progress.max = videoEl.duration;
-          // Use Intersection Observer to play/pause any video when visible
-          const observer = new window.IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                videoEl.play().catch(() => {});
-              } else {
-                videoEl.pause();
-              }
-            });
-          }, { threshold: 0.25 }); // 25% visible triggers play
-          observer.observe(videoEl);
         });
 
         // Clicking video toggles play/pause
@@ -553,7 +535,7 @@ async function loadVideosFromFolder() {
         videoEl.addEventListener('ended', () => { btnPlay.textContent = 'Play'; });
 
         // Try to start playback (some browsers require a play() call even when autoplay=true)
-        // (Handled in loadedmetadata for best reliability)
+        try { videoEl.play().catch(() => {}); } catch (e) {}
         console.log('Rendered video in video-container:', vid.src);
       });
     }
@@ -709,18 +691,11 @@ function appendPortfolioItemToGrid(item, index) {
   div.className = `portfolio-item reveal ${item.large ? 'large' : ''}`;
   div.style.transitionDelay = `${index * 0.1}s`;
 
-  // Set width for all images
-  const fixedWidth = 320; // px, larger size for 4-column fit
-  const fixedHeight = fixedWidth; // 4:4 ratio (square)
   if (item.type === 'image') {
-    div.style.width = `${fixedWidth}px`;
-    div.style.height = `${fixedHeight}px`;
     div.innerHTML = `
-      <img src="${item.thumbnail}" alt="${item.title}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0.75rem;" />
+      <img src="${item.thumbnail}" alt="${item.title}" loading="lazy" />
     `;
   } else if (item.type === 'video') {
-    div.style.width = `${fixedWidth}px`;
-    div.style.height = `${fixedHeight}px`;
     div.innerHTML = `
       <video src="${item.src}" poster="${item.thumbnail}" style="width: 100%; height: 100%; object-fit: cover;"></video>
       <div class="absolute inset-0 flex items-center justify-center" style="background: rgba(0,0,0,0.3);">
@@ -758,27 +733,7 @@ function openPortfolioLightbox(item) {
 
 // Close lightbox
 function closePortfolioLightbox() {
-  const lb = document.getElementById('portfolio-lightbox');
-  const content = lb.querySelector('.lightbox-content');
-  if (content) {
-    content.style.animation = 'lightboxFadeOut 0.4s ease';
-    content.addEventListener('animationend', function handler(e) {
-      if (e.animationName === 'lightboxFadeOut') {
-        lb.classList.remove('active');
-        content.style.animation = '';
-        content.style.opacity = '';
-        content.style.transform = '';
-        lb.style.display = 'none';
-        content.removeEventListener('animationend', handler);
-        // Reset display after a short delay for next open
-        setTimeout(() => { lb.style.display = ''; }, 50);
-      }
-    });
-  } else {
-    lb.classList.remove('active');
-    lb.style.display = 'none';
-    setTimeout(() => { lb.style.display = ''; }, 50);
-  }
+  document.getElementById('portfolio-lightbox').classList.remove('active');
 }
 
 function setProjectLoaderText(text) {
@@ -803,8 +758,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     hideProjectLoader();
   }
 
-  // Close lightbox on any click inside modal
-  document.getElementById('portfolio-lightbox').addEventListener('click', closePortfolioLightbox);
+  // Close lightbox on backdrop click
+  document.getElementById('portfolio-lightbox-backdrop').addEventListener('click', closePortfolioLightbox);
+
+  // Close lightbox on close button click
+  document.getElementById('portfolio-lightbox-close').addEventListener('click', closePortfolioLightbox);
 
   // Close lightbox on Escape key
   document.addEventListener('keydown', (e) => {

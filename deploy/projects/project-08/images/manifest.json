@@ -6,7 +6,7 @@
     "thumbnail": "images/wynn_Awakening_102924_AB_Aisle_Low_1080x1920.jpg",
     "title": "Wynn Awakening - Aisle View",
     "description": "",
-    "large": false
+    "large": true
   },
   {
     "id": "project-08-2",
@@ -24,7 +24,7 @@
     "thumbnail": "images/terrace Pointe Cafe-Brunch Group_1080x1920.jpg",
     "title": "Terrace Pointe Cafe - Brunch Group",
     "description": "",
-    "large": false
+    "large": true
   },
   {
     "id": "project-08-4",
@@ -42,7 +42,7 @@
     "thumbnail": "images/pisces-Patio DAY_1080x1920.jpg",
     "title": "Pisces - Patio Day",
     "description": "",
-    "large": false
+    "large": true
   },
   {
     "id": "project-08-6",
@@ -60,7 +60,7 @@
     "thumbnail": "images/casa Playa-Short Rib Suadero V01_1080x1920.jpg",
     "title": "Casa Playa - Short Rib Suadero",
     "description": "",
-    "large": false
+    "large": true
   },
   {
     "id": "project-08-8",
@@ -78,7 +78,7 @@
     "thumbnail": "images/wynn Pool-Tower Suite Cabanas_1080x1920.jpg",
     "title": "Wynn Pool - Tower Suite Cabanas",
     "description": "",
-    "large": false
+    "large": true
   },
   {
     "id": "project-08-10",
@@ -96,7 +96,7 @@
     "thumbnail": "images/jardin-Patio Couple_1080x1920.jpg",
     "title": "Jardin - Patio Couple",
     "description": "",
-    "large": false
+    "large": true
   },
   {
     "id": "project-08-12",
@@ -114,7 +114,7 @@
     "thumbnail": "images/wlv_fish_cta_1080x1920.jpg",
     "title": "WLV Fish CTA - Vertical",
     "description": "",
-    "large": false
+    "large": true
   },
   {
     "id": "project-08-14",
@@ -132,7 +132,7 @@
     "thumbnail": "images/AWKN_MME-Promo-Agency__1080X1920_2.jpg",
     "title": "AWKN MME Promo Agency - Vertical",
     "description": "",
-    "large": false
+    "large": true
   },
   {
     "id": "project-08-16",
@@ -150,7 +150,7 @@
     "thumbnail": "images/encore Spa-Womens Wet Area Chairs Duo_1080x1920.jpg",
     "title": "Encore Spa - Women's Wet Area Chairs",
     "description": "",
-    "large": false
+    "large": true
   },
   {
     "id": "project-08-18",
@@ -168,7 +168,7 @@
     "thumbnail": "images/Revelry_CarouselAd_6_1080x1920_9x16.jpg",
     "title": "Revelry Carousel Ad 6",
     "description": "",
-    "large": false
+    "large": true
   },
   {
     "id": "project-08-20",
@@ -186,7 +186,7 @@
     "thumbnail": "images/mizumi-Sashimi Plate_1080x1920.jpg",
     "title": "Mizumi - Sashimi Plate",
     "description": "",
-    "large": false
+    "large": true
   },
   {
     "id": "project-08-22",
@@ -204,7 +204,7 @@
     "thumbnail": "images/bar Parasol-Couple Standing_1080x1920.jpg",
     "title": "Bar Parasol - Couple Standing",
     "description": "",
-    "large": false
+    "large": true
   },
   {
     "id": "project-08-24",
@@ -222,7 +222,7 @@
     "thumbnail": "images/torch_1080x1920.jpg",
     "title": "Torch - Vertical",
     "description": "",
-    "large": false
+    "large": true
   },
   {
     "id": "project-08-26",
@@ -240,7 +240,7 @@
     "thumbnail": "images/wazuzu-Toast Group_1080x1920.jpg",
     "title": "Wazuzu - Toast Group",
     "description": "",
-    "large": false
+    "large": true
   },
   {
     "id": "project-08-28",
@@ -258,7 +258,7 @@
     "thumbnail": "images/wynn_summerBestRate_pool_vertical_700x1600px.jpg",
     "title": "Wynn Summer Best Rate - Pool",
     "description": "",
-    "large": false
+    "large": true
   },
   {
     "id": "project-08-30",
@@ -267,7 +267,7 @@
     "thumbnail": "images/aerial_1080x1920.jpg",
     "title": "Aerial View",
     "description": "",
-    "large": false
+    "large": true
   },
   {
     "id": "project-08-31",
@@ -276,7 +276,7 @@
     "thumbnail": "images/Revelry_CarouselAd_4_1080x1920_9x16.jpg",
     "title": "Revelry Carousel Ad 4",
     "description": "",
-    "large": false
+    "large": true
   },
   {
     "id": "project-08-32",
@@ -285,7 +285,7 @@
     "thumbnail": "images/sticks_1080x1920.jpg",
     "title": "Sticks - Vertical",
     "description": "",
-    "large": false
+    "large": true
   },
   {
     "id": "project-08-33",
@@ -294,7 +294,7 @@
     "thumbnail": "images/wynn_autumnEscape_exterior_vertical_700x1600px.jpg",
     "title": "Wynn Autumn Escape - Exterior",
     "description": "",
-    "large": false
+    "large": true
   },
   {
     "id": "project-08-34",
@@ -303,6 +303,6 @@
     "thumbnail": "images/aft_cocktail_deck-the_pier_lake_view_night_v01_1080x1920.jpg",
     "title": "Aft Cocktail Deck - Pier Night View",
     "description": "",
-    "large": false
+    "large": true
   }
 ]
