@@ -71,20 +71,7 @@
     "hasVideo": true,
     "thumbnail": "projects/project-04/project-thumbnail.jpg",
     "link": "projects/project.html?project=project-04"
-  },
-    "project-06": {
-    "type": "Project:",    
-    "agency": "Self",
-    "client": "Self",
-    "title": "The Creepy Little TV Guy - illustrated book", 
-    "description": "As a kid I loved to draw. Later I even had a comic strip for a few years in a local newspaper. This was a true passion project to write and illustrate my own children's book. Self Published on Amazon.",
-    "descriptionLink": "https://amzn.to/3OiTne3",
-    "descriptionLinkText": "Self Published on Amazon",
-    "hasImages": true,
-    "hasBanners": false,
-    "hasVideo": false,
-    "thumbnail": "projects/project-06/project-thumbnail.jpg",
-    "link": "projects/project.html?project=project-06"
+
   },
     "project-09": {
     "type": "Project:",    
@@ -109,18 +96,7 @@
     "hasVideo": true,
     "thumbnail": "projects/project-11/project-thumbnail.jpg",
     "link": "projects/project.html?project=project-11"
-  },
-    "project-05": {
-    "type": "Project:",    
-    "agency": "The Refinery Creative",
-    "client": "NBC",
-    "title": "Constantine - Social Media",
-    "description": "Social Media Campaign for NBC's Constantine. I built these in After Effects.",
-    "hasImages": true,
-    "hasBanners": false,
-    "hasVideo": false,
-    "thumbnail": "projects/project-05/project-thumbnail.jpg",
-    "link": "projects/project.html?project=project-05"
+
   },
     "project-10": {
     "type": "Project:",      
@@ -133,5 +109,31 @@
     "hasVideo": true,
     "thumbnail": "projects/project-10/project-thumbnail.jpg",
     "link": "projects/project.html?project=project-10"
-  }
+  },
+    "project-05": {
+    "type": "Project:",    
+    "agency": "The Refinery Creative",
+    "client": "NBC",
+    "title": "Constantine - Social Media",
+    "description": "Social Media Campaign for NBC's Constantine. I built these in After Effects.",
+    "hasImages": true,
+    "hasBanners": false,
+    "hasVideo": false,
+    "thumbnail": "projects/project-05/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-05"
+   },
+    "project-06": {
+    "type": "Project:",    
+    "agency": "Self",
+    "client": "Self",
+    "title": "The Creepy Little TV Guy - illustrated book", 
+    "description": "As a kid I loved to draw. Later I even had a comic strip for a few years in a local newspaper. This was a true passion project to write and illustrate my own children's book. Self Published on Amazon.",
+    "descriptionLink": "https://amzn.to/3OiTne3",
+    "descriptionLinkText": "Self Published on Amazon",
+    "hasImages": true,
+    "hasBanners": false,
+    "hasVideo": false,
+    "thumbnail": "projects/project-06/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-06"
+    }
 }
