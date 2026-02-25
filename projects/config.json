@@ -98,6 +98,18 @@
     "thumbnail": "projects/project-09/project-thumbnail.jpg",
     "link": "projects/project.html?project=project-09"
   },
+  "project-11": {
+    "type": "Project:",      
+    "agency": "TBWA Chiat Day & Deutsch",
+    "client": "PlayStation",
+    "title": "Banner ads and social media.",
+    "description": "My all time favorite client was PlayStation. I got to work on game ads and websites for some of the biggest games in the world. I had a blast doing it. I even won award with 2007 God of War 2 campaign.",
+    "hasImages": false,
+    "hasBanners": false,
+    "hasVideo": true,
+    "thumbnail": "projects/project-11/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-11"
+  },
     "project-05": {
     "type": "Project:",    
     "agency": "The Refinery Creative",
