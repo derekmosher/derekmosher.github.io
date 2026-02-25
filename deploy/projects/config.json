@@ -55,7 +55,7 @@
     "description": "I created 10s of thousands of graphics for a variety of projects at Wynn Resorts, including our show Awakening and all our resort restaurants. This includes the website, social media, banner ads, digital signage, and more. I frequently used AI in Adobe Photoshop to extend images, and move elements to make are photographs work in all size requirements.",
     "hasImages": true,
     "hasBanners": false,
-    "hasVideo": false,
+    "hasVideo": true,
     "thumbnail": "projects/project-08/project-thumbnail.jpg",
     "link": "projects/project.html?project=project-08"
   },
@@ -97,18 +97,6 @@
     "hasVideo": true,
     "thumbnail": "projects/project-09/project-thumbnail.jpg",
     "link": "projects/project.html?project=project-09"
-  },
-    "project-11": {
-    "type": "Project:",      
-    "agency": "TBWA Chiat Day & Deutsch",
-    "client": "PlayStation",
-    "title": "Banner ads and social media.",
-    "description": "My all time favorite client was PlayStation. I got to work on game ads and websites for some of the biggest games in the world. I had a blast doing it. I even won award with 2007 God of War 2 campaign.",
-    "hasImages": false,
-    "hasBanners": false,
-    "hasVideo": true,
-    "thumbnail": "projects/project-11/project-thumbnail.jpg",
-    "link": "projects/project.html?project=project-11"
   },
     "project-05": {
     "type": "Project:",    
