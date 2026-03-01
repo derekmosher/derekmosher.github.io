@@ -1,0 +1,26 @@
+[
+  {
+    "id": "video-1",
+    "type": "video",
+    "src": "https://www.youtube.com/watch?v=VqxZLu-K_jw&list=PL1ae-1aVcH6cwfpeX06VDo6tAJH4FwZUt&index=2",
+    "thumbnail": "",
+    "title": "Game of Bones - episode 2",
+    "description": ""
+  },
+  {
+    "id": "video-2",
+    "type": "video",
+    "src": "https://www.youtube.com/watch?v=RiCQj-jaa1s",
+    "thumbnail": "",
+    "title": "Donald Trump and Covid",
+    "description": ""
+  },
+  {
+    "id": "video-3",
+    "type": "video",
+    "src": "https://www.youtube.com/watch?v=3HCSTWS8-aQ&list=PL1ae-1aVcH6cwfpeX06VDo6tAJH4FwZUt&index=3",
+    "thumbnail": "",
+    "title": "Game of Bones - episode 3",
+    "description": ""
+  }
+]
