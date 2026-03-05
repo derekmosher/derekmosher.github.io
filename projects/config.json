@@ -22,18 +22,7 @@
     "hasVideo": false,
     "thumbnail": "projects/project-02/project-thumbnail.jpg",
     "link": "projects/project.html?project=project-02"
-    },
-    "project-13": {
-    "type": "Project:",      
-    "agency": "Wynn Resorts",
-    "client": "Wynn Resorts",
-    "title": "HTML5 Banner Ads",
-    "description": "I did thousands of banners for Wynn Resorts. Most used spreadsheets to populate images and text. Text fields automatically resized themselves to accommodate various lengths.",
-    "hasImages": false,
-    "hasBanners": true,
-    "hasVideo": false,
-    "thumbnail": "projects/project-13/project-thumbnail.jpg",
-    "link": "projects/project.html?project=project-13"
+
 
   },
   "project-03": {
