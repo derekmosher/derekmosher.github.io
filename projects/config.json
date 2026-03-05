@@ -34,7 +34,8 @@
     "hasVideo": false,
     "thumbnail": "projects/project-13/project-thumbnail.jpg",
     "link": "projects/project.html?project=project-13"
-       },
+
+  },
   "project-03": {
     "type": "Project:",    
     "agency": "WynnBet",
@@ -61,8 +62,8 @@
   },
     "project-08": {
     "type": "Project:",    
-    "agency": "Wynn Resorts",
-    "client": "Wynn Resorts Las Vegas",
+    "agency": "Wynn Resorts/WynnBet",
+    "client": "Wynn Resorts",
     "title": "Graphic Design", 
     "description": "I created 10s of thousands of graphics for a variety of projects for Wynn Resorts. This includes Wynn Las Vegas, Wynn Encore, Wynn Boston Harbor, WynnBet, Awakening at Wynn, and all the resort restaurants. I created website graphics, social media, banner ads, digital signage, outdoor billboards, and indoor animated stadium signage.",
     "hasImages": true,
@@ -153,7 +154,7 @@
     "agency": "Self",
     "client": "YouTube",
     "title": "3.9 million views - My YouTube Channel",
-    "description": "I started a YouTube channel and got 3.9 million views! I did animations, reviews, how to's and such. I wrote scripts, shot video, set up lighting. I worked with Photoshop, After Effects, Premiere Pro. Here are a few fun examples:",
+    "description": "I started a YouTube channel and got 3.9 million views! I did animantions, reviews, how to's and such. I wrote scripts, shot video, set up lighting. I worked with Photoshop, After Effects, Premiere Pro. Here are a few fun examples:",
     "hasImages": false,
     "hasBanners": false,
     "hasVideo": true,
