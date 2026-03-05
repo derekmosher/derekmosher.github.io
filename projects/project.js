@@ -1,4 +1,3 @@
-
 // Portfolio page data - will be auto-loaded from images folder
 let portfolioItems = [];
 let activeProjectFolder = null;
@@ -613,37 +612,64 @@ async function loadBannersFromFolder() {
     return 0;
   }
 
-  // Render order: 300x600, 160x600, 300x250, 728x90
-  const sizes = ['300x600','160x600','300x250','728x90'];
   const bannersRoot = `${activeProjectFolder || resolveProjectFolder()}/banners/`;
   const container = document.getElementById('banners-container');
   if (!container) return;
 
   const found = [];
-  for (const size of sizes) {
-    const indexPath = `${bannersRoot}${size}/index.html`;
-    try {
-      // Try HEAD first; some servers may not support HEAD so fall back to GET
-      let ok = false;
-      try {
-        const headResp = await fetch(indexPath, { method: 'HEAD' });
-        ok = headResp && headResp.ok;
-      } catch (e) {
-        ok = false;
+  
+  // Try to load from manifest first
+  try {
+    const manifestResp = await fetch(bannersRoot + 'manifest.json?v=' + manifestCacheBuster);
+    if (manifestResp.ok) {
+      const manifest = await manifestResp.json();
+      if (Array.isArray(manifest) && manifest.length > 0) {
+        for (const item of manifest) {
+          if (item.type === 'banner' && item.src) {
+            const path = bannersRoot + item.src.split('/').slice(1).join('/');
+            found.push({ 
+              size: item.size || `${item.width}x${item.height}`, 
+              path: path,
+              width: item.width,
+              height: item.height
+            });
+          }
+        }
       }
+    }
+  } catch (e) {
+    // Fall back to auto-detection
+  }
 
-      if (!ok) {
+  // If manifest didn't work, try directory listing or pattern detection
+  if (found.length === 0) {
+    // For now, since we have manifest, this won't run
+    // But keeping the old logic as fallback
+    const sizes = ['300x600','160x600','300x250','728x90'];
+    for (const size of sizes) {
+      const indexPath = `${bannersRoot}${size}/index.html`;
+      try {
+        let ok = false;
         try {
-          const getResp = await fetch(indexPath, { method: 'GET' });
-          ok = getResp && getResp.ok;
+          const headResp = await fetch(indexPath, { method: 'HEAD' });
+          ok = headResp && headResp.ok;
         } catch (e) {
           ok = false;
         }
-      }
 
-      if (ok) found.push({ size, path: indexPath });
-    } catch (e) {
-      // ignore and continue
+        if (!ok) {
+          try {
+            const getResp = await fetch(indexPath, { method: 'GET' });
+            ok = getResp && getResp.ok;
+          } catch (e) {
+            ok = false;
+          }
+        }
+
+        if (ok) found.push({ size, path: indexPath });
+      } catch (e) {
+        // ignore
+      }
     }
   }
 
@@ -655,10 +681,10 @@ async function loadBannersFromFolder() {
   setProjectLoaderText('Loading banners...');
 
   container.innerHTML = '';
-  container.style.display = 'flex';
-  container.style.gap = '12px';
-  container.style.flexWrap = 'wrap';
-  container.style.alignItems = 'center';
+  container.style.display = 'flex !important';
+  container.style.gap = '42px !important';
+  container.style.flexWrap = 'wrap !important';
+  container.style.alignItems = 'center !important';
 
   found.forEach(b => {
     // Prefer width/height from manifest if available, else parse from size string
@@ -675,6 +701,7 @@ async function loadBannersFromFolder() {
     wrapper.style.flexDirection = 'column';
     wrapper.style.alignItems = 'center';
     wrapper.style.justifyContent = 'flex-start';
+    wrapper.style.marginBottom = '100px';
 
     const iframe = document.createElement('iframe');
     iframe.src = b.path;
@@ -695,27 +722,60 @@ async function loadBannersFromFolder() {
     btn.className = 'banner-replay-btn';
     btn.textContent = 'Replay';
     btn.setAttribute('aria-label', `Replay banner ${b.size}`);
-    btn.style.marginTop = '12px';
+    btn.style.display = 'block';
+    btn.style.margin = '8px auto 0 auto';
     btn.style.fontSize = '12px';
     btn.style.padding = '6px 10px';
     btn.style.borderRadius = '6px';
     btn.style.border = '1px solid rgba(255,255,255,0.06)';
     btn.style.cursor = 'pointer';
+    btn.style.textAlign = 'center';
+    btn.style.position = 'relative';
+    btn.style.zIndex = '1';
 
+    let isReplaying = false;
     btn.addEventListener('click', () => {
+      if (isReplaying) return; // Prevent multiple clicks
+      isReplaying = true;
+
       // Reload only this iframe. Use a cache-busting param so reload works reliably.
       try {
-        const src = iframe.src || b.path;
-        const sep = src.includes('?') ? '&' : '?';
-        iframe.src = src.split('?')[0] + sep + '_replay=' + Date.now();
+        const sep = b.path.includes('?') ? '&' : '?';
+        iframe.src = b.path.split('?')[0] + sep + '_replay=' + Date.now();
       } catch (e) {
         // As a fallback, set src directly
         iframe.src = b.path;
       }
+
       // Provide a quick visual feedback
       btn.disabled = true;
-      setTimeout(() => { btn.disabled = false; }, 800);
+      setTimeout(() => { 
+        btn.disabled = false; 
+        isReplaying = false;
+      }, 2000); // Increased to 2 seconds to allow reload to complete
     });
+
+    // Add Intersection Observer to control banner playback based on visibility
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Banner is visible, send play message
+          try {
+            iframe.contentWindow.postMessage('play', '*');
+          } catch (e) {
+            // Ignore if iframe not ready
+          }
+        } else {
+          // Banner is not visible, send pause message
+          try {
+            iframe.contentWindow.postMessage('pause', '*');
+          } catch (e) {
+            // Ignore if iframe not ready
+          }
+        }
+      });
+    }, { threshold: 0.1 }); // Trigger when 10% visible
+    observer.observe(iframe);
 
     wrapper.appendChild(btn);
     container.appendChild(wrapper);
@@ -916,916 +976,3 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 });
-
-
-// // Portfolio page data - will be auto-loaded from images folder
-// let portfolioItems = [];
-// let activeProjectFolder = null;
-// let activeProjectConfig = null;
-// const manifestCacheBuster = Date.now().toString();
-
-// // Helper function to get YouTube embed URL from various YouTube URLs
-// function getYouTubeEmbedUrl(url) {
-//   if (!url || typeof url !== 'string') return null;
-  
-//   // Extract video ID from various YouTube URL formats
-//   const patterns = [
-//     /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
-//     /youtube\.com\/v\/([a-zA-Z0-9_-]{11})/
-//   ];
-  
-//   for (const pattern of patterns) {
-//     const match = url.match(pattern);
-//     if (match && match[1]) {
-//       return `https://www.youtube.com/embed/${match[1]}`;
-//     }
-//   }
-  
-//   return null;
-// }
-
-// // Helper function to check if URL is a YouTube video
-// function isYouTubeUrl(url) {
-//   return getYouTubeEmbedUrl(url) !== null;
-// }
-
-// function resolveProjectFolder() {
-//   const queryProject = new URLSearchParams(window.location.search).get('project');
-//   if (queryProject && /^project-\d+$/i.test(queryProject)) {
-//     return queryProject;
-//   }
-
-//   const parts = window.location.pathname.split('/').filter(Boolean);
-//   for (let i = parts.length - 2; i >= 0; i--) {
-//     if (/^project-\d+$/i.test(parts[i])) {
-//       return parts[i];
-//     }
-//   }
-
-//   return 'project-01';
-// }
-
-// function normalizeProjectAssetPath(projectFolder, assetPath) {
-//   if (!assetPath) return '';
-//   if (/^(https?:)?\/\//i.test(assetPath) || assetPath.startsWith('/')) return assetPath;
-
-//   const normalized = assetPath.replace(/^\.\//, '');
-//   // If assetPath starts with 'video/', use video folder
-//   if (normalized.startsWith('video/')) {
-//     return `${projectFolder}/video/${normalized.slice(6)}`;
-//   }
-//   // Otherwise, use images folder
-//   const filename = normalized.split('/').pop();
-//   return `${projectFolder}/images/${filename}`;
-// }
-
-// // Function to load portfolio metadata from config file
-// async function loadPortfolioConfig() {
-//   try {
-//     const projectFolder = resolveProjectFolder();
-//     activeProjectFolder = projectFolder;
-
-//     // Try several likely locations for config.json
-//     const candidates = ['./config.json', '/projects/config.json', '../config.json', '/config.json'];
-//     let config = null;
-//     for (const url of candidates) {
-//       try {
-//         const resp = await fetch(url);
-//         if (resp.ok) { config = await resp.json(); break; }
-//       } catch (e) {
-//         // continue to next candidate
-//       }
-//     }
-
-//     if (!config) {
-//       console.log('No config.json found at expected locations');
-//       return;
-//     }
-
-//     const projectConfig = config[projectFolder];
-//     if (!projectConfig) {
-//       console.log('No entry for', projectFolder, 'in config.json');
-//       return;
-//     }
-
-//     activeProjectConfig = projectConfig;
-
-//     // Update HTML elements with config data
-//     const typeEl = document.getElementById('portfolio-type');
-//     const agencyEl = document.getElementById('portfolio-agency');
-//     const clientEl = document.getElementById('portfolio-client');
-//     const descEl = document.getElementById('portfolio-description');
-
-//     const setMetaLine = (element, label, value, link) => {
-//       if (!element || !value) return;
-//       element.innerHTML = '';
-//       const labelSpan = document.createElement('span');
-//       labelSpan.className = 'meta-label';
-//       labelSpan.textContent = label;
-//       let valueSpan;
-//       if (link) {
-//         valueSpan = document.createElement('a');
-//         valueSpan.className = 'meta-value';
-//         valueSpan.href = link;
-//         valueSpan.target = '_blank';
-//         valueSpan.rel = 'noopener noreferrer';
-//         valueSpan.style.textDecoration = 'underline';
-//         valueSpan.style.textUnderlineOffset = '2px';
-//         valueSpan.textContent = ` ${value}`;
-//       } else {
-//         valueSpan = document.createElement('span');
-//         valueSpan.className = 'meta-value';
-//         valueSpan.textContent = ` ${value}`;
-//       }
-//       element.appendChild(labelSpan);
-//       element.appendChild(valueSpan);
-//     };
-
-//     if (typeEl && projectConfig.title) setMetaLine(typeEl, 'PROJECT:', projectConfig.title);
-//     else if (typeEl && projectConfig.type) setMetaLine(typeEl, 'PROJECT:', projectConfig.type.replace(/:$/, ''));
-//     if (agencyEl && projectConfig.agency) setMetaLine(agencyEl, 'AGENCY:', projectConfig.agency);
-//     if (clientEl && projectConfig.client) setMetaLine(clientEl, 'CLIENT:', projectConfig.client, projectConfig.clientLink);
-//     if (descEl && projectConfig.description) {
-//       if (projectConfig.descriptionLink && projectConfig.descriptionLinkText && projectConfig.description.includes(projectConfig.descriptionLinkText)) {
-//         descEl.innerHTML = '';
-//         const labelSpan = document.createElement('span');
-//         labelSpan.className = 'meta-label';
-//         labelSpan.textContent = 'DESCRIPTION:';
-//         descEl.appendChild(labelSpan);
-
-//         const full = projectConfig.description;
-//         const linkText = projectConfig.descriptionLinkText;
-//         const linkStart = full.indexOf(linkText);
-//         const before = full.slice(0, linkStart);
-//         const after = full.slice(linkStart + linkText.length);
-
-//         if (before) {
-//           const beforeSpan = document.createElement('span');
-//           beforeSpan.className = 'meta-value';
-//           beforeSpan.textContent = ` ${before}`;
-//           descEl.appendChild(beforeSpan);
-//         }
-
-//         const linkEl = document.createElement('a');
-//         linkEl.className = 'meta-value';
-//         linkEl.href = projectConfig.descriptionLink;
-//         linkEl.target = '_blank';
-//         linkEl.rel = 'noopener noreferrer';
-//         linkEl.style.textDecoration = 'underline';
-//         linkEl.style.textUnderlineOffset = '2px';
-//         linkEl.textContent = `${before ? '' : ' '}${linkText}`;
-//         descEl.appendChild(linkEl);
-
-//         if (after) {
-//           const afterSpan = document.createElement('span');
-//           afterSpan.className = 'meta-value';
-//           afterSpan.textContent = after;
-//           descEl.appendChild(afterSpan);
-//         }
-//       } else {
-//         setMetaLine(descEl, 'DESCRIPTION:', projectConfig.description, projectConfig.descriptionLink);
-//       }
-//     }
-
-//     if (projectConfig.title) {
-//       document.title = `${projectConfig.title} - Derek Mosher`;
-//     }
-
-//     console.log('Portfolio config loaded for', projectFolder);
-//     return projectConfig;
-//   } catch (e) {
-//     console.log('Could not load portfolio config:', e);
-//   }
-// }
-
-// // Function to auto-detect and load images from the images folder
-// async function loadImagesFromFolder() {
-//   if (activeProjectConfig && activeProjectConfig.hasImages === false) {
-//     return 0;
-//   }
-
-//   const imageFolder = `${activeProjectFolder || resolveProjectFolder()}/images/`;
-//   const imageExtensions = ['png', 'jpg', 'jpeg', 'gif', 'webp'];
-//   let loadedCount = 0;
-  
-//   // Try to fetch a manifest file first (set up by server or manually)
-//   try {
-//     const response = await fetch(imageFolder + 'manifest.json?v=' + manifestCacheBuster);
-//     if (response.ok) {
-//       const manifestItems = await response.json();
-//       if (Array.isArray(manifestItems) && manifestItems.length > 0) {
-//         setProjectLoaderText('Loading images...');
-//         // Verify and render sequentially so images appear as soon as they are loaded
-//         for (const item of manifestItems) {
-//           const normalizedThumbnail = normalizeProjectAssetPath(activeProjectFolder || resolveProjectFolder(), item.thumbnail || item.src);
-//           const normalizedSrc = normalizeProjectAssetPath(activeProjectFolder || resolveProjectFolder(), item.src || item.thumbnail);
-//           try {
-//             const imgResponse = await fetch(normalizedThumbnail, { method: 'HEAD' });
-//             if (imgResponse.ok) {
-//               const newItem = {
-//                 ...item,
-//                 src: normalizedSrc,
-//                 thumbnail: normalizedThumbnail
-//               };
-//               portfolioItems.push(newItem);
-//               loadedCount += 1;
-//               appendPortfolioItemToGrid(newItem, portfolioItems.length - 1);
-//             }
-//           } catch (e) {
-//             // Image doesn't exist, skip it
-//             console.log(`Image not found: ${normalizedThumbnail}`);
-//           }
-//         }
-
-//         return loadedCount;
-//       }
-//     }
-//   } catch (e) {
-//     // No manifest file, proceed with auto-detection
-//     console.log('No manifest.json found, attempting auto-detection...');
-//   }
-
-//   // Auto-detect images by checking the folder
-//   const detectedImages = [];
-  
-//   // Try to fetch directory listing if available (requires server support)
-//   try {
-//     const dirResponse = await fetch(imageFolder);
-//     if (dirResponse.ok && dirResponse.headers.get('content-type').includes('text/html')) {
-//       // If directory listing is enabled, parse the HTML
-//       const html = await dirResponse.text();
-//       const parser = new DOMParser();
-//       const doc = parser.parseFromString(html, 'text/html');
-//       const links = doc.querySelectorAll('a[href]');
-      
-//       links.forEach((link) => {
-//         const href = link.getAttribute('href');
-//         const ext = href.split('.').pop().toLowerCase();
-        
-//         if (imageExtensions.includes(ext) && !href.includes('manifest')) {
-//           detectedImages.push({
-//             id: `image-${detectedImages.length + 1}`,
-//             type: 'image',
-//             src: imageFolder + href,
-//             thumbnail: imageFolder + href,
-//             title: extractTitleFromFilename(href),
-//             description: 'Portfolio project',
-//             large: detectedImages.length === 0
-//           });
-//         }
-//       });
-//     }
-//   } catch (e) {
-//     // Directory listing not available, try pattern-based detection
-//     console.log('Directory listing not available, using pattern detection...');
-//   }
-
-//   // If directory listing failed, try common naming patterns
-//   if (detectedImages.length === 0) {
-//     const commonPatterns = [
-//       'gallery-image_',
-//       'image-',
-//       'photo-',
-//       'tiles_',
-//       'project-'
-//     ];
-
-//     for (const pattern of commonPatterns) {
-//       for (let i = 1; i <= 50; i++) {
-//         for (const ext of imageExtensions) {
-//           const imageName = `${pattern}${i}.${ext}`;
-//           const imagePath = imageFolder + imageName;
-
-//           try {
-//             const response = await fetch(imagePath, { method: 'HEAD' });
-//             if (response.ok) {
-//               detectedImages.push({
-//                 id: `image-${detectedImages.length + 1}`,
-//                 type: 'image',
-//                 src: imagePath,
-//                 thumbnail: imagePath,
-//                 title: extractTitleFromFilename(imageName),
-//                 description: 'Portfolio project',
-//                 large: detectedImages.length === 0
-//               });
-//               break;
-//             }
-//           } catch (e) {
-//             // Image not found, continue
-//           }
-//         }
-//       }
-      
-//       if (detectedImages.length > 0) break; // Found images with this pattern
-//     }
-//   }
-
-//   if (detectedImages.length > 0) {
-//     setProjectLoaderText('Loading images...');
-//     for (const detected of detectedImages) {
-//       portfolioItems.push(detected);
-//       loadedCount += 1;
-//       appendPortfolioItemToGrid(detected, portfolioItems.length - 1);
-//     }
-//     return loadedCount;
-//   }
-
-//   return loadedCount;
-// }
-
-// // Detect and load videos from the video/ folder (videos are shown first in the grid)
-// async function loadVideosFromFolder() {
-//   if (activeProjectConfig && activeProjectConfig.hasVideo === false) {
-//     return 0;
-//   }
-
-//   const videoFolder = `${activeProjectFolder || resolveProjectFolder()}/video/`;
-//   const videoExtensions = ['mp4', 'webm', 'mov', 'ogv'];
-//   const detectedVideos = [];
-
-//   // Try manifest first
-//   try {
-//     const resp = await fetch(videoFolder + 'manifest.json?v=' + manifestCacheBuster);
-//     if (resp.ok) {
-//       const m = await resp.json();
-//       if (Array.isArray(m) && m.length > 0) {
-//         for (const item of m) {
-//           if (item.type === 'video' || (item.src && videoExtensions.includes((item.src.split('.').pop() || '').toLowerCase()))) {
-//             const normalizedSrc = normalizeProjectAssetPath(activeProjectFolder || resolveProjectFolder(), item.src || (videoFolder + item.filename));
-//             const normalizedThumbnail = normalizeProjectAssetPath(activeProjectFolder || resolveProjectFolder(), item.thumbnail || '');
-//             detectedVideos.push({
-//               id: item.id || `video-${detectedVideos.length+1}`,
-//               type: 'video',
-//               src: normalizedSrc,
-//               thumbnail: normalizedThumbnail,
-//               title: item.title || 'Video',
-//               description: item.description || '',
-//               width: item.width,
-//               height: item.height,
-//               autoplay: typeof item.autoplay === 'boolean' ? item.autoplay : false,
-//               loop: typeof item.loop === 'boolean' ? item.loop : false
-//             });
-//           }
-//         }
-//       }
-//     }
-//   } catch (e) {
-//     // continue to other detection techniques
-//   }
-
-//   // Try directory listing if available
-//   if (detectedVideos.length === 0) {
-//     try {
-//       const dirResp = await fetch(videoFolder);
-//       if (dirResp.ok && dirResp.headers.get('content-type') && dirResp.headers.get('content-type').includes('text/html')) {
-//         const html = await dirResp.text();
-//         const parser = new DOMParser();
-//         const doc = parser.parseFromString(html, 'text/html');
-//         const links = doc.querySelectorAll('a[href]');
-//         links.forEach(link => {
-//           const href = link.getAttribute('href');
-//           const ext = (href.split('.').pop() || '').toLowerCase();
-//           if (videoExtensions.includes(ext)) {
-//             detectedVideos.push({
-//               id: `video-${detectedVideos.length+1}`,
-//               type: 'video',
-//               src: videoFolder + href,
-//               thumbnail: '',
-//               title: extractTitleFromFilename(href),
-//               description: ''
-//             });
-//           }
-//         });
-//       }
-//     } catch (e) {
-//       // not available
-//     }
-//   }
-
-//   // Pattern-based fallback
-//   if (detectedVideos.length === 0) {
-//     const commonNames = ['video','hero','loop','banner','intro'];
-//     for (const name of commonNames) {
-//       for (const ext of videoExtensions) {
-//         const path = `${videoFolder}${name}.${ext}`;
-//         try {
-//           const r = await fetch(path, { method: 'HEAD' });
-//           if (r.ok) {
-//             detectedVideos.push({
-//               id: `video-${detectedVideos.length+1}`,
-//               type: 'video',
-//               src: path,
-//               thumbnail: '',
-//               title: name,
-//               description: ''
-//             });
-//             break;
-//           }
-//         } catch (e) {
-//           // continue
-//         }
-//       }
-//       if (detectedVideos.length > 0) break;
-//     }
-//   }
-
-//   if (detectedVideos.length > 0) {
-//     setProjectLoaderText('Loading videos...');
-//     // Render ALL detected videos above banners (do NOT duplicate into the image grid)
-//     const videoContainer = document.getElementById('video-container');
-//     if (videoContainer) {
-//       videoContainer.innerHTML = '';
-//       videoContainer.style.display = 'block';
-
-//       // Helper to format time
-//       function formatTime(s) {
-//         if (!s || isNaN(s) || !isFinite(s)) return '0:00';
-//         const sec = Math.floor(s % 60).toString().padStart(2, '0');
-//         const min = Math.floor(s / 60);
-//         return `${min}:${sec}`;
-//       }
-
-//       // Render each video separately
-//       detectedVideos.forEach((vid, index) => {
-//         const videoWrapper = document.createElement('div');
-//         videoWrapper.className = 'video-wrapper';
-//         videoWrapper.style.width = '100%';
-//         videoWrapper.style.display = 'flex';
-//         videoWrapper.style.flexDirection = 'column';
-//         videoWrapper.style.alignItems = 'center';
-//         if (index > 0) {
-//           videoWrapper.style.marginTop = '2rem';
-//         }
-
-//         let mediaEl;
-//         const embedUrl = getYouTubeEmbedUrl(vid.src);
-//         if (embedUrl) {
-//           // YouTube video - use iframe
-//           mediaEl = document.createElement('iframe');
-//           mediaEl.src = embedUrl;
-//           mediaEl.frameBorder = '0';
-//           mediaEl.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-//           mediaEl.allowFullscreen = true;
-//           mediaEl.style.borderRadius = '0.75rem';
-//           mediaEl.style.display = 'block';
-//           // Set size to 1920x1080
-//           mediaEl.width = '1920';
-//           mediaEl.height = '1080';
-//         } else {
-//           // Local video - use video element
-//           mediaEl = document.createElement('video');
-//           mediaEl.src = vid.src;
-//           if (vid.thumbnail) mediaEl.poster = vid.thumbnail;
-//           mediaEl.muted = true; // Set muted before autoplay for browser compatibility
-//           mediaEl.autoplay = !!vid.autoplay;
-//           mediaEl.loop = !!vid.loop;
-//           mediaEl.playsInline = true;
-//           mediaEl.preload = 'auto';
-//           mediaEl.style.borderRadius = '0.75rem';
-//           mediaEl.style.objectFit = 'contain';
-//           mediaEl.style.display = 'block';
-//         }
-
-//         // Set max size to 960x540 (16:9 aspect ratio)
-//         mediaEl.style.setProperty('max-width', '960px', 'important');
-//         mediaEl.style.setProperty('max-height', '540px', 'important');
-//         mediaEl.style.aspectRatio = '16 / 9';
-//         mediaEl.style.width = '100%';
-//         mediaEl.style.height = 'auto';
-
-//         videoWrapper.appendChild(mediaEl);
-
-//         // Only add controls for local videos, YouTube has its own controls
-//         if (!embedUrl) {
-//           // Controls container
-//           const controls = document.createElement('div');
-//           controls.className = 'video-controls';
-//           controls.style.display = 'flex';
-//           controls.style.alignItems = 'center';
-//           controls.style.gap = '8px';
-//           controls.style.marginTop = '8px';
-
-//           // Play/Pause button
-//           const btnPlay = document.createElement('button');
-//           btnPlay.className = 'vc-btn vc-play';
-//           btnPlay.type = 'button';
-//           btnPlay.textContent = 'Pause';
-//           btnPlay.title = 'Play/Pause';
-
-//           // Progress slider
-//           const progress = document.createElement('input');
-//           progress.type = 'range';
-//           progress.className = 'vc-range';
-//           progress.min = 0;
-//           progress.max = 100;
-//           progress.value = 0;
-//           progress.step = 0.1;
-//           progress.style.flex = '1';
-
-//           // Time display (current / duration)
-//           const timeEl = document.createElement('div');
-//           timeEl.className = 'vc-time';
-//           timeEl.textContent = '0:00 / 0:00';
-//           timeEl.style.minWidth = '90px';
-//           timeEl.style.textAlign = 'center';
-
-//           // Mute/Unmute button
-//           const btnMute = document.createElement('button');
-//           btnMute.className = 'vc-btn vc-mute';
-//           btnMute.type = 'button';
-//           btnMute.textContent = 'Unmute';
-//           btnMute.title = 'Toggle audio';
-
-//           controls.appendChild(btnPlay);
-//           controls.appendChild(progress);
-//           controls.appendChild(timeEl);
-//           controls.appendChild(btnMute);
-
-//           videoWrapper.appendChild(controls);
-
-//           // Wire up controls
-//           btnPlay.addEventListener('click', () => {
-//             if (mediaEl.paused) {
-//               mediaEl.play();
-//               btnPlay.textContent = 'Pause';
-//             } else {
-//               mediaEl.pause();
-//               btnPlay.textContent = 'Play';
-//             }
-//           });
-
-//           // Update progress and time display as video plays
-//           let isSeeking = false;
-//           mediaEl.addEventListener('timeupdate', () => {
-//             if (mediaEl.duration && !isSeeking) {
-//               progress.max = mediaEl.duration;
-//               progress.value = mediaEl.currentTime;
-//               timeEl.textContent = `${formatTime(mediaEl.currentTime)} / ${formatTime(mediaEl.duration)} `;
-//             }
-//           });
-
-//           // Allow seeking
-//           progress.addEventListener('input', () => {
-//             isSeeking = true;
-//             mediaEl.currentTime = Number(progress.value);
-//             timeEl.textContent = `${formatTime(Number(progress.value))} / ${formatTime(mediaEl.duration || 0)}`;
-//           });
-//           progress.addEventListener('change', () => { isSeeking = false; });
-
-//           // Mute toggle
-//           btnMute.addEventListener('click', () => {
-//             mediaEl.muted = !mediaEl.muted;
-//             btnMute.textContent = mediaEl.muted ? 'Unmute' : 'Mute';
-//           });
-
-//           // Ensure labels match initial state
-//           btnPlay.textContent = mediaEl.paused ? 'Play' : 'Pause';
-//           btnMute.textContent = mediaEl.muted ? 'Unmute' : 'Mute';
-
-//           // Initialize time once metadata is available
-//           if (mediaEl.readyState >= 1) {
-//             timeEl.textContent = `${formatTime(mediaEl.currentTime)} / ${formatTime(mediaEl.duration || 0)}`;
-//             progress.max = mediaEl.duration || 0;
-//             progress.value = mediaEl.currentTime || 0;
-//           }
-
-//           // When metadata is loaded, set progress max
-//           mediaEl.addEventListener('loadedmetadata', () => {
-//             if (mediaEl.duration) progress.max = mediaEl.duration;
-//             // Use Intersection Observer to play/pause any video when visible
-//             const observer = new window.IntersectionObserver((entries) => {
-//               entries.forEach(entry => {
-//                 if (entry.isIntersecting) {
-//                   mediaEl.play().catch(() => {});
-//                 } else {
-//                   mediaEl.pause();
-//                 }
-//               });
-//             }, { threshold: 0.25 }); // 25% visible triggers play
-//             observer.observe(mediaEl);
-//           });
-
-//           // Clicking video toggles play/pause
-//           mediaEl.addEventListener('click', () => {
-//             if (mediaEl.paused) { mediaEl.play(); btnPlay.textContent = 'Pause'; }
-//             else { mediaEl.pause(); btnPlay.textContent = 'Play'; }
-//           });
-
-//           // Keep play/pause button in sync with playback state
-//           mediaEl.addEventListener('play', () => { btnPlay.textContent = 'Pause'; });
-//           mediaEl.addEventListener('pause', () => { btnPlay.textContent = 'Play'; });
-//           mediaEl.addEventListener('ended', () => { btnPlay.textContent = 'Play'; });
-//         }
-
-//         videoContainer.appendChild(videoWrapper);
-
-//         console.log('Rendered video in video-container:', vid.src);
-//       });
-//     }
-//   }
-
-//   return detectedVideos.length;
-// }
-
-// // Load HTML banners from the banners/ folder if present
-// async function loadBannersFromFolder() {
-//   if (activeProjectConfig && activeProjectConfig.hasBanners === false) {
-//     return 0;
-//   }
-
-//   // Render order: 300x600, 160x600, 300x250, 728x90
-//   const sizes = ['300x600','160x600','300x250','728x90'];
-//   const bannersRoot = `${activeProjectFolder || resolveProjectFolder()}/banners/`;
-//   const container = document.getElementById('banners-container');
-//   if (!container) return;
-
-//   const found = [];
-//   for (const size of sizes) {
-//     const indexPath = `${bannersRoot}${size}/index.html`;
-//     try {
-//       // Try HEAD first; some servers may not support HEAD so fall back to GET
-//       let ok = false;
-//       try {
-//         const headResp = await fetch(indexPath, { method: 'HEAD' });
-//         ok = headResp && headResp.ok;
-//       } catch (e) {
-//         ok = false;
-//       }
-
-//       if (!ok) {
-//         try {
-//           const getResp = await fetch(indexPath, { method: 'GET' });
-//           ok = getResp && getResp.ok;
-//         } catch (e) {
-//           ok = false;
-//         }
-//       }
-
-//       if (ok) found.push({ size, path: indexPath });
-//     } catch (e) {
-//       // ignore and continue
-//     }
-//   }
-
-//   if (found.length === 0) {
-//     container.style.display = 'none';
-//     return 0;
-//   }
-
-//   setProjectLoaderText('Loading banners...');
-
-//   container.innerHTML = '';
-//   container.style.display = 'flex';
-//   container.style.gap = '12px';
-//   container.style.flexWrap = 'wrap';
-//   container.style.alignItems = 'center';
-
-//   found.forEach(b => {
-//     // Prefer width/height from manifest if available, else parse from size string
-//     const w = (typeof b.width === 'number' && b.width > 0) ? b.width : (b.size ? Number((b.size.split('x')[0]) || 0) : 0);
-//     const h = (typeof b.height === 'number' && b.height > 0) ? b.height : (b.size ? Number((b.size.split('x')[1]) || 0) : 0);
-//     const wrapper = document.createElement('div');
-//     wrapper.className = 'banner-item';
-//     wrapper.style.width = `${w}px`;
-//     wrapper.style.height = `${h}px`;
-//     wrapper.style.overflow = 'visible';
-//     wrapper.style.border = '1px solid rgba(255,255,255,0.04)';
-//     wrapper.style.background = 'transparent';
-//     wrapper.style.display = 'flex';
-//     wrapper.style.flexDirection = 'column';
-//     wrapper.style.alignItems = 'center';
-//     wrapper.style.justifyContent = 'flex-start';
-
-//     const iframe = document.createElement('iframe');
-//     iframe.src = b.path;
-//     iframe.width = w;
-//     iframe.height = h;
-//     iframe.scrolling = 'no';
-//     iframe.style.display = 'block';
-//     iframe.style.lineHeight = '0';
-//     iframe.style.border = '0';
-//     iframe.style.position = 'relative';
-//     iframe.loading = 'lazy';
-//     iframe.sandbox = 'allow-scripts allow-same-origin allow-popups';
-
-//     wrapper.appendChild(iframe);
-
-//     // Add a small replay button under each banner to replay that specific banner
-//     const btn = document.createElement('button');
-//     btn.className = 'banner-replay-btn';
-//     btn.textContent = 'Replay';
-//     btn.setAttribute('aria-label', `Replay banner ${b.size}`);
-//     btn.style.marginTop = '12px';
-//     btn.style.fontSize = '12px';
-//     btn.style.padding = '6px 10px';
-//     btn.style.borderRadius = '6px';
-//     btn.style.border = '1px solid rgba(255,255,255,0.06)';
-//     btn.style.cursor = 'pointer';
-
-//     btn.addEventListener('click', () => {
-//       // Reload only this iframe. Use a cache-busting param so reload works reliably.
-//       try {
-//         const src = iframe.src || b.path;
-//         const sep = src.includes('?') ? '&' : '?';
-//         iframe.src = src.split('?')[0] + sep + '_replay=' + Date.now();
-//       } catch (e) {
-//         // As a fallback, set src directly
-//         iframe.src = b.path;
-//       }
-//       // Provide a quick visual feedback
-//       btn.disabled = true;
-//       setTimeout(() => { btn.disabled = false; }, 800);
-//     });
-
-//     wrapper.appendChild(btn);
-//     container.appendChild(wrapper);
-//   });
-
-//   return found.length;
-// }
-
-// // Helper function to extract readable title from filename
-// function extractTitleFromFilename(filename) {
-//   return filename
-//     .replace(/\.[^/.]+$/, '') // Remove extension
-//     .replace(/[-_]/g, ' ') // Replace dashes and underscores with spaces
-//     .replace(/^\d+\s+/, '') // Remove leading numbers
-//     .split(' ')
-//     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-//     .join(' ')
-//     .substring(0, 50); // Limit to 50 characters
-// }
-
-// // Render portfolio grid
-// function renderPortfolioGrid() {
-//   const grid = document.getElementById('portfolio-grid');
-//   grid.innerHTML = '';
-
-//   portfolioItems.forEach((item, i) => {
-//     appendPortfolioItemToGrid(item, i);
-//   });
-// }
-
-// function appendPortfolioItemToGrid(item, index) {
-//   const grid = document.getElementById('portfolio-grid');
-//   if (!grid) return;
-
-//   const div = document.createElement('div');
-//   div.className = `portfolio-item reveal ${item.large ? 'large' : ''}`;
-//   div.style.transitionDelay = `${index * 0.1}s`;
-
-//   // Set width for all images
-//   const fixedWidth = 320; // px, larger size for 4-column fit
-//   const fixedHeight = fixedWidth; // 4:4 ratio (square)
-//   if (item.type === 'image') {
-//     div.style.width = `${fixedWidth}px`;
-//     div.style.height = `${fixedHeight}px`;
-//     div.innerHTML = `
-//       <img src="${item.thumbnail}" alt="${item.title}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0.75rem;" />
-//     `;
-//   } else if (item.type === 'video') {
-//     div.style.width = `${fixedWidth}px`;
-//     div.style.height = `${fixedHeight}px`;
-//     const embedUrl = getYouTubeEmbedUrl(item.src);
-//     if (embedUrl) {
-//       div.innerHTML = `
-//         <iframe src="${embedUrl}" width="1920" height="1080" style="width: 100%; height: 100%; border-radius: 0.75rem; border: none;" allowfullscreen></iframe>
-//       `;
-//     } else {
-//       div.innerHTML = `
-//         <video src="${item.src}" poster="${item.thumbnail}" style="width: 100%; height: 100%; object-fit: cover;"></video>
-//         <div class="absolute inset-0 flex items-center justify-center" style="background: rgba(0,0,0,0.3);">
-//           <svg width="60" height="60" fill="currentColor" style="color: white; opacity: 0.8;">
-//             <polygon points="0 0 60 30 0 60" />
-//           </svg>
-//         </div>
-//       `;
-//     }
-//   }
-
-//   div.addEventListener('click', () => openPortfolioLightbox(item));
-//   grid.appendChild(div);
-// }
-
-// // Open lightbox
-// function openPortfolioLightbox(item) {
-//   const lb = document.getElementById('portfolio-lightbox');
-//   const body = document.getElementById('portfolio-lightbox-body');
-
-//   if (item.type === 'image') {
-//     body.innerHTML = `<img src="${item.src}" alt="${item.title}" />`;
-//   } else if (item.type === 'video') {
-//     const embedUrl = getYouTubeEmbedUrl(item.src);
-//     if (embedUrl) {
-//       body.innerHTML = `
-//         <iframe
-//           src="${embedUrl}"
-//           width="1920"
-//           height="1080"
-//           frameborder="0"
-//           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-//           allowfullscreen
-//           style="width: 100%; max-width: 960px; aspect-ratio: 16 / 9; border-radius: 0.75rem; background: #000;"
-//         ></iframe>
-//       `;
-//     } else {
-//       body.innerHTML = `
-//         <video
-//           src="${item.src}"
-//           controls
-//           autoplay
-//           style="width: 100%; max-width: 900px; border-radius: 0.75rem; background: #000;"
-//         ></video>
-//       `;
-//     }
-//   }
-
-//   lb.classList.add('active');
-// }
-
-// // Close lightbox
-// function closePortfolioLightbox() {
-//   const lb = document.getElementById('portfolio-lightbox');
-//   const content = lb.querySelector('.lightbox-content');
-//   if (content) {
-//     content.style.animation = 'lightboxFadeOut 0.4s ease';
-//     content.addEventListener('animationend', function handler(e) {
-//       if (e.animationName === 'lightboxFadeOut') {
-//         lb.classList.remove('active');
-//         content.style.animation = '';
-//         content.style.opacity = '';
-//         content.style.transform = '';
-//         lb.style.display = 'none';
-//         content.removeEventListener('animationend', handler);
-//         // Reset display after a short delay for next open
-//         setTimeout(() => { lb.style.display = ''; }, 50);
-//       }
-//     });
-//   } else {
-//     lb.classList.remove('active');
-//     lb.style.display = 'none';
-//     setTimeout(() => { lb.style.display = ''; }, 50);
-//   }
-// }
-
-// function setProjectLoaderText(text) {
-//   const loaderText = document.getElementById('project-loader-text');
-//   if (loaderText && text) loaderText.textContent = text;
-// }
-
-// function hideProjectLoader() {
-//   const loader = document.getElementById('project-loader');
-//   if (!loader) return;
-//   loader.classList.add('hidden');
-// }
-
-// // Event listeners
-// document.addEventListener('DOMContentLoaded', async () => {
-//   try {
-//     await loadPortfolioConfig();
-//     await loadVideosFromFolder();
-//     await loadBannersFromFolder();
-//     await loadImagesFromFolder();
-//   } finally {
-//     hideProjectLoader();
-//   }
-
-//   // Close lightbox on any click inside modal
-//   document.getElementById('portfolio-lightbox').addEventListener('click', closePortfolioLightbox);
-
-//   // Close lightbox on Escape key
-//   document.addEventListener('keydown', (e) => {
-//     if (e.key === 'Escape') {
-//       closePortfolioLightbox();
-//     }
-//   });
-
-//   // Mobile menu toggle
-//   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-//   const mobileMenu = document.getElementById('mobile-menu');
-
-//   if (mobileMenuBtn) {
-//     mobileMenuBtn.addEventListener('click', () => {
-//       mobileMenu.classList.toggle('hidden');
-//     });
-//   }
-
-//   // Apply config from SDK
-//   if (window.elementSdk) {
-//     window.elementSdk.init({
-//       defaultConfig: {
-//         designer_name: 'Derek Mosher',
-//         project_description: 'Project description goes here'
-//       },
-//       onConfigChange: async (config) => {
-//         if (config.designer_name) {
-//           document.getElementById('nav-name').textContent = config.designer_name;
-//           document.getElementById('footer-name').textContent = config.designer_name;
-//         }
-//         if (config.project_description) {
-//           document.getElementById('portfolio-description').textContent = config.project_description;
-//         }
-//       }
-//     });
-//   }
-// });
