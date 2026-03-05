@@ -1,0 +1,197 @@
+/* Load fonts - Note only woff2 gets loaded. if woff2 fails, only then will woff load.  */
+@font-face {
+    font-family: "VogueSans-SemiBold-min";
+    src: url("VogueSans-SemiBold-min.woff2") format("woff2") ,url("VogueSans-SemiBold-min.woff") format("woff");
+}
+/* font-family: futura-pt,sans-serif;
+font-weight: 400;
+font-style: normal; */
+/*************** MAIN ELEMENTS ***************/
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+div, img, svg,p,canvas{
+    position: absolute;
+}
+
+#wrapper {
+    display: block;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 600px;
+    overflow: hidden;
+    background-color: #000000;
+    /* background-image: url("backup_300x600.jpg"); */
+}
+
+#bannerCover {
+    top:0px;
+    width: inherit;
+    height: inherit;
+    background: #000000;
+    pointer-events: none; 
+}
+
+#border {
+    border: 1px solid #6b6b6b;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: inherit;
+    height: inherit;
+    pointer-events: none;
+}
+
+#bgexit {
+    width: inherit;
+    height: inherit;
+    cursor: pointer;
+}
+
+/******************** LOGO ********************/
+
+#logo {
+    cursor: pointer;
+    width: 250px;
+    height: 110px;
+    top: 50%;
+    left: 51%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    filter: drop-shadow(10px 10px 10px #000);
+    -webkit-filter: drop-shadow( 10px 10px 10px #000 );
+}
+/* #text_presents{
+    visibility:hidden
+} */
+/******************** BUTTON ********************/
+
+#cta {
+    width: 176px;
+    height: 32px;
+    top: 503px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1px;
+    cursor: pointer;
+    background: #d16b3a;
+    background: #2979d3;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: VogueSans-SemiBold-min ,sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    /* line-height: 36px; */
+    letter-spacing: 1.4pt;
+    font-size: 23px;
+    border-radius: 4px;
+    /* border: 1px solid white; */
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    filter: drop-shadow(1px 1px 14px  rgba(0, 0, 0,0.5));
+    -webkit-filter: drop-shadow( 1px 1px 14px  rgba(0, 0, 0,0.5) );
+}
+
+#cta:hover {
+    background-color: #b22626;
+    color: #fff;
+}
+
+/********************** TEXT **********************/
+
+#textBoxer {
+    width: 280px;
+    height: 76px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    top: 437px;
+    line-height: 1.2;
+    text-align: center;
+    font-size: 21px;
+    /* background-color: rgba(18, 241, 10, 0.2); */
+}
+
+.text_header {
+    color: #FFFFFF;
+    font-family: futura-pt-condensed,sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: 1.8pt;
+    width: 100%;
+    height: auto;
+    left:0px;
+    line-height: inherit;
+    font-size: inherit;
+    /* background-color: rgba(18, 241, 10, 0.2); */
+}
+.text_subheader {
+    color: #FFFFFF;
+    font-family: futura-pt,sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0.3pt;
+    width: 100%;
+    height: auto;
+    left:0px;
+    font-size: 55%; 
+    line-height: inherit;
+    /* background-color: red; */
+}
+.italicMe {
+    font-family: 'Monday-Italic-min', serif;
+}
+/********************** IMAGE **********************/
+
+#titleWrap {
+    width: 280px;
+    height: auto;
+    top: 433px;
+    left: 11px;
+    filter: drop-shadow(10px 10px 10px #000);
+    filter: drop-shadow(5px 5px 5px #000);
+
+    /* -webkit-filter: drop-shadow( 10px 10px 10px #000 ); */
+    -webkit-filter: drop-shadow( 5px 5px 5px #000 );
+
+}
+
+.titleClass {
+    width: inherit;
+    height: inherit;
+    top: 0px;
+    left: 0px;
+
+}
+#imagesWrap {
+    width: inherit;
+    height: inherit;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    /* filter: drop-shadow(5px 5px 5px #000);d */
+    /* -webkit-filter: drop-shadow( 5px 5px 5px #000 ); */
+}
+
+.imageDiv {
+    width: inherit;
+    height: inherit;
+    /* filter: drop-shadow(5px 5px 5px #000);
+    -webkit-filter: drop-shadow( 5px 5px 5px #000 ); */
+}

@@ -1,0 +1,165 @@
+/* Load fonts - Note only woff2 gets loaded. if woff2 fails, only then will woff load.  */
+@font-face {
+    font-family: "EthosNova-Heavy";
+    src: url("EthosNova-Heavy-min.woff2") format("woff2") ,url("EthosNova-Heavy-min.woff") format("woff");
+}
+
+
+/*************** MAIN ELEMENTS ***************/
+body {
+    margin: 0;
+    padding: 0;
+}
+div,img, canvas{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+}
+#wrapper {
+    display: block;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 600px;
+    overflow: hidden;
+    background-color: #494950;
+}
+/* #introBG {
+    opacity: 0.2;
+    -webkit-filter: blur(2px); 
+    filter: blur(2px);
+} */
+#bannerCover {
+    width: inherit;
+    height: inherit;
+    background: #343639 ;
+    pointer-events: none;
+}
+#border {
+    border: 1px solid #7b7e77;
+    opacity: 0.99;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: inherit;
+    height: inherit;
+    pointer-events: none;
+
+}
+#bgexit {
+    width: inherit;
+    height: inherit;
+    cursor: pointer;
+    background-color: #343639;
+    background-color: #ff0000;
+    background-image: url("bg.jpg"); 
+
+}
+#staticCanvas{
+    width: inherit;
+    height: inherit;
+    opacity: 0.08;
+}
+
+
+/******************** CTA ********************/
+#cta {
+    top: 219px;
+    left: 85px;
+    width: 126px;
+    height: 25px;
+    color:#fff;
+    background-color:#a12123;
+    border: 1px solid;
+    border-radius:1px;
+    border-color:#a12123;
+    text-align: center;
+    font-family: "open-sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    padding-top:0px;
+    line-height: 1.6;
+    letter-spacing: 1.3px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/********************** TEXT **********************/
+#text_quote{
+    top: 135px;
+    left:0px;
+    width:299px;
+    height: 28px;
+    font-size: 18px;
+    line-height: 1.1;
+    letter-spacing: 0.1px;
+    color:#fff;
+    text-align: center;
+    font-family: "open-sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    /* background-color: #ff0000; */
+}
+#text_quote2{
+    top: 179px;
+    left:0px;
+    width:299px;
+    height: 28px;
+    font-size: 25px;
+    line-height: 1.0;
+    letter-spacing: 0.1px;
+    color:#fff;
+    text-align: center;
+    font-family: "playfair-display", serif;
+    font-weight: 700;
+    font-style: normal;
+    /* background-color: #ff0000; */
+}
+
+
+/********************** IMAGE **********************/
+#logo_intro {
+    cursor: pointer;
+    top: 50%;
+    left: 51%;
+    transform: translate(-50%, -50%) scale(0.9);
+    -webkit-transform: translate(-50%, -50%) scale(0.9);
+    -moz-transform: translate(-50%, -50%) scale(0.9);
+    -ms-transform: translate(-50%, -50%) scale(0.9);
+    -o-transform: translate(-50%, -50%) scale(0.9);
+}
+#logo_6666{
+    top:34px;
+    left:57px;
+    width: 184px;
+    height: auto;
+    /* filter: drop-shadow(1px 1px 1px rgba( 0 0 0 / 0.8)) 
+        drop-shadow(2px 2px 10px rgba(255, 255, 255, 1.0))  
+        drop-shadow(2px 2px 20px rgba(255, 255, 255, 1.0)) 
+        drop-shadow(2px 2px 50px rgba(255, 255, 255, 0.8)) 
+         ; */
+}
+#imagesWrap {
+    width: inherit;
+    height: inherit;
+    overflow: hidden;
+}
+.imageDiv {
+    width: inherit;
+    height: inherit;
+}
+/* i {
+    font-family: 'Monday-Italic-min', serif;
+} */
+
+
+/******************** LOGO ********************/
+
+
+/* .italicMe {
+    font-family: 'Monday-Italic-min', serif;
+}  */
