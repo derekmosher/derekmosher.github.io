@@ -626,7 +626,7 @@ async function loadBannersFromFolder() {
       if (Array.isArray(manifest) && manifest.length > 0) {
         for (const item of manifest) {
           if (item.type === 'banner' && item.src) {
-            const path = item.src;
+            const path = bannersRoot + item.src;
             found.push({ 
               size: item.size || `${item.width}x${item.height}`, 
               path: path,
@@ -713,7 +713,7 @@ async function loadBannersFromFolder() {
     iframe.style.border = '0';
     iframe.style.position = 'relative';
     iframe.loading = 'lazy';
-    iframe.sandbox = 'allow-scripts allow-same-origin allow-popups';
+    // iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms allow-pointer-lock allow-top-navigation';
 
     wrapper.appendChild(iframe);
 
@@ -755,27 +755,29 @@ async function loadBannersFromFolder() {
       }, 2000); // Increased to 2 seconds to allow reload to complete
     });
 
-    // Add Intersection Observer to control banner playback based on visibility
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Banner is visible, send play message
-          try {
-            iframe.contentWindow.postMessage('play', '*');
-          } catch (e) {
-            // Ignore if iframe not ready
+    // Add Intersection Observer to control banner playback based on visibility (only for project-13)
+    if (activeProjectFolder === 'project-13') {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Banner is visible, send play message
+            try {
+              iframe.contentWindow.postMessage('play', '*');
+            } catch (e) {
+              // Ignore if iframe not ready
+            }
+          } else {
+            // Banner is not visible, send pause message
+            try {
+              iframe.contentWindow.postMessage('pause', '*');
+            } catch (e) {
+              // Ignore if iframe not ready
+            }
           }
-        } else {
-          // Banner is not visible, send pause message
-          try {
-            iframe.contentWindow.postMessage('pause', '*');
-          } catch (e) {
-            // Ignore if iframe not ready
-          }
-        }
-      });
-    }, { threshold: 0.1 }); // Trigger when 10% visible
-    observer.observe(iframe);
+        });
+      }, { threshold: 0.1 }); // Trigger when 10% visible
+      observer.observe(iframe);
+    }
 
     wrapper.appendChild(btn);
     container.appendChild(wrapper);
