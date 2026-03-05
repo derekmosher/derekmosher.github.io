@@ -1,0 +1,164 @@
+/* Load fonts - Note only woff2 gets loaded. if woff2 fails, only then will woff load.  */
+@font-face {
+    font-family: font1;
+    src: url("BlairITCStd_min.woff2") format("woff2"), url("BlairITCStd_min.woff") format("woff");
+}
+@font-face {
+    font-family: font2;
+    src: url("futura_medium_bt_min.woff2") format("woff2"), url("futura_medium_bt_min.woff") format("woff");
+}
+/*************** MAIN ELEMENTS ***************/
+
+body , div{
+   margin: 0;
+   padding: 0;
+   position: absolute;
+}
+#wrapper {
+    display: block;
+    width: 300px;
+    height: 600px;
+    overflow: hidden;
+    background-color: #F9F7E8;
+}
+
+#bannerCover {
+    width: inherit;
+    height: inherit;
+    background: #F9F7E8;
+    pointer-events: none;
+}
+#border {
+    border: 1px solid #B7B5A5;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: inherit;
+    height: inherit;
+    pointer-events: none;
+}
+#bgexit {
+    width: inherit;
+    height: inherit;
+    cursor: pointer;
+}
+
+/******************** LOGO ********************/
+#logos {
+    width: inherit;
+    height: inherit;
+}
+#logo {
+    cursor: pointer;
+    width: 180px;
+    height: auto;
+    top:250px; 
+    left: 50%;
+    transform: translate(-50%);
+    -webkit-transform: translate(-50%);
+    /* filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .25)); */
+    /* -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .25)); */
+}
+#logo_partner{
+    cursor: pointer;
+    position:absolute;
+    width: 81px;
+    height: auto;
+    top: 18px;
+    left: 50%;
+    transform: translate(-50%);
+    -webkit-transform: translate(-50%);
+    fill:#ffffff;
+    /* filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .25)); */
+    /* -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .25)); */
+}
+/******************** BUTTON ********************/
+
+#cta {
+    width: 135px;
+    height: 32px;
+    bottom: 80px;
+    left: 50%;
+    -webkit-transform: translate(-50%);
+    transform: translate(-50%);
+    cursor: pointer;
+    background: #c9a825;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: font2, sans-serif;
+    font-size: 17px;
+    line-height: 34px;
+    letter-spacing: 0.9pt;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/********************** TEXT **********************/
+#textBoxer {
+    top:350px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 280px;
+    height: 125px;
+    line-height: 1.1;
+    text-align: center;
+    font-size: 26px;
+    /* text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4); */
+    /* background-color: white; */
+}
+
+.text_header {
+    color: #775C3D;
+    font-family: font1, serif;
+    font-style: normal;
+    width: 100%;
+    height: auto;
+    left:0px;
+    line-height: inherit;
+    font-size: inherit;
+    /* background-color: rgba(18, 241, 10, 0.2); */
+}
+.text_subheader {
+    color: #6d3f25;
+    font-family: font2, serif;
+    letter-spacing: 0.3pt;
+    width: 100%;
+    height: auto;
+    left:0px;
+    font-size: 55%; 
+    line-height: inherit;
+    /* background-color: red; */
+}
+/* .italicMe {
+    font-family: 'Monday-Italic-min', serif;
+} */
+/******************** DISCLAIMER *******************/
+#disclaimer {
+    display:none;
+    left: 5px;
+    bottom: 0px;
+    font-size:6px;
+    line-height:10px;
+    font-family: Arial, serif;
+    color: #000000;
+    opacity:0.5;
+    width: 290px;
+    text-align: center;
+}
+/********************** IMAGE **********************/
+
+#imagesWrap {
+    width: inherit;
+    height: 270px;
+    top: 68px;
+    left: 0;
+    overflow: hidden;
+}
+
+.imageDiv {
+    width: inherit;
+    height: inherit;
+}

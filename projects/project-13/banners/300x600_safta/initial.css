@@ -1,0 +1,130 @@
+
+/* Load fonts - Note only woff2 gets loaded. if woff2 fails, only then will woff load.  */
+/*************** MAIN ELEMENTS ***************/
+body {
+    margin: 0;
+    padding: 0;
+}
+div,img{
+    position: absolute;
+    cursor: pointer;
+}
+#wrapper {
+    display: block;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 600px;
+    overflow: hidden;
+    background-color: #000;
+}
+#introBG {
+    opacity: 0.2;
+    -webkit-filter: blur(2px); /* Safari 6.0 - 9.0 */
+    filter: blur(2px);
+}
+#bannerCover {
+    width: inherit;
+    height: inherit;
+    background: #ffffff ;
+    pointer-events: none;
+}
+#border {
+    border: 1px solid #bbbbbb;    
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: inherit;
+    height: inherit;
+    pointer-events: none;
+}
+#bgexit {
+    width: inherit;
+    height: inherit;
+    cursor: pointer;
+    background-color: #9d0f3f;
+}
+
+/******************** logo_intro ********************/
+#logo_intro {
+    cursor: pointer;
+    top: 50%;
+    left: 51%;
+    transform: translate(-50%, -50%) scale(1.0);
+    -webkit-transform: translate(-50%, -50%) scale(1.0);
+    -moz-transform: translate(-50%, -50%) scale(1.0);
+    -ms-transform: translate(-50%, -50%) scale(1.0);
+    -o-transform: translate(-50%, -50%) scale(1.0);
+}
+#logo_safta{
+    top: 28px;
+    left:50px;
+    width: 200px;
+    height: auto;
+    fill:rgb(255, 255, 255);
+}
+
+
+/******************** CTA ********************/
+#cta {
+    width: 108px;
+    height: 29px;
+    bottom: 82px;
+    left: 50%;
+    -webkit-transform: translate(-50%);
+    transform: translate(-50%);
+    cursor: pointer;
+    
+    border: 1px solid;
+    color:#990f42 ;
+    /* border-color: #012169; */
+    background-color:#fff;
+    border-radius:2px;
+    border-color:#fff;
+    
+    text-align: center;
+    text-transform: uppercase;
+
+    font-family: "noka", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 15px;
+    line-height: 31.5px;
+    letter-spacing: 0pt;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/********************** TEXT **********************/
+#text1,#text2,#text3 {
+    top: 120px;
+    left:60px;
+    height: 100px;
+    width: 180px;
+    font-family: "noka", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 15px;
+    text-align: center;
+    line-height: 1.2;
+    letter-spacing: 0.5;
+    color:#F9F7E8;
+    /* background-color: #ff0000; */
+}
+
+/********************** IMAGE **********************/
+#imagesWrap {
+    width: inherit;
+    height: inherit;
+    overflow: hidden;
+}
+.imageDiv {
+    width: inherit;
+    height: inherit;
+}
+#plate1,#plate2, #plate3 {
+    top: 203px;
+    left: 23px;
+}
+
