@@ -620,13 +620,13 @@ async function loadBannersFromFolder() {
   
   // Try to load from manifest first
   try {
-    const manifestResp = await fetch(bannersRoot + 'manifest.json?v=' + manifestCacheBuster);
+    const manifestResp = await fetch(bannersRoot + 'manifest.json');
     if (manifestResp.ok) {
       const manifest = await manifestResp.json();
       if (Array.isArray(manifest) && manifest.length > 0) {
         for (const item of manifest) {
           if (item.type === 'banner' && item.src) {
-            const path = bannersRoot + item.src.split('/').slice(1).join('/');
+            const path = item.src;
             found.push({ 
               size: item.size || `${item.width}x${item.height}`, 
               path: path,
