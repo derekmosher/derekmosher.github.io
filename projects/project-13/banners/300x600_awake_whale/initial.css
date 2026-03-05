@@ -1,0 +1,215 @@
+/* Load fonts - Note only woff2 gets loaded. if woff2 fails, only then will woff load.  */
+@font-face {
+    font-family: "VogueSans-Bold";
+    src: url("VogueSans-Bold-min.woff2") format("woff2") ,url("VogueSans-Bold-min.woff") format("woff");
+}
+/* font-family: futura-pt,sans-serif;
+font-weight: 400;
+font-style: normal; */
+/*************** MAIN ELEMENTS ***************/
+body {
+    margin: 0;
+    padding: 0;
+}
+div, img {
+    position: absolute;
+}
+#wrapper {
+    display: block;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 600px;
+    overflow: hidden;
+    background-color: #000000;
+    /* background-image: url("backup_300x600.jpg"); */
+}
+#bannerCover {
+    width: inherit;
+    height: inherit;
+    background: #000000;
+    pointer-events: none;
+}
+#border {
+    border: 1px solid #6b6b6b;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: inherit;
+    height: inherit;
+    pointer-events: none;
+}
+#bgexit {
+    width: inherit;
+    height: inherit;
+    cursor: pointer;
+    pointer-events: auto;
+
+}
+/******************** LOGO ********************/
+#logo {
+    top: 50%;
+    left: 51%;
+    transform: translate(-50%, -50%) scale(0.9);
+    -webkit-transform: translate(-50%, -50%) scale(0.9);/* chrome */
+    -moz-transform: translate(-50%, -50%) scale(0.9);
+    -ms-transform: translate(-50%, -50%) scale(0.9);
+    -o-transform: translate(-50%, -50%) scale(0.9);
+    filter: drop-shadow(3px 3px 2px #000) drop-shadow(3px 3px 2px rgba(0, 0, 0, .8)); 
+    -webkit-filter: drop-shadow( 3px 3px 2px #000 )drop-shadow(1px 1px 6px rgba(0, 0, 0, .8)); 
+}
+/* #text_presents{
+    visibility:hidden
+} */
+/******************** BUTTON ********************/
+#cta {
+    top: 564px;
+    left: 50%;
+    width: 152px;
+    height: 26px;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4px;
+    cursor: pointer;
+    background: #d16b3a;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: VogueSans-Bold ,sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 39px;
+    letter-spacing: 1.4pt;
+    font-size: 20px;
+    border-radius: 2px;
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    pointer-events: auto;
+}
+/********************** TEXT **********************/
+#text-main {
+    top: 352px;
+    left: 50%;
+    width: 280px;
+    height: 66px;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+
+    color: #FFFFFF;
+    font-family: "monotype-grotesque-display-e", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 1.2pt;
+   
+    line-height: 1.2;
+    text-align: center;
+    font-size: 11px;
+    /* background-color: rgba(18, 241, 10, 0.2); */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8), 0px 0px 6px rgba(0, 0, 0, 0.3);
+}
+#text-produced-group{
+    top: 423px;
+    left: 0px;
+    width: 300px;
+    height: 100px;
+    font-family: "futura-pt-condensed", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 1.0;
+    letter-spacing: 1.8pt;
+    color:#fff;
+    text-align: center;
+}
+        #text-produced-line{
+            top: 19px;
+            left: 109px;
+            width: 78px;
+            height: 1px;
+            background-color: #ecbc1e;
+        }
+        #text-produced-names{
+            top: 27px;
+            left: 0px;
+            width: inherit; 
+            line-height: 1.7;
+            text-align: center;
+        }
+#text-save{
+    top: 503px;
+    left: 0px;
+    width: 300px;
+    height: 80px;
+    font-family: VogueSans-Bold ,sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 34px;
+    letter-spacing: 1.0pt;
+    font-size: 20px;
+    color:#fff;
+    text-align: center;
+}
+#text-offer{
+    top: 511px;
+    left: 0px;
+    width: 300px;
+    height: 80px;
+    font-family: VogueSans-Bold ,sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    
+    line-height: 24px;
+    letter-spacing: 1.0pt;
+    font-size: 24px;
+    color:#fff;
+    text-align: center;
+}
+#saveTag{
+    bottom: 0px;
+    right: 0px;
+    width: 135px;
+    height: auto;
+    opacity: 0;
+}
+
+/********************** IMAGE **********************/
+
+#titleWrap {
+    top: 306px;
+    left: 13px;
+    width: 276px;
+    height: auto;
+    /* filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, .99))  drop-shadow(0px 0px 24px rgba(255, 255, 255, 0.8));  */
+    filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, .7))drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.2)) drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.8))    ; 
+   
+	/* filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, .6))  drop-shadow(1px 1px 2px rgba(0, 0, 0, .8));  */
+}
+    .titleClass {
+        top: 0px;
+        left: 0px;
+        width: inherit;
+        height: inherit;
+    }
+
+#imagesWrap {
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: inherit;
+    overflow: hidden;
+    pointer-events: none;
+
+}
+.imageDiv {
+    width: inherit;
+    height: inherit;
+    pointer-events: none;
+
+}
