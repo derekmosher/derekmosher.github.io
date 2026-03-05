@@ -1,0 +1,153 @@
+
+/* Load fonts - Note only woff2 gets loaded. if woff2 fails, only then will woff load.  */
+@font-face {
+    font-family: "Monday-Italic-min";
+    src: url("Monday-Italic-min.woff2") format("woff2") ,url("Monday-Italic-min.woff") format("woff");
+}
+@font-face {
+    font-family: "Monday-Regular-min";
+    src: url("Monday-Regular-min.woff2") format("woff2"), url("Monday-Regular-min.woff") format("woff");
+}
+@font-face {
+    font-family: "FoundersGrotesk-Medium-min";
+    src: url("FoundersGrotesk-Medium-min.woff2") format("woff2"), url("FoundersGrotesk-Medium-min.woff")format("woff");
+}
+/*************** MAIN ELEMENTS ***************/
+body , div, img, canvas {
+   margin: 0;
+   padding: 0;
+   position: absolute;
+}
+#wrapper {
+    display: block;
+    width: 300px;
+    height: 600px;
+    overflow: hidden;
+    background-color: #000;
+    background-image: url("bg.jpg");
+}
+#bannerCover {
+    width: inherit;
+    height: inherit;
+    background: #000;
+    pointer-events: none;
+}
+#border {
+    border: 1px solid #aaaaaa;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: inherit;
+    height: inherit;
+    pointer-events: none;
+}
+#bgexit {
+    width: inherit;
+    height: inherit;
+    cursor: pointer;
+}
+#myCanvas {
+    display: block;
+    cursor: pointer;
+}
+/******************** LOGO ********************/
+#logo {
+    top: 50%;
+    left: 51%;
+    transform: translate(-50%, -50%) scale(0.8);
+    -webkit-transform: translate(-50%, -50%) scale(0.8);/* chrome */
+    -moz-transform: translate(-50%, -50%) scale(0.8);
+    -ms-transform: translate(-50%, -50%) scale(0.8);
+    -o-transform: translate(-50%, -50%) scale(0.8);
+    /* cursor: pointer;
+    width: 180px;
+    height: auto;
+    top:250px; 
+    left: 50%;
+    transform: translate(-50%);
+    -webkit-transform: translate(-50%); */
+    /* filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .25)); */
+    /* -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .25)); */
+}
+/******************** CTA ********************/
+#cta {
+    top: 508px;
+    left: 100px;
+    width: 95px;
+    height: 30px;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #c9a825;
+    color: #fff;
+    border: 1px solid white;
+    text-align: center;
+    /* text-transform: uppercase; */
+    font-family: 'Monday-Italic-min', sans-serif;
+    font-weight: bold;
+    font-style: normal; 
+    font-size: 15px;
+    line-height: 34px;
+    letter-spacing: 0.1pt;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/********************** TEXT **********************/
+#textBoxer {
+    top:275px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 260px;
+    height: 155px;
+    line-height: 1.1;
+    text-align: center;
+    font-size: 32px;
+    /* text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4); */
+    /* background-color: white; */
+}
+
+.text_header {
+    left:0px;
+    color: #fff;
+    font-family: 'Monday-Regular-min', serif;
+    font-weight: 700;
+    font-style: normal; 
+    width: 100%;
+    height: auto;
+    letter-spacing: 0.3pt;
+    line-height: inherit;
+    font-size: inherit;
+    /* background-color: rgba(18, 241, 10, 0.2); */
+}
+.text_subheader {
+    left:0px;
+    color: #fff;
+    font-size: 55%; 
+    font-family: 'FoundersGrotesk-Medium-min', serif;
+    font-weight: 400;
+    font-style: normal; 
+    letter-spacing: 0.2pt;
+    line-height: 1.1;
+    width: 100%;
+    height: auto;
+    /* background-color: red; */
+}
+i {
+    font-family: 'Monday-Italic-min', serif;
+}
+
+/********************** IMAGE **********************/
+#imagesWrap {
+    top: 0px;
+    left: 0px;
+    width: 300px;
+    height: 250px;
+    overflow: hidden;
+}
+
+.imageDiv {
+    width: inherit;
+    height: inherit;
+}
