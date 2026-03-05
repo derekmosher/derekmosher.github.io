@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://derekmosher.github.io/sitemap.xml
