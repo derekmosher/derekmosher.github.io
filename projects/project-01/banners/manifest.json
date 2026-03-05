@@ -5,7 +5,7 @@
     "size": "160x600",
     "width": 160,
     "height": 600,
-    "src": "banners/160x600/index.html"
+    "src": "160x600/index.html"
   },
   {
     "id": "banner-2",
@@ -13,7 +13,7 @@
     "size": "300x250",
     "width": 300,
     "height": 250,
-    "src": "banners/300x250/index.html"
+    "src": "300x250/index.html"
   },
   {
     "id": "banner-3",
@@ -21,7 +21,7 @@
     "size": "300x600",
     "width": 300,
     "height": 600,
-    "src": "banners/300x600/index.html"
+    "src": "300x600/index.html"
   },
   {
     "id": "banner-4",
@@ -29,6 +29,6 @@
     "size": "728x90",
     "width": 728,
     "height": 90,
-    "src": "banners/728x90/index.html"
+    "src": "728x90/index.html"
   }
 ]
