@@ -1,0 +1,90 @@
+[
+  {
+    "id": "banner-1",
+    "type": "banner",
+    "size": "300x600",
+    "width": 300,
+    "height": 600,
+    "src": "300x600_6666/index.html"
+  },
+  {
+    "id": "banner-2",
+    "type": "banner",
+    "size": "300x600",
+    "width": 300,
+    "height": 600,
+    "src": "300x600_awake_fire/index.html"
+  },
+  {
+    "id": "banner-3",
+    "type": "banner",
+    "size": "300x600",
+    "width": 300,
+    "height": 600,
+    "src": "300x600_awake_smoke/index.html"
+  },
+  {
+    "id": "banner-4",
+    "type": "banner",
+    "size": "300x600",
+    "width": 300,
+    "height": 600,
+    "src": "300x600_awake_whale/index.html"
+  },
+  {
+    "id": "banner-5",
+    "type": "banner",
+    "size": "300x600",
+    "width": 300,
+    "height": 600,
+    "src": "300x600_concours/index.html"
+  },
+  {
+    "id": "banner-6",
+    "type": "banner",
+    "size": "300x600",
+    "width": 300,
+    "height": 600,
+    "src": "300x600_f1/index.html"
+  },
+  {
+    "id": "banner-7",
+    "type": "banner",
+    "size": "300x600",
+    "width": 300,
+    "height": 600,
+    "src": "300x600_rare/index.html"
+  },
+  {
+    "id": "banner-8",
+    "type": "banner",
+    "size": "300x600",
+    "width": 300,
+    "height": 600,
+    "src": "300x600_revelry/index.html"
+  },
+  {
+    "id": "banner-9",
+    "type": "banner",
+    "size": "300x600",
+    "width": 300,
+    "height": 600,
+    "src": "300x600_safta/index.html"
+  },
+  {
+    "id": "banner-10",
+    "type": "banner",
+    "size": "300x600",
+    "width": 300,
+    "height": 600,
+    "src": "300x600_v1/index.html"
+  },
+  {
+    "id": "banner-11",
+    "type": "banner",
+    "size": "300x600",
+    "width": 300,
+    "height": 600,
+    "src": "300x600_wynn_flower/index.html"
+  }
+]
