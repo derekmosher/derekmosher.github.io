@@ -1,4 +1,16 @@
 {
+  "project-14": {
+    "type": "Project:",    
+    "agency": "CNDUIT",
+    "client": "The Collective | Hustlers Ambition",
+    "title": "Motion Graphics",
+    "description": "Motion graphics for instore displays and social media sites like Instagram and TikTok. Such fun brands to work with!",
+    "hasImages": false,
+    "hasBanners": false,
+    "hasVideo": true,
+    "thumbnail": "projects/project-14/project-thumbnail.jpg",
+    "link": "projects/project.html?project=project-14"
+  },
   "project-01": {
     "type": "Project:",    
     "agency": "BlueAlly",
