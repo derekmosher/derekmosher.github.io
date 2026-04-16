@@ -2,13 +2,21 @@
   {
     "id": "video-1",
     "type": "video",
+    "src": "video/00_HA_product_1920x1080_15sec_10mbsec.mp4",
+    "thumbnail": "",
+    "title": "HA_product_1920x1080_15sec",
+    "description": ""
+  },
+  {
+    "id": "video-2",
+    "type": "video",
     "src": "video/01_TC_3840x2160_v1_sound.mp4",
     "thumbnail": "",
     "title": "TC 3840x2160 v1",
     "description": ""
   },
   {
-    "id": "video-2",
+    "id": "video-3",
     "type": "video",
     "src": "video/02_hustlerAmbition_1920x1080_main 3.mp4",
     "thumbnail": "",
@@ -16,3 +24,6 @@
     "description": ""
   }
 ]
+
+
+
