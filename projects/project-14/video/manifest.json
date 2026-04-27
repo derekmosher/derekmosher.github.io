@@ -1,5 +1,13 @@
 [
   {
+    "id": "video-0",
+    "type": "video",
+    "src": "video/MJ_15_campaignReveal_1920x1080.mp4",
+    "thumbnail": "",
+    "title": "HA_product_1920x1080_15sec",
+    "description": ""
+  },  
+  {
     "id": "video-1",
     "type": "video",
     "src": "video/00_HA_product_1920x1080_15sec_10mbsec.mp4",
