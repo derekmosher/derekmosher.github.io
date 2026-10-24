@@ -17,7 +17,9 @@
         "src": "img/B-0112/detail-1.jpg",
         "label": "Detail"
       }
-    ]
+    ],
+    "wall": "Building B, North wall",
+    "wallId": "building-b-north-wall"
   },
   "B-0113": {
     "title": "The Dog Park",
@@ -41,7 +43,9 @@
         "src": "img/B-0113/signature.jpg",
         "label": "Signature"
       }
-    ]
+    ],
+    "wall": "Building B, North wall",
+    "wallId": "building-b-north-wall"
   },
   "B-0114": {
     "title": "Two Racers, Indoor Track Photograph",
@@ -61,7 +65,9 @@
         "src": "img/B-0114/detail-1.jpg",
         "label": "Detail"
       }
-    ]
+    ],
+    "wall": "Building C, East wall",
+    "wallId": "building-c-east-wall"
   },
   "B-0115": {
     "title": "Favor Motorcycle Poster",
@@ -85,6 +91,8 @@
         "src": "img/B-0115/signature.jpg",
         "label": "Signature"
       }
-    ]
+    ],
+    "wall": "Building C, East wall",
+    "wallId": "building-c-east-wall"
   }
 }
