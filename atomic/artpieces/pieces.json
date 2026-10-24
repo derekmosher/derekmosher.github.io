@@ -22,5 +22,18 @@
     "description": "Example row with made-up details. No photo yet, so the page will say photo coming soon.",
     "shopify": "",
     "photos": []
+  },
+  "B-0114": {
+    "title": "Two Racers, Indoor Track Photograph",
+    "price": "$1,100",
+    "building": "C",
+    "location": "East wall, above the stairs",
+    "size": "36 x 48 in",
+    "medium": "Black-and-white photograph, framed under glass",
+    "description": "Black-and-white photograph of two vintage motorcycles racing on an indoor track. Black frame with a white mat. Glass has some reflections, so the photo here is cropped and brightened to show the print.",
+    "shopify": "",
+    "photos": [
+      "img/B-0114/front.jpg"
+    ]
   }
 }
