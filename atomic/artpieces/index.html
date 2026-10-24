@@ -76,6 +76,9 @@ p{margin:0}
   <div class="foot">Tell the gift shop the SKU above and they can find this piece.</div>
 </div>
 <script>
+/* If the browser is zoomed so far that the layout is under 300px wide, shrink the page to fit. */
+(function(){function fit(){var w=window.innerWidth;document.body.style.zoom=(w>0&&w<300)?(w/340):""}
+fit();window.addEventListener("resize",fit);window.addEventListener("orientationchange",fit)})();
 (function(){
   var params=new URLSearchParams(location.search);
   var sku=(params.get("s")||"").trim().toUpperCase();
