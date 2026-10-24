@@ -1,0 +1,37 @@
+/* Shared by every page. Uses the colour tokens each page defines on :root. */
+.brand{flex-wrap:wrap;align-items:center}
+.tn{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px}
+.tn a[aria-current="page"]{color:var(--ink);border-bottom:2px solid var(--accent)}
+.tn select{font:600 13px var(--body);color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:4px;padding:3px 4px;max-width:9em;letter-spacing:0;text-transform:none}
+.tn select:focus-visible,.heart:focus-visible,.act:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* heart (My picks) */
+.heart{display:inline-grid;grid-auto-flow:column;align-items:center;gap:8px;place-content:center;min-width:44px;min-height:44px;padding:0 10px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--muted);font:600 15px var(--body);cursor:pointer}
+.heart svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linejoin:round}
+.heart[aria-pressed="true"]{color:var(--accent);border-color:var(--accent)}
+.heart[aria-pressed="true"] svg{fill:currentColor}
+.heart.wide{border-radius:4px;padding:0 14px;color:var(--ink)}
+.heart.wide[aria-pressed="true"]{color:var(--accent)}
+.acts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.act{display:grid;place-content:center;min-height:44px;font:600 15px var(--body);color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:4px;cursor:pointer;padding:0 14px;text-decoration:none;text-align:center}
+
+/* tiles: a link plus a heart beside it */
+.tile{position:relative;min-width:0}
+.tile .item{height:100%}
+.tile .heart{position:absolute;top:6px;right:6px;min-width:40px;min-height:40px;padding:0;border-radius:50%;background:var(--card);opacity:.95}
+.badge{position:absolute;left:6px;top:6px;z-index:1;background:var(--ink);color:var(--bg);font:700 12px var(--body);letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:3px}
+.badge.sold{background:#6b7680;color:#fff}
+.badge.hold{background:#b36b00;color:#fff}
+.badge.notforsale{background:#2f6fb3;color:#fff}
+.tile.is-sold .thumb img{opacity:.55;filter:grayscale(.7)}
+.tile .meta .p.na{color:var(--muted);font-size:15px}
+.tile.is-sold .meta .p{color:var(--muted);text-decoration:line-through}
+
+.stat{display:inline-block;font:700 12px var(--body);letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:3px;color:#fff;background:#2e7d4f}
+.stat.sold{background:#6b7680}.stat.hold{background:#b36b00}.stat.notforsale{background:#2f6fb3}
+.price.is-off{background:var(--muted);color:var(--card)}
+.price.is-off .amt.struck{text-decoration:line-through;opacity:.8}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);max-width:calc(100vw - 32px);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:6px;font:600 15px var(--body);z-index:50;box-shadow:0 4px 16px rgba(0,0,0,.3);transition:opacity .4s;overflow-wrap:anywhere;text-align:center}
+.toast.out{opacity:0}
+[hidden]{display:none!important}

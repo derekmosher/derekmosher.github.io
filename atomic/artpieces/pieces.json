@@ -19,7 +19,10 @@
       }
     ],
     "wall": "Building B, North Wall 1",
-    "wallId": "b-n1"
+    "wallId": "b-n1",
+    "status": "available",
+    "title_es": "Estampado del rally Las Vegas Bikefest",
+    "description_es": "Arte del rally de motos Las Vegas Bikefest con una calavera con sombrero de copa, pistones, naipes, dados y llamas. Los colores son vivos. El marco tiene algunos rasgu\u00f1os en el borde inferior."
   },
   "B-0113": {
     "title": "The Dog Park",
@@ -45,7 +48,10 @@
       }
     ],
     "wall": "Building B, North Wall 1",
-    "wallId": "b-n1"
+    "wallId": "b-n1",
+    "status": "available",
+    "title_es": "El parque de perros",
+    "description_es": "Pintura colorida de muchos perros jugando en un c\u00e9sped verde, con pelotas, un hueso y un juego de tira y afloja en el centro. Marco negro con paspart\u00fa blanco."
   },
   "B-0114": {
     "title": "Two Racers, Indoor Track Photograph",
@@ -67,7 +73,10 @@
       }
     ],
     "wall": "Building B, East Wall",
-    "wallId": "b-e1"
+    "wallId": "b-e1",
+    "status": "sold",
+    "title_es": "Dos corredores, fotograf\u00eda de pista cubierta",
+    "description_es": "Fotograf\u00eda en blanco y negro de dos motocicletas antiguas compitiendo en una pista cubierta. Marco negro con paspart\u00fa blanco, bajo vidrio."
   },
   "B-0115": {
     "title": "Favor Motorcycle Poster",
@@ -93,7 +102,10 @@
       }
     ],
     "wall": "Building B, West Wall",
-    "wallId": "b-w1"
+    "wallId": "b-w1",
+    "status": "available",
+    "title_es": "P\u00f3ster de motocicletas Favor",
+    "description_es": "P\u00f3ster de Favor en rojo, azul y amarillo, con dos pilotos en motocicletas y la frase francesa \"va droit au but\". Marco negro; en esta foto no hay reflejos del vidrio."
   },
   "B-0116": {
     "title": "Desert Highway Sunset",
@@ -119,7 +131,8 @@
       }
     ],
     "wall": "Building B, North Wall 2",
-    "wallId": "b-n2"
+    "wallId": "b-n2",
+    "status": "available"
   },
   "B-0117": {
     "title": "Checkered Flag",
@@ -141,7 +154,8 @@
       }
     ],
     "wall": "Building B, South Wall",
-    "wallId": "b-s1"
+    "wallId": "b-s1",
+    "status": "available"
   },
   "B-0118": {
     "title": "Atomic Starburst",
@@ -167,7 +181,8 @@
       }
     ],
     "wall": "Building B, West Wall",
-    "wallId": "b-w1"
+    "wallId": "b-w1",
+    "status": "sold"
   },
   "B-0119": {
     "title": "Gas Pump No. 9",
@@ -193,7 +208,8 @@
       }
     ],
     "wall": "Building B, South Wall",
-    "wallId": "b-s1"
+    "wallId": "b-s1",
+    "status": "available"
   },
   "B-0120": {
     "title": "Neon Cactus",
@@ -215,7 +231,8 @@
       }
     ],
     "wall": "Building B, North Wall 2",
-    "wallId": "b-n2"
+    "wallId": "b-n2",
+    "status": "available"
   },
   "B-0121": {
     "title": "Piston Study",
@@ -241,7 +258,8 @@
       }
     ],
     "wall": "Building B, East Wall",
-    "wallId": "b-e1"
+    "wallId": "b-e1",
+    "status": "hold"
   },
   "B-0122": {
     "title": "Rocket Garage",
@@ -263,7 +281,8 @@
       }
     ],
     "wall": "Building B, Men's Restroom",
-    "wallId": "b-mr"
+    "wallId": "b-mr",
+    "status": "available"
   },
   "B-0123": {
     "title": "Open Road Map",
@@ -289,7 +308,8 @@
       }
     ],
     "wall": "Building B, North Wall 1",
-    "wallId": "b-n1"
+    "wallId": "b-n1",
+    "status": "available"
   },
   "B-0124": {
     "title": "Highway 9 Shield",
@@ -315,7 +335,8 @@
       }
     ],
     "wall": "Building B, South Wall",
-    "wallId": "b-s1"
+    "wallId": "b-s1",
+    "status": "available"
   },
   "B-0125": {
     "title": "Teal Coupe",
@@ -341,7 +362,8 @@
       }
     ],
     "wall": "Building B, West Wall",
-    "wallId": "b-w1"
+    "wallId": "b-w1",
+    "status": "available"
   },
   "B-0126": {
     "title": "Sunset Ride",
@@ -363,7 +385,8 @@
       }
     ],
     "wall": "Building B, North Wall 1",
-    "wallId": "b-n1"
+    "wallId": "b-n1",
+    "status": "notforsale"
   },
   "B-0127": {
     "title": "High Stakes",
@@ -389,7 +412,8 @@
       }
     ],
     "wall": "Building B, Men's Restroom",
-    "wallId": "b-mr"
+    "wallId": "b-mr",
+    "status": "available"
   },
   "B-0128": {
     "title": "Lucky Roll",
@@ -411,7 +435,8 @@
       }
     ],
     "wall": "Building B, East Wall",
-    "wallId": "b-e1"
+    "wallId": "b-e1",
+    "status": "available"
   },
   "B-0129": {
     "title": "Ace of Spades",
@@ -433,7 +458,8 @@
       }
     ],
     "wall": "Building B, North Wall 2",
-    "wallId": "b-n2"
+    "wallId": "b-n2",
+    "status": "available"
   },
   "B-0130": {
     "title": "Purple Ridgeline",
@@ -459,7 +485,8 @@
       }
     ],
     "wall": "Building B, North Wall 1",
-    "wallId": "b-n1"
+    "wallId": "b-n1",
+    "status": "sold"
   },
   "B-0131": {
     "title": "Pacific Sunset",
@@ -481,7 +508,8 @@
       }
     ],
     "wall": "Building B, South Wall",
-    "wallId": "b-s1"
+    "wallId": "b-s1",
+    "status": "available"
   },
   "B-0132": {
     "title": "Gear Mandala",
@@ -507,7 +535,8 @@
       }
     ],
     "wall": "Building B, East Wall",
-    "wallId": "b-e1"
+    "wallId": "b-e1",
+    "status": "available"
   },
   "B-0133": {
     "title": "Shop Tools",
@@ -529,7 +558,8 @@
       }
     ],
     "wall": "Building B, Men's Restroom",
-    "wallId": "b-mr"
+    "wallId": "b-mr",
+    "status": "available"
   },
   "B-0134": {
     "title": "Flames",
@@ -551,7 +581,8 @@
       }
     ],
     "wall": "Building B, West Wall",
-    "wallId": "b-w1"
+    "wallId": "b-w1",
+    "status": "available"
   },
   "B-0135": {
     "title": "Night City",
@@ -577,6 +608,7 @@
       }
     ],
     "wall": "Building B, North Wall 2",
-    "wallId": "b-n2"
+    "wallId": "b-n2",
+    "status": "available"
   }
 }

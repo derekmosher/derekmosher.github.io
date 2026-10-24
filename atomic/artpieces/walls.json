@@ -1,26 +1,56 @@
 {
   "b-n1": {
     "name": "Building B, North Wall 1",
-    "count": 5
+    "count": 5,
+    "building": "B",
+    "name_es": "Edificio B, Pared norte 1",
+    "name_fr": "B\u00e2timent B, Mur nord 1",
+    "name_de": "Geb\u00e4ude B, Nordwand 1",
+    "name_zh": "B \u697c\uff0c\u5317\u5899 1"
   },
   "b-n2": {
     "name": "Building B, North Wall 2",
-    "count": 4
+    "count": 4,
+    "building": "B",
+    "name_es": "Edificio B, Pared norte 2",
+    "name_fr": "B\u00e2timent B, Mur nord 2",
+    "name_de": "Geb\u00e4ude B, Nordwand 2",
+    "name_zh": "B \u697c\uff0c\u5317\u5899 2"
   },
   "b-e1": {
     "name": "Building B, East Wall",
-    "count": 4
+    "count": 4,
+    "building": "B",
+    "name_es": "Edificio B, Pared este",
+    "name_fr": "B\u00e2timent B, Mur est",
+    "name_de": "Geb\u00e4ude B, Ostwand",
+    "name_zh": "B \u697c\uff0c\u4e1c\u5899"
   },
   "b-s1": {
     "name": "Building B, South Wall",
-    "count": 4
+    "count": 4,
+    "building": "B",
+    "name_es": "Edificio B, Pared sur",
+    "name_fr": "B\u00e2timent B, Mur sud",
+    "name_de": "Geb\u00e4ude B, S\u00fcdwand",
+    "name_zh": "B \u697c\uff0c\u5357\u5899"
   },
   "b-w1": {
     "name": "Building B, West Wall",
-    "count": 4
+    "count": 4,
+    "building": "B",
+    "name_es": "Edificio B, Pared oeste",
+    "name_fr": "B\u00e2timent B, Mur ouest",
+    "name_de": "Geb\u00e4ude B, Westwand",
+    "name_zh": "B \u697c\uff0c\u897f\u5899"
   },
   "b-mr": {
     "name": "Building B, Men's Restroom",
-    "count": 3
+    "count": 3,
+    "building": "B",
+    "name_es": "Edificio B, Ba\u00f1o de hombres",
+    "name_fr": "B\u00e2timent B, Toilettes hommes",
+    "name_de": "Geb\u00e4ude B, Herrentoilette",
+    "name_zh": "B \u697c\uff0c\u7537\u6d17\u624b\u95f4"
   }
 }

@@ -42,51 +42,49 @@ h1{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(24px,8vw,
 .meta .t{font-size:14px;line-height:1.25;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .meta .w{font-size:12px;color:var(--muted);margin-top:2px}
 .meta .p{font-family:var(--display);font-weight:700;font-size:20px;color:var(--accent);font-variant-numeric:tabular-nums}
+.hs{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}.hs input{width:20px;height:20px;accent-color:var(--accent)}
 .msg{padding:24px 16px;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:6px}
 .shop{display:block;text-align:center;text-decoration:none;font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border:1px solid var(--line);background:var(--card);border-radius:4px;padding:10px}
 .foot{font-size:13px;color:var(--muted)}
 </style>
+<link rel="stylesheet" href="common.css">
 </head>
 <body>
 <div class="wrap">
-  <div class="brand"><a href="home.html"><b>Atomic</b> Motors</a><span class="tn"><a href="home.html" aria-current="page">All art</a><a href="map.html">Map</a></span></div>
-  <h1>All art</h1>
+  <div class="brand"><a href="home.html"><b>Atomic</b> Motors</a><span class="tn"><a href="home.html" aria-current="page" data-i18n="nav_all"></a><a href="map.html" data-i18n="nav_map"></a><a href="picks.html"><span data-i18n="nav_picks"></span> <span id="pickCount"></span></a><select id="lang"></select></span></div>
+  <h1 data-i18n="home_title"></h1>
   <p class="sub" id="count"></p>
-  <input id="q" type="search" placeholder="Search by SKU, title or place" aria-label="Search the art" autocomplete="off">
-  <div class="chips" id="chips" aria-label="Filter by wall"></div>
+  <input id="q" type="search" data-i18n-ph="search_ph" data-i18n-aria="search_aria" autocomplete="off">
+  <div class="chips" id="chips" data-i18n-aria="filter_aria"></div>
+  <label class="hs"><input type="checkbox" id="hs"> <span data-i18n="hide_sold"></span></label>
   <div class="grid" id="grid"></div>
   <div class="msg" id="msg" hidden></div>
-  <a class="shop" href="map.html">Find art on the building map</a>
-  <a class="shop" href="https://dratomics.com/" target="_blank" rel="noopener">Visit the gift shop</a>
-  <div class="foot">Demo page. Prices and details are made-up samples to show the layout.</div>
+  <a class="shop" href="map.html" data-i18n="find_art_map"></a>
+  <a class="shop" href="https://dratomics.com/" target="_blank" rel="noopener" data-i18n="shop"></a>
+  <div class="foot" data-i18n="demo"></div>
 </div>
+<script src="common.js"></script>
 <script>
 (function(){
   function shrink(){var x=window.innerWidth;document.body.style.zoom=(x>0&&x<300)?(x/340):""}
   shrink();window.addEventListener("resize",shrink);
   var grid=document.getElementById("grid"),msg=document.getElementById("msg"),q=document.getElementById("q"),chips=document.getElementById("chips"),count=document.getElementById("count");
-  var wallSel=(new URLSearchParams(location.search).get("wall")||"").toLowerCase(),all={},walls={},keys=[];
+  var hs=document.getElementById("hs");hs.addEventListener("change",function(){render()});var wallSel=(new URLSearchParams(location.search).get("wall")||"").toLowerCase(),all={},walls={},keys=[];
   function j(u){return fetch(u).then(function(r){if(!r.ok)throw 0;return r.json()})}
   function render(){
     var term=q.value.trim().toLowerCase();
     var shown=keys.filter(function(k){
       var d=all[k];
       if(wallSel&&d.wallId!==wallSel)return false;
+      if(hs.checked&&AM.statusKey(d)==="sold")return false;
       if(!term)return true;
-      return (k+" "+d.title+" "+d.location+" "+d.wall+" "+d.medium+" "+d.description).toLowerCase().indexOf(term)>-1;
+      var w=walls[d.wallId]||{};
+      return (k+" "+AM.L(d,"title")+" "+AM.L(d,"location")+" "+d.wall+" "+AM.wallName(w)+" "+AM.L(d,"medium")+" "+AM.L(d,"description")).toLowerCase().indexOf(term)>-1;
     });
     grid.innerHTML="";
-    shown.forEach(function(k){
-      var d=all[k],a=document.createElement("a");a.className="item";a.href="index.html?s="+encodeURIComponent(k);
-      var t=document.createElement("div");t.className="thumb";var ph=(d.photos||[])[0];
-      if(ph){var im=document.createElement("img");im.src=typeof ph==="string"?ph:ph.src;im.alt=d.title;im.loading="lazy";t.appendChild(im)}
-      else{var sp=document.createElement("span");sp.textContent="Photo coming soon";t.appendChild(sp)}
-      var m=document.createElement("div");m.className="meta";
-      [["sku",k],["t",d.title],["w",d.wall],["p",d.price]].forEach(function(p){if(!p[1])return;var e=document.createElement("div");e.className=p[0];e.textContent=p[1];m.appendChild(e)});
-      a.appendChild(t);a.appendChild(m);grid.appendChild(a);
-    });
-    count.textContent=shown.length+(shown.length===1?" piece":" pieces")+(shown.length!==keys.length?" of "+keys.length:"");
-    msg.hidden=shown.length>0;if(!shown.length)msg.textContent="Nothing matches. Try a different search or wall.";
+    shown.forEach(function(k){var d=all[k],w=walls[d.wallId];grid.appendChild(AM.tile(k,d,w?AM.wallShort(w):d.wall))});
+    count.textContent=AM.TN("pieces",shown.length)+(shown.length!==keys.length?" ("+AM.T("of_total",{n:shown.length,m:keys.length})+")":"");
+    msg.hidden=shown.length>0;if(!shown.length)msg.textContent=AM.T("nothing");
   }
   function chip(label,id){
     var b=document.createElement("button");b.type="button";b.textContent=label;b.setAttribute("aria-pressed",String(wallSel===id));
@@ -95,11 +93,11 @@ h1{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(24px,8vw,
   }
   Promise.all([j("pieces.json"),j("walls.json").catch(function(){return {}})]).then(function(res){
     all=res[0];walls=res[1];keys=Object.keys(all).sort();
-    chip("All",""); Object.keys(walls).forEach(function(id){if(walls[id].count)chip(walls[id].name.replace(/^Building (\w+), /,"$1 ")+" ("+walls[id].count+")",id)});
+    chip(AM.T("chip_all"),""); Object.keys(walls).forEach(function(id){if(walls[id].count)chip(AM.wallShort(walls[id])+" ("+walls[id].count+")",id)});
     if(wallSel&&!walls[wallSel])wallSel="";
     Array.prototype.forEach.call(chips.children,function(c,i){});
     q.addEventListener("input",render);render();
-  }).catch(function(){msg.hidden=false;msg.textContent="Could not load the art list. Try again, or ask at the gift shop."});
+  }).catch(function(){msg.hidden=false;msg.textContent=AM.T("load_fail")});
 })();
 </script>
 </body>

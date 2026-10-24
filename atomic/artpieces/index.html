@@ -84,41 +84,44 @@ p{margin:0}
 .foot{font-size:13px;color:var(--muted)}
 @media (prefers-reduced-motion:no-preference){.track{scroll-behavior:smooth}}
 </style>
+<link rel="stylesheet" href="common.css">
 </head>
 <body>
 <div class="wrap">
-  <div class="brand"><a href="home.html"><b>Atomic</b> Motors</a><span class="tn"><a href="home.html">All art</a><a href="map.html">Map</a></span></div>
+  <div class="brand"><a href="home.html"><b>Atomic</b> Motors</a><span class="tn"><a href="home.html" data-i18n="nav_all"></a><a href="map.html" data-i18n="nav_map"></a><a href="picks.html"><span data-i18n="nav_picks"></span> <span id="pickCount"></span></a><select id="lang"></select></span></div>
   <div class="card" id="card" hidden>
     <div class="photo" id="photoBox">
-      <div class="track" id="track" tabindex="0" aria-label="Photos of this piece. Swipe left or right."></div>
-      <button class="arrow prev" id="prev" type="button" aria-label="Previous photo" hidden>&#8249;</button>
-      <button class="arrow next" id="next" type="button" aria-label="Next photo" hidden>&#8250;</button>
+      <div class="track" id="track" tabindex="0" data-i18n-aria="photos_label"></div>
+      <button class="arrow prev" id="prev" type="button" data-i18n-aria="prev_photo" hidden>&#8249;</button>
+      <button class="arrow next" id="next" type="button" data-i18n-aria="next_photo" hidden>&#8250;</button>
       <div class="dots" id="dots"></div>
     </div>
     <div class="cap" id="cap" hidden><span id="capText"></span><span id="capCount"></span></div>
-    <div class="sku"><span class="code" id="sku"></span><span class="lbl">SKU</span></div>
+    <div class="sku"><span class="code" id="sku"></span><span class="lbl" data-i18n="sku"></span></div>
     <div class="body">
       <h1 id="title"></h1>
-      <div class="price"><span class="amt" id="price"></span><span class="note">Ask at the gift shop<br>to buy this piece</span></div>
-      <a class="buy" id="buy" href="#" target="_blank" rel="noopener" hidden>Buy online</a>
+      <div class="price" id="priceBox"><span class="amt" id="price"></span><span class="note" id="priceNote"></span></div>
+      <a class="buy" id="buy" href="#" target="_blank" rel="noopener" hidden data-i18n="buy"></a>
+      <div class="acts" id="acts"><span id="heartSlot" style="display:contents"></span><button type="button" class="act" id="shareBtn" data-i18n="share"></button></div>
       <dl>
-        <dt>Building</dt><dd id="bldg"></dd>
-        <dt>Location</dt><dd id="loc"></dd>
-        <dt>Size</dt><dd id="size"></dd>
-        <dt>Medium</dt><dd id="med"></dd>
+        <dt data-i18n="f_building"></dt><dd id="bldg"></dd>
+        <dt data-i18n="f_location"></dt><dd id="loc"></dd>
+        <dt data-i18n="f_size"></dt><dd id="size"></dd>
+        <dt data-i18n="f_medium"></dt><dd id="med"></dd>
       </dl>
       <p id="desc"></p>
-      <div class="demo">Demo page. Prices and details are made-up samples to show the layout.</div>
+      <div class="demo" data-i18n="demo"></div>
     </div>
   </div>
-  <nav class="pn" id="pn" aria-label="Other pieces" hidden><a class="prev" id="pnPrev"></a><a class="next" id="pnNext"></a></nav>
-  <section class="strip" id="strip" hidden><h2 id="stripH">On this wall</h2><div class="row" id="stripRow"></div></section>
-  <a class="wall" id="wallLink" href="#" hidden>See everything on this wall</a>
-  <a class="wall" id="mapLink" href="map.html" hidden>Find it on the building map</a>
+  <nav class="pn" id="pn" data-i18n-aria="other_pieces" hidden><a class="prev" id="pnPrev"></a><a class="next" id="pnNext"></a></nav>
+  <section class="strip" id="strip" hidden><h2 id="stripH"></h2><div class="row" id="stripRow"></div></section>
+  <a class="wall" id="wallLink" href="#" hidden></a>
+  <a class="wall" id="mapLink" href="map.html" hidden data-i18n="find_map"></a>
   <div class="card msg" id="msg" hidden></div>
-  <a class="shop" href="https://dratomics.com/" target="_blank" rel="noopener">Visit the gift shop</a>
-  <div class="foot">Tell the gift shop the SKU above and they can find this piece.</div>
+  <a class="shop" href="https://dratomics.com/" target="_blank" rel="noopener" data-i18n="shop"></a>
+  <div class="foot" data-i18n="foot_piece"></div>
 </div>
+<script src="common.js"></script>
 <script>
 /* If the browser is zoomed so far that the layout is under 300px wide, shrink the page to fit. */
 (function(){function fit(){var w=window.innerWidth;document.body.style.zoom=(w>0&&w<300)?(w/340):""}
@@ -136,7 +139,7 @@ fit();window.addEventListener("resize",fit);window.addEventListener("orientation
         prev=document.getElementById("prev"),next=document.getElementById("next"),
         cap=document.getElementById("cap"),capText=document.getElementById("capText"),capCount=document.getElementById("capCount");
     if(!list.length){
-      track.parentNode.replaceChild(Object.assign(document.createElement("div"),{className:"none",textContent:"Photo coming soon"}),track);
+      track.parentNode.replaceChild(Object.assign(document.createElement("div"),{className:"none",textContent:AM.T("no_photo")}),track);
       dots.hidden=true;return;
     }
     list=list.map(function(p){return typeof p==="string"?{src:p,label:""}:p});
@@ -148,7 +151,7 @@ fit();window.addEventListener("resize",fit);window.addEventListener("orientation
         var r=im.naturalWidth/im.naturalHeight;r=Math.max(0.7,Math.min(1.6,r));track.style.aspectRatio=String(r)});
       s.appendChild(im);track.appendChild(s);
       if(list.length>1){
-        var b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Photo "+(i+1)+" of "+list.length+(p.label?": "+p.label:""));
+        var b=document.createElement("button");b.type="button";b.setAttribute("aria-label",AM.T("photo_n",{i:i+1,n:list.length})+(p.label?": "+p.label:""));
         b.addEventListener("click",function(){go(i)});dots.appendChild(b);
       }
     });
@@ -171,23 +174,37 @@ fit();window.addEventListener("resize",fit);window.addEventListener("orientation
     }
   }
 
-  fetch("pieces.json").then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(all){
+  var WALLS={};
+  fetch("walls.json").then(function(r){return r.ok?r.json():{}}).catch(function(){return {}}).then(function(w){WALLS=w;return fetch("pieces.json")}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(all){
     var d=all[sku];
-    if(!d){say("No piece found for SKU "+sku+". Ask at the gift shop.");return}
+    if(!d){say(AM.T("no_piece",{sku:sku}));return}
     document.title=sku+" | Atomic Motors Art";
     document.getElementById("sku").textContent=sku;
-    document.getElementById("title").textContent=d.title;
-    document.getElementById("price").textContent=d.price;
-    document.getElementById("bldg").textContent="Building "+d.building;
+    var T=AM.T,L=AM.L,title=L(d,"title"),st=AM.statusKey(d);
+    document.title=sku+" | "+title;
+    document.getElementById("title").textContent=title;
+    var pb=document.getElementById("priceBox"),pa=document.getElementById("price"),pn=document.getElementById("priceNote"),canBuy=true;
+    if(st==="available"){pa.textContent=d.price;pn.textContent=T("ask_buy")}
+    else{pb.classList.add("is-off");canBuy=false;
+      if(st==="sold"){pa.textContent=d.price;pa.classList.add("struck");pn.textContent=T("note_sold")}
+      else if(st==="hold"){pa.textContent=d.price;pn.textContent=T("note_hold")}
+      else{pa.textContent=T("st_notforsale");pn.textContent=T("note_nfs")}
+      var tag=document.createElement("span");tag.className="stat "+st;tag.textContent=AM.statusLabel(st);
+      document.querySelector(".sku .lbl").replaceWith(tag)}
+    pn.style.whiteSpace="pre-line";
+    document.getElementById("bldg").textContent=T("f_building")+" "+d.building;
     var locEl=document.getElementById("loc");
-    if(d.wallId){locEl.textContent="";var la=document.createElement("a");la.href="wall.html?w="+encodeURIComponent(d.wallId);la.textContent=d.location;locEl.appendChild(la)}
-    else locEl.textContent=d.location;
-    document.getElementById("size").textContent=d.size;
-    document.getElementById("med").textContent=d.medium;
-    document.getElementById("desc").textContent=d.description;
-    buildPhotos(d.photos||[],d.title);
+    if(d.wallId){locEl.textContent="";var la=document.createElement("a");la.href="wall.html?w="+encodeURIComponent(d.wallId);la.textContent=L(d,"location");locEl.appendChild(la)}
+    else locEl.textContent=L(d,"location");
+    document.getElementById("size").textContent=L(d,"size");
+    document.getElementById("med").textContent=L(d,"medium");
+    document.getElementById("desc").textContent=L(d,"description");
+    buildPhotos(d.photos||[],title);
     var buy=document.getElementById("buy"),link=d.shopify||"";
-    if(/^https:\/\//.test(link)){buy.href=link;buy.hidden=false}
+    if(canBuy&&/^https:\/\//.test(link)){buy.href=link;buy.hidden=false}
+    document.getElementById("heartSlot").appendChild(AM.picks.heart(sku,true));
+    document.getElementById("shareBtn").addEventListener("click",function(){
+      AM.share({title:sku+" | "+title,text:sku+" "+title+" ("+d.price+")",url:location.origin+location.pathname+"?s="+encodeURIComponent(sku)})});
     card.hidden=false;
     var keys=Object.keys(all).sort(),i=keys.indexOf(sku);
     function fill(el,k,arrowL){
@@ -195,7 +212,7 @@ fit();window.addEventListener("resize",fit);window.addEventListener("orientation
       el.href="?s="+k;
       el.innerHTML=(arrowL?"&#8249; ":"")+"<b></b>"+(arrowL?"":" &#8250;");
       el.querySelector("b").textContent=k;
-      var sm=document.createElement("small");sm.textContent=all[k].title;el.appendChild(sm);
+      var sm=document.createElement("small");sm.textContent=L(all[k],"title");el.appendChild(sm);
     }
     if(keys.length>1){
       fill(document.getElementById("pnPrev"),keys[i-1],true);
@@ -210,18 +227,18 @@ fit();window.addEventListener("resize",fit);window.addEventListener("orientation
           var a=document.createElement("a");a.href="?s="+k;if(k===sku)a.setAttribute("aria-current","true");
           var t=document.createElement("div");t.className="th";
           var ph=(all[k].photos||[])[0];
-          if(ph){var im=document.createElement("img");im.src=typeof ph==="string"?ph:ph.src;im.alt=all[k].title;im.loading="lazy";t.appendChild(im)}
-          else{var sp=document.createElement("span");sp.textContent="No photo";t.appendChild(sp)}
+          if(ph){var im=document.createElement("img");im.src=typeof ph==="string"?ph:ph.src;im.alt=L(all[k],"title");im.loading="lazy";t.appendChild(im)}
+          else{var sp=document.createElement("span");sp.textContent=T("no_photo");t.appendChild(sp)}
           var b=document.createElement("b");b.textContent=k;a.appendChild(t);a.appendChild(b);row.appendChild(a);
         });
-        document.getElementById("stripH").textContent="On this wall ("+mates.length+")";
+        document.getElementById("stripH").textContent=T("on_wall",{n:mates.length});
         document.getElementById("strip").hidden=false;
         var cur=row.querySelector('[aria-current="true"]');
         if(cur)row.scrollLeft=Math.max(0,cur.offsetLeft-row.offsetLeft-12);
       }
       var ml=document.getElementById("mapLink");ml.href="map.html?w="+encodeURIComponent(d.wallId);ml.hidden=false;
-      var wl=document.getElementById("wallLink");wl.href="wall.html?w="+encodeURIComponent(d.wallId);wl.textContent="See everything on "+d.wall;wl.hidden=false}
-  }).catch(function(){say("Could not load this piece. Try again, or ask at the gift shop.")});
+      var wl=document.getElementById("wallLink");wl.href="wall.html?w="+encodeURIComponent(d.wallId);var wj=(WALLS||{})[d.wallId];wl.textContent=T("see_wall",{wall:wj?AM.wallShort(wj):d.wall});wl.hidden=false}
+  }).catch(function(e){say(AM.T("load_fail"))});
 })();
 </script>
 </body>

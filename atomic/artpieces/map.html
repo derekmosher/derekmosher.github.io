@@ -71,23 +71,24 @@ body.mini .mapbox{border:0;border-radius:0}
 body.mini svg{touch-action:auto;cursor:pointer}
 @media (prefers-reduced-motion:no-preference){.ring{animation:pulse 1.6s ease-in-out infinite}@keyframes pulse{50%{opacity:.2}}}
 </style>
+<link rel="stylesheet" href="common.css">
 </head>
 <body>
 <div class="wrap">
-  <div class="brand"><a href="home.html"><b>Atomic</b> Motors</a><span class="tn"><a href="home.html">All art</a><a href="map.html" aria-current="page">Map</a></span></div>
-  <div class="bhead"><h1>Building B</h1><nav class="bnav" aria-label="Other buildings"><span class="off" aria-disabled="true" title="Coming soon">Building A</span><span class="off" aria-disabled="true" title="Coming soon">Building C</span><span class="off" aria-disabled="true" title="Coming soon">Building D</span></nav></div>
-  <p class="sub" id="hint">Tap a wall to see its art. Pinch or use + and &minus; to zoom, and drag to move around.</p>
+  <div class="brand"><a href="home.html"><b>Atomic</b> Motors</a><span class="tn"><a href="home.html" data-i18n="nav_all"></a><a href="map.html" aria-current="page" data-i18n="nav_map"></a><a href="picks.html"><span data-i18n="nav_picks"></span> <span id="pickCount"></span></a><select id="lang"></select></span></div>
+  <div class="bhead"><h1 id="h1"></h1><nav class="bnav" data-i18n-aria="other_b"><span class="off" aria-disabled="true" data-b="A"></span><span class="off" aria-disabled="true" data-b="C"></span><span class="off" aria-disabled="true" data-b="D"></span></nav></div>
+  <p class="sub" id="hint"></p>
 
   <div class="mapbox">
-    <svg id="svg" viewBox="0 0 800 560" role="group" aria-label="Floor plan of Building B. Each wall links to its art.">
+    <svg id="svg" viewBox="0 0 800 560" role="group" data-i18n-aria="map_aria">
       <!-- floor and rooms -->
       <rect class="floor" x="80" y="80" width="640" height="400"/>
       <rect class="room" x="560" y="340" width="160" height="140"/>
       <!-- stairs on the east wall -->
       <g class="stairs"><rect x="650" y="170" width="70" height="90"/>
         <path d="M650 185H720M650 200H720M650 215H720M650 230H720M650 245H720"/></g>
-      <text class="lbl small" x="685" y="282">Stairs</text>
-      <text class="lbl small" x="400" y="290">Open floor</text>
+      <text class="lbl small" x="685" y="282" data-i18n="stairs"></text>
+      <text class="lbl small" x="400" y="290" data-i18n="open_floor"></text>
 
       <!-- walls (each is a link) -->
       <a data-wall="b-n1" id="a-b-n1"><path class="hit" d="M94 80H392"/><path class="wall" d="M94 80H392"/></a>
@@ -105,21 +106,21 @@ body.mini svg{touch-action:auto;cursor:pointer}
         <line class="doorgap" x1="330" y1="480" x2="430" y2="480"/>
         <path class="swing" d="M330 480A100 100 0 0 1 430 380"/>
         <line class="door" x1="430" y1="480" x2="430" y2="380"/>
-        <text class="lbl door-t" x="380" y="516">Main entrance</text>
+        <text class="lbl door-t" x="380" y="516" data-i18n="main_ent"></text>
         <!-- roll-up door, west wall -->
         <line class="doorgap" x1="80" y1="210" x2="80" y2="350"/>
         <line class="door" x1="80" y1="210" x2="80" y2="350" stroke-dasharray="10 6"/>
-        <text class="lbl door-t" x="112" y="286" transform="rotate(-90 112 286)">Roll-up door</text>
+        <text class="lbl door-t" x="112" y="286" transform="rotate(-90 112 286)" data-i18n="rollup"></text>
         <!-- back door, east wall -->
         <line class="doorgap" x1="720" y1="290" x2="720" y2="330"/>
         <path class="swing" d="M720 290A40 40 0 0 0 680 330"/>
         <line class="door" x1="720" y1="290" x2="720" y2="330"/>
-        <text class="lbl door-t" x="672" y="318" style="text-anchor:end">Back door</text>
+        <text class="lbl door-t" x="672" y="318" style="text-anchor:end" data-i18n="back_door"></text>
         <!-- restroom door, restroom west partition -->
         <line class="doorgap" x1="560" y1="395" x2="560" y2="435"/>
         <path class="swing" d="M560 395A40 40 0 0 0 520 435"/>
         <line class="door" x1="560" y1="395" x2="560" y2="435"/>
-        <text class="lbl door-t" x="552" y="458" style="text-anchor:end">Restroom door</text>
+        <text class="lbl door-t" x="552" y="458" style="text-anchor:end" data-i18n="rest_door"></text>
       </g>
 
       <!-- wall labels -->
@@ -131,21 +132,24 @@ body.mini svg{touch-action:auto;cursor:pointer}
       <text class="lbl" id="t-b-mr" x="640" y="414" style="font-size:13px"></text>
       <g id="rings"></g>
     </svg>
-    <div class="ctrl"><span id="zhint">Pinch or use the buttons to zoom</span><button type="button" id="zin" aria-label="Zoom in">+</button><button type="button" id="zout" aria-label="Zoom out">&minus;</button><button type="button" id="zreset" aria-label="Reset view" style="font-size:14px">Fit</button></div>
+    <div class="ctrl"><span id="zhint"></span><button type="button" id="zin" data-i18n-aria="zin">+</button><button type="button" id="zout" data-i18n-aria="zout">&minus;</button><button type="button" id="zreset" data-i18n="fit" style="font-size:14px;width:auto;padding:0 10px"></button></div>
   </div>
 
-  <div class="legend"><span><i style="background:var(--accent)"></i>Wall with art</span><span><i style="background:var(--empty)"></i>No art yet</span><span><i style="background:var(--door)"></i>Door</span></div>
+  <div class="legend"><span><i style="background:var(--accent)"></i><span data-i18n="leg_art"></span></span><span><i style="background:var(--empty)"></i><span data-i18n="leg_none"></span></span><span><i style="background:var(--door)"></i><span data-i18n="leg_door"></span></span></div>
   <ul class="list" id="list"></ul>
-  <a class="back" href="https://dratomics.com/" target="_blank" rel="noopener">Visit the gift shop</a>
-  <div class="foot">Demo floor plan with made-up layout and details. The real map would be drawn from the actual building.</div>
+  <a class="back" href="https://dratomics.com/" target="_blank" rel="noopener" data-i18n="shop"></a>
+  <div class="foot" data-i18n="map_foot"></div>
 </div>
+<script src="common.js"></script>
 <script>
 (function(){
   function shrink(){var x=window.innerWidth;document.body.style.zoom=(x>0&&x<300)?(x/340):""}
   shrink();window.addEventListener("resize",shrink);
 
   var touch=window.matchMedia&&window.matchMedia("(hover: none)").matches;
-  if(!touch){document.getElementById("hint").innerHTML="Click a wall to see its art. Scroll or use + and &minus; to zoom, and drag to move around.";document.getElementById("zhint").textContent="Scroll or use the buttons to zoom"}
+  document.getElementById("hint").textContent=AM.T(touch?"map_hint_t":"map_hint_m");document.getElementById("zhint").textContent=AM.T(touch?"zoom_t":"zoom_m");
+  document.getElementById("h1").textContent=AM.T("map_title",{b:"B"});
+  [].forEach.call(document.querySelectorAll("[data-b]"),function(e){e.textContent=AM.T("bld_n",{b:e.getAttribute("data-b")});e.title=AM.T("soon")});
   var mini=/[?&]mini=1/.test(location.search);if(mini)document.body.classList.add("mini");
   var svg=document.getElementById("svg"),BASE={x:0,y:0,w:800,h:560},V={x:0,y:0,w:800,h:560};
   function apply(){svg.setAttribute("viewBox",V.x+" "+V.y+" "+V.w+" "+V.h)}
@@ -199,11 +203,11 @@ body.mini svg{touch-action:auto;cursor:pointer}
     var list=document.getElementById("list");
     Object.keys(walls).forEach(function(id){
       var w=walls[id],a=document.getElementById("a-"+id),t=document.getElementById("t-"+id);
-      var short=w.name.replace(/^Building (\w+), /,"$1 ");
+      var short=AM.wallShort(w),full=AM.wallName(w);
       var href="wall.html?w="+encodeURIComponent(id);
       if(a){
         a.setAttribute("href",mini?"map.html?w="+encodeURIComponent(id):href);if(mini)a.setAttribute("target","_top");
-        a.setAttribute("aria-label",w.name+", "+w.count+(w.count===1?" piece":" pieces"));
+        a.setAttribute("aria-label",full+", "+AM.TN("pieces",w.count));
         if(!w.count)a.querySelector(".wall").classList.add("empty");
       }
       if(t)t.textContent=short+" · "+w.count;
@@ -218,7 +222,7 @@ body.mini svg{touch-action:auto;cursor:pointer}
         var r=document.createElementNS("http://www.w3.org/2000/svg","rect");
         r.setAttribute("class","ring");r.setAttribute("x",bb.x-16);r.setAttribute("y",bb.y-16);r.setAttribute("width",bb.width+32);r.setAttribute("height",bb.height+32);r.setAttribute("rx",10);rg.appendChild(r);}
     }
-  }).catch(function(){document.getElementById("hint").textContent="Could not load the walls. Try again, or ask at the gift shop."});
+  }).catch(function(){document.getElementById("hint").textContent=AM.T("map_fail")});
 })();
 </script>
 </body>
