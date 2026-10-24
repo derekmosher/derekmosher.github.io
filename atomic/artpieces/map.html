@@ -39,7 +39,7 @@ svg.drag{cursor:grabbing}
 .room{fill:var(--room)}
 .wall{stroke:var(--accent);stroke-width:12;stroke-linecap:butt;fill:none;transition:stroke-width .15s}
 .wall.empty{stroke:var(--empty)}
-.hit{stroke:transparent;stroke-width:36;fill:none;stroke-linecap:butt;cursor:pointer}
+.hit{stroke:transparent;stroke-width:28;fill:none;stroke-linecap:butt;cursor:pointer}
 a:hover .wall,a:focus .wall{stroke-width:18}
 .hl .wall{stroke-width:18}
 .has-hl a:not(.hl) .wall{opacity:.3}
@@ -73,7 +73,7 @@ body.mini svg{touch-action:auto;cursor:pointer}
 <div class="wrap">
   <div class="brand"><a href="home.html"><b>Atomic</b> Motors</a><span class="tn"><a href="home.html">All art</a><a href="map.html" aria-current="page">Map</a></span></div>
   <h1>Building B</h1>
-  <p class="sub">Tap a wall to see the art on it. Pinch or use + and &minus; to zoom, and drag to move around.</p>
+  <p class="sub" id="hint">Tap a wall to see its art. Pinch or use + and &minus; to zoom, and drag to move around.</p>
 
   <div class="mapbox">
     <svg id="svg" viewBox="0 0 800 560" role="group" aria-label="Floor plan of Building B. Each wall links to its art.">
@@ -87,13 +87,14 @@ body.mini svg{touch-action:auto;cursor:pointer}
       <text class="lbl small" x="400" y="290">Open floor</text>
 
       <!-- walls (each is a link) -->
-      <a data-wall="b-n1" id="a-b-n1"><path class="hit" d="M80 80H400"/><path class="wall" d="M80 80H400"/></a>
-      <a data-wall="b-n2" id="a-b-n2"><path class="hit" d="M400 80H720"/><path class="wall" d="M400 80H720"/></a>
-      <a data-wall="b-e1" id="a-b-e1"><path class="hit" d="M720 80V340"/><path class="wall" d="M720 80V340"/></a>
-      <a data-wall="b-s1" id="a-b-s1"><path class="hit" d="M80 480H720"/><path class="wall" d="M80 480H720"/></a>
-      <a data-wall="b-w1" id="a-b-w1"><path class="hit" d="M80 80V480"/><path class="wall" d="M80 80V480"/></a>
-      <a data-wall="b-mr" id="a-b-mr"><path class="hit" d="M560 480V340H720"/><path class="wall" d="M560 480V340H720"/></a>
-      <path class="wall empty" d="M720 340V480" pointer-events="none" style="stroke:var(--ink);stroke-width:12"/>
+      <a data-wall="b-n1" id="a-b-n1"><path class="hit" d="M94 80H392"/><path class="wall" d="M94 80H392"/></a>
+      <a data-wall="b-n2" id="a-b-n2"><path class="hit" d="M408 80H706"/><path class="wall" d="M408 80H706"/></a>
+      <a data-wall="b-e1" id="a-b-e1"><path class="hit" d="M720 94V326"/><path class="wall" d="M720 94V326"/></a>
+      <a data-wall="b-s1" id="a-b-s1"><path class="hit" d="M706 480H94"/><path class="wall" d="M706 480H94"/></a>
+      <a data-wall="b-w1" id="a-b-w1"><path class="hit" d="M80 466V94"/><path class="wall" d="M80 466V94"/></a>
+      <a data-wall="b-mr" id="a-b-mr"><path class="hit" d="M560 466V340H706"/><path class="wall" d="M560 466V340H706"/></a>
+      <!-- restroom outer wall: structure only, not a link -->
+      <path d="M720 340V466" pointer-events="none" style="stroke:var(--muted);stroke-width:12;fill:none"/>
 
       <!-- doors (drawn over the walls, not links) -->
       <g pointer-events="none">
@@ -127,7 +128,7 @@ body.mini svg{touch-action:auto;cursor:pointer}
       <text class="lbl" id="t-b-mr" x="640" y="414" style="font-size:13px"></text>
       <g id="rings"></g>
     </svg>
-    <div class="ctrl"><span>Pinch, scroll or use the buttons to zoom</span><button type="button" id="zin" aria-label="Zoom in">+</button><button type="button" id="zout" aria-label="Zoom out">&minus;</button><button type="button" id="zreset" aria-label="Reset view" style="font-size:14px">Fit</button></div>
+    <div class="ctrl"><span id="zhint">Pinch or use the buttons to zoom</span><button type="button" id="zin" aria-label="Zoom in">+</button><button type="button" id="zout" aria-label="Zoom out">&minus;</button><button type="button" id="zreset" aria-label="Reset view" style="font-size:14px">Fit</button></div>
   </div>
 
   <div class="legend"><span><i style="background:var(--accent)"></i>Wall with art</span><span><i style="background:var(--empty)"></i>No art yet</span><span><i style="background:var(--door)"></i>Door</span></div>
@@ -140,6 +141,8 @@ body.mini svg{touch-action:auto;cursor:pointer}
   function shrink(){var x=window.innerWidth;document.body.style.zoom=(x>0&&x<300)?(x/340):""}
   shrink();window.addEventListener("resize",shrink);
 
+  var touch=window.matchMedia&&window.matchMedia("(hover: none)").matches;
+  if(!touch){document.getElementById("hint").innerHTML="Click a wall to see its art. Scroll or use + and &minus; to zoom, and drag to move around.";document.getElementById("zhint").textContent="Scroll or use the buttons to zoom"}
   var mini=/[?&]mini=1/.test(location.search);if(mini)document.body.classList.add("mini");
   var svg=document.getElementById("svg"),BASE={x:0,y:0,w:800,h:560},V={x:0,y:0,w:800,h:560};
   function apply(){svg.setAttribute("viewBox",V.x+" "+V.y+" "+V.w+" "+V.h)}
@@ -212,7 +215,7 @@ body.mini svg{touch-action:auto;cursor:pointer}
         var r=document.createElementNS("http://www.w3.org/2000/svg","rect");
         r.setAttribute("class","ring");r.setAttribute("x",bb.x-16);r.setAttribute("y",bb.y-16);r.setAttribute("width",bb.width+32);r.setAttribute("height",bb.height+32);r.setAttribute("rx",10);rg.appendChild(r);}
     }
-  }).catch(function(){document.querySelector(".sub").textContent="Could not load the walls. Try again, or ask at the gift shop."});
+  }).catch(function(){document.getElementById("hint").textContent="Could not load the walls. Try again, or ask at the gift shop."});
 })();
 </script>
 </body>
