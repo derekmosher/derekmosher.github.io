@@ -111,6 +111,7 @@ p{margin:0}
   <nav class="pn" id="pn" aria-label="Other pieces" hidden><a class="prev" id="pnPrev"></a><a class="next" id="pnNext"></a></nav>
   <section class="strip" id="strip" hidden><h2 id="stripH">On this wall</h2><div class="row" id="stripRow"></div></section>
   <a class="wall" id="wallLink" href="#" hidden>See everything on this wall</a>
+  <a class="wall" id="mapLink" href="map.html" hidden>Find it on the building map</a>
   <div class="card msg" id="msg" hidden></div>
   <a class="shop" href="https://dratomics.com/" target="_blank" rel="noopener">Visit the gift shop</a>
   <div class="foot">Tell the gift shop the SKU above and they can find this piece.</div>
@@ -215,6 +216,7 @@ fit();window.addEventListener("resize",fit);window.addEventListener("orientation
         var cur=row.querySelector('[aria-current="true"]');
         if(cur)row.scrollLeft=Math.max(0,cur.offsetLeft-row.offsetLeft-12);
       }
+      var ml=document.getElementById("mapLink");ml.href="map.html?w="+encodeURIComponent(d.wallId);ml.hidden=false;
       var wl=document.getElementById("wallLink");wl.href="wall.html?w="+encodeURIComponent(d.wallId);wl.textContent="See everything on "+d.wall;wl.hidden=false}
   }).catch(function(){say("Could not load this piece. Try again, or ask at the gift shop.")});
 })();

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Atomic Motors Art Map</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#e9ecee; --card:#fff; --ink:#14202b; --muted:#5a6772; --line:#cdd3d8; --accent:#c41222;
+  --floor:#f6f7f8; --room:#e4e8eb; --empty:#9aa5ae; --door:#2f6fb3;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Barlow",Arial,Helvetica,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0f161c; --card:#18222b; --ink:#eef1f3; --muted:#9aa7b2; --line:#2c3a46; --accent:#ff4a58;
+  --floor:#1d2933; --room:#26343f; --empty:#5d6c78; --door:#6fb0f0; color-scheme:dark}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--body);padding:20px 16px 40px}
+.wrap{max-width:720px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.brand{font-family:var(--display);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:15px;display:flex;justify-content:space-between;gap:12px;color:var(--muted)}
+.brand b{color:var(--accent)}
+h1{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(24px,8vw,34px);line-height:1.1}
+.sub{margin:0;color:var(--muted)}
+.mapbox{position:relative;background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+svg{display:block;width:100%;height:auto;aspect-ratio:800/560;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+svg.drag{cursor:grabbing}
+.ctrl{display:flex;gap:6px;justify-content:flex-end;align-items:center;padding:8px;border-top:1px solid var(--line)}
+.ctrl span{margin-right:auto;font-size:13px;color:var(--muted)}
+.ctrl button{width:38px;height:38px;border-radius:4px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 20px/1 var(--body);cursor:pointer;padding:0}
+.ctrl button:focus-visible,svg a:focus-visible,.list a:focus-visible,.back:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.floor{fill:var(--floor)}
+.room{fill:var(--room)}
+.wall{stroke:var(--accent);stroke-width:12;stroke-linecap:butt;fill:none;transition:stroke-width .15s}
+.wall.empty{stroke:var(--empty)}
+.hit{stroke:transparent;stroke-width:36;fill:none;stroke-linecap:butt;cursor:pointer}
+a:hover .wall,a:focus .wall{stroke-width:18}
+.hl .wall{stroke-width:18}
+.ring{fill:none;stroke:var(--accent);stroke-width:3;opacity:.9}
+.door{stroke:var(--door);stroke-width:5;fill:none}
+.doorgap{stroke:var(--floor);stroke-width:14}
+.swing{stroke:var(--door);stroke-width:2;fill:none;stroke-dasharray:4 3}
+.lbl{font:600 15px var(--body);fill:var(--ink);text-anchor:middle}
+.lbl.small{font-size:13px;fill:var(--muted);font-weight:500}
+.lbl.door-t{fill:var(--door);font-size:13px;font-weight:600}
+.stairs{fill:none;stroke:var(--muted);stroke-width:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:22px;height:6px;vertical-align:middle;margin-right:6px;border-radius:1px}
+.list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0;padding:0;list-style:none}
+@media (max-width:300px){.list{grid-template-columns:minmax(0,1fr)}}
+.list a{display:flex;justify-content:space-between;gap:8px;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:4px;padding:8px 10px;min-width:0}
+.list a span:first-child{overflow-wrap:anywhere}
+.list a .n{color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums}
+.list a.empty .n{color:var(--muted);font-weight:500}
+.back{display:block;text-align:center;text-decoration:none;font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border:1px solid var(--line);background:var(--card);border-radius:4px;padding:10px}
+.foot{font-size:13px;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.ring{animation:pulse 1.6s ease-in-out infinite}@keyframes pulse{50%{opacity:.2}}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><span><b>Atomic</b> Motors</span><span>Art map</span></div>
+  <h1>Building B</h1>
+  <p class="sub">Tap a wall to see the art on it. Pinch or use + and &minus; to zoom, and drag to move around.</p>
+
+  <div class="mapbox">
+    <svg id="svg" viewBox="0 0 800 560" role="group" aria-label="Floor plan of Building B. Each wall links to its art.">
+      <!-- floor and rooms -->
+      <rect class="floor" x="80" y="80" width="640" height="400"/>
+      <rect class="room" x="560" y="340" width="160" height="140"/>
+      <!-- stairs on the east wall -->
+      <g class="stairs"><rect x="650" y="170" width="70" height="90"/>
+        <path d="M650 185H720M650 200H720M650 215H720M650 230H720M650 245H720"/></g>
+      <text class="lbl small" x="685" y="282">Stairs</text>
+      <text class="lbl small" x="400" y="290">Open floor</text>
+
+      <!-- walls (each is a link) -->
+      <a data-wall="b-n1" id="a-b-n1"><path class="hit" d="M80 80H400"/><path class="wall" d="M80 80H400"/></a>
+      <a data-wall="b-n2" id="a-b-n2"><path class="hit" d="M400 80H720"/><path class="wall" d="M400 80H720"/></a>
+      <a data-wall="b-e1" id="a-b-e1"><path class="hit" d="M720 80V340"/><path class="wall" d="M720 80V340"/></a>
+      <a data-wall="b-s1" id="a-b-s1"><path class="hit" d="M80 480H720"/><path class="wall" d="M80 480H720"/></a>
+      <a data-wall="b-w1" id="a-b-w1"><path class="hit" d="M80 80V480"/><path class="wall" d="M80 80V480"/></a>
+      <a data-wall="b-mr" id="a-b-mr"><path class="hit" d="M560 480V340H720"/><path class="wall" d="M560 480V340H720"/></a>
+      <path class="wall empty" d="M720 340V480" pointer-events="none" style="stroke:var(--ink);stroke-width:12"/>
+
+      <!-- doors (drawn over the walls, not links) -->
+      <g pointer-events="none">
+        <!-- main entrance, south wall -->
+        <line class="doorgap" x1="330" y1="480" x2="430" y2="480"/>
+        <path class="swing" d="M330 480A100 100 0 0 1 430 380"/>
+        <line class="door" x1="430" y1="480" x2="430" y2="380"/>
+        <text class="lbl door-t" x="380" y="516">Main entrance</text>
+        <!-- roll-up door, west wall -->
+        <line class="doorgap" x1="80" y1="210" x2="80" y2="350"/>
+        <line class="door" x1="80" y1="210" x2="80" y2="350" stroke-dasharray="10 6"/>
+        <text class="lbl door-t" x="112" y="286" transform="rotate(-90 112 286)">Roll-up door</text>
+        <!-- back door, east wall -->
+        <line class="doorgap" x1="720" y1="290" x2="720" y2="330"/>
+        <path class="swing" d="M720 290A40 40 0 0 0 680 330"/>
+        <line class="door" x1="720" y1="290" x2="720" y2="330"/>
+        <text class="lbl door-t" x="672" y="318" style="text-anchor:end">Back door</text>
+        <!-- restroom door, restroom west partition -->
+        <line class="doorgap" x1="560" y1="395" x2="560" y2="435"/>
+        <path class="swing" d="M560 395A40 40 0 0 0 520 435"/>
+        <line class="door" x1="560" y1="395" x2="560" y2="435"/>
+        <text class="lbl door-t" x="552" y="458" style="text-anchor:end">Restroom door</text>
+      </g>
+
+      <!-- wall labels -->
+      <text class="lbl" id="t-b-n1" x="240" y="62"></text>
+      <text class="lbl" id="t-b-n2" x="560" y="62"></text>
+      <text class="lbl" id="t-b-e1" x="744" y="210" transform="rotate(90 744 210)"></text>
+      <text class="lbl" id="t-b-s1" x="200" y="508"></text>
+      <text class="lbl" id="t-b-w1" x="52" y="280" transform="rotate(-90 52 280)"></text>
+      <text class="lbl" id="t-b-mr" x="640" y="414" style="font-size:13px"></text>
+      <g id="rings"></g>
+    </svg>
+    <div class="ctrl"><span>Pinch, scroll or use the buttons to zoom</span><button type="button" id="zin" aria-label="Zoom in">+</button><button type="button" id="zout" aria-label="Zoom out">&minus;</button><button type="button" id="zreset" aria-label="Reset view" style="font-size:14px">Fit</button></div>
+  </div>
+
+  <div class="legend"><span><i style="background:var(--accent)"></i>Wall with art</span><span><i style="background:var(--empty)"></i>No art yet</span><span><i style="background:var(--door)"></i>Door</span></div>
+  <ul class="list" id="list"></ul>
+  <a class="back" href="https://dratomics.com/" target="_blank" rel="noopener">Visit the gift shop</a>
+  <div class="foot">Demo floor plan with made-up layout and details. The real map would be drawn from the actual building.</div>
+</div>
+<script>
+(function(){
+  function shrink(){var x=window.innerWidth;document.body.style.zoom=(x>0&&x<300)?(x/340):""}
+  shrink();window.addEventListener("resize",shrink);
+
+  var svg=document.getElementById("svg"),BASE={x:0,y:0,w:800,h:560},V={x:0,y:0,w:800,h:560};
+  function apply(){svg.setAttribute("viewBox",V.x+" "+V.y+" "+V.w+" "+V.h)}
+  function clamp(){
+    V.w=Math.max(BASE.w/6,Math.min(BASE.w,V.w));V.h=V.w*BASE.h/BASE.w;
+    V.x=Math.max(BASE.x-40,Math.min(BASE.x+BASE.w+40-V.w,V.x));
+    V.y=Math.max(BASE.y-40,Math.min(BASE.y+BASE.h+40-V.h,V.y));
+    if(V.w>=BASE.w-0.5){V.x=0;V.y=0}
+  }
+  function zoomAt(f,cx,cy){ // cx,cy in svg units
+    var nw=V.w/f;nw=Math.max(BASE.w/6,Math.min(BASE.w,nw));var k=nw/V.w;
+    V.x=cx-(cx-V.x)*k;V.y=cy-(cy-V.y)*k;V.w=nw;V.h=nw*BASE.h/BASE.w;clamp();apply();
+  }
+  function toSvg(px,py){var r=svg.getBoundingClientRect();return {x:V.x+(px-r.left)/r.width*V.w,y:V.y+(py-r.top)/r.height*V.h}}
+  document.getElementById("zin").onclick=function(){zoomAt(1.5,V.x+V.w/2,V.y+V.h/2)};
+  document.getElementById("zout").onclick=function(){zoomAt(1/1.5,V.x+V.w/2,V.y+V.h/2)};
+  document.getElementById("zreset").onclick=function(){V={x:0,y:0,w:800,h:560};apply()};
+  svg.addEventListener("wheel",function(e){e.preventDefault();var p=toSvg(e.clientX,e.clientY);zoomAt(e.deltaY<0?1.2:1/1.2,p.x,p.y)},{passive:false});
+
+  var ptrs={},moved=false,start=null,lastDist=0;
+  svg.addEventListener("pointerdown",function(e){
+    ptrs[e.pointerId]={x:e.clientX,y:e.clientY};
+    var ids=Object.keys(ptrs);
+    if(ids.length===1){moved=false;start={x:e.clientX,y:e.clientY}}
+    if(ids.length===2){lastDist=0;moved=true}
+  });
+  svg.addEventListener("pointermove",function(e){
+    var p=ptrs[e.pointerId];if(!p)return;
+    var ids=Object.keys(ptrs);
+    if(ids.length===1){
+      var dx=e.clientX-p.x,dy=e.clientY-p.y;
+      if(!moved&&Math.hypot(e.clientX-start.x,e.clientY-start.y)>6){moved=true;svg.classList.add("drag")}
+      if(moved){var r=svg.getBoundingClientRect();V.x-=dx/r.width*V.w;V.y-=dy/r.height*V.h;clamp();apply()}
+    }else if(ids.length===2){
+      var a=ptrs[ids[0]],b=ptrs[ids[1]];
+      ptrs[e.pointerId]={x:e.clientX,y:e.clientY};
+      var a2=ptrs[ids[0]],b2=ptrs[ids[1]];
+      var d=Math.hypot(a2.x-b2.x,a2.y-b2.y);
+      if(lastDist){var m=toSvg((a2.x+b2.x)/2,(a2.y+b2.y)/2);zoomAt(d/lastDist,m.x,m.y)}
+      lastDist=d;return;
+    }
+    ptrs[e.pointerId]={x:e.clientX,y:e.clientY};
+  });
+  function up(e){delete ptrs[e.pointerId];lastDist=0;svg.classList.remove("drag");if(!Object.keys(ptrs).length)setTimeout(function(){moved=false},0)}
+  svg.addEventListener("pointerup",up);svg.addEventListener("pointercancel",up);svg.addEventListener("pointerleave",function(e){if(e.pointerType==="mouse")up(e)});
+  svg.addEventListener("click",function(e){if(moved){e.preventDefault();e.stopPropagation()}},true);
+
+  var hl=(new URLSearchParams(location.search).get("w")||"").toLowerCase();
+  fetch("walls.json").then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(walls){
+    var list=document.getElementById("list");
+    Object.keys(walls).forEach(function(id){
+      var w=walls[id],a=document.getElementById("a-"+id),t=document.getElementById("t-"+id);
+      var short=w.name.replace(/^Building (\w+), /,"$1 ");
+      var href="wall.html?w="+encodeURIComponent(id);
+      if(a){
+        a.setAttribute("href",href);
+        a.setAttribute("aria-label",w.name+", "+w.count+(w.count===1?" piece":" pieces"));
+        if(!w.count)a.querySelector(".wall").classList.add("empty");
+      }
+      if(t)t.textContent=short+" · "+w.count;
+      var li=document.createElement("li"),l=document.createElement("a");l.href=href;if(!w.count)l.className="empty";
+      var n1=document.createElement("span");n1.textContent=short;var n2=document.createElement("span");n2.className="n";n2.textContent=w.count;
+      l.appendChild(n1);l.appendChild(n2);li.appendChild(l);list.appendChild(li);
+    });
+    if(hl&&walls[hl]){
+      var a=document.getElementById("a-"+hl);
+      if(a){a.classList.add("hl");
+        var bb=a.querySelector(".wall").getBBox(),rg=document.getElementById("rings");
+        var r=document.createElementNS("http://www.w3.org/2000/svg","rect");
+        r.setAttribute("class","ring");r.setAttribute("x",bb.x-16);r.setAttribute("y",bb.y-16);r.setAttribute("width",bb.width+32);r.setAttribute("height",bb.height+32);r.setAttribute("rx",10);rg.appendChild(r);}
+    }
+  }).catch(function(){document.querySelector(".sub").textContent="Could not load the walls. Try again, or ask at the gift shop."});
+})();
+</script>
+</body>
+</html>

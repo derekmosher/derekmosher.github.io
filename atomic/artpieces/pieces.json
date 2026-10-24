@@ -3,7 +3,7 @@
     "title": "Las Vegas Bikefest Rally Print",
     "price": "$75",
     "building": "B",
-    "location": "North wall, 2nd row from the roll-up door",
+    "location": "North wall 1, 2nd row from the roll-up door",
     "size": "24 x 30 in",
     "medium": "Print on canvas, framed",
     "description": "Las Vegas Bikefest motorcycle rally artwork with a skull in a top hat, pistons, playing cards, dice and flames. Colors are bright. Frame has a few scuffs on the bottom edge.",
@@ -18,14 +18,14 @@
         "label": "Detail"
       }
     ],
-    "wall": "Building B, North wall",
-    "wallId": "building-b-north-wall"
+    "wall": "Building B, North Wall 1",
+    "wallId": "b-n1"
   },
   "B-0113": {
     "title": "The Dog Park",
     "price": "$50",
     "building": "B",
-    "location": "North wall, next to B-0112",
+    "location": "North wall 1, next to B-0112",
     "size": "24 x 18 in",
     "medium": "Framed print, white mat",
     "description": "Colorful painting of many dogs playing on a green lawn, with balls, a bone and a game of tug in the middle. Black frame with a white mat.",
@@ -44,13 +44,13 @@
         "label": "Signature"
       }
     ],
-    "wall": "Building B, North wall",
-    "wallId": "building-b-north-wall"
+    "wall": "Building B, North Wall 1",
+    "wallId": "b-n1"
   },
   "B-0114": {
     "title": "Two Racers, Indoor Track Photograph",
     "price": "$1,100",
-    "building": "C",
+    "building": "B",
     "location": "East wall, above the stairs",
     "size": "36 x 48 in",
     "medium": "Black-and-white photograph, framed under glass",
@@ -66,14 +66,14 @@
         "label": "Detail"
       }
     ],
-    "wall": "Building C, East wall",
-    "wallId": "building-c-east-wall"
+    "wall": "Building B, East Wall",
+    "wallId": "b-e1"
   },
   "B-0115": {
     "title": "Favor Motorcycle Poster",
     "price": "$450",
-    "building": "C",
-    "location": "East wall, next to B-0114",
+    "building": "B",
+    "location": "West wall, next to the roll-up door",
     "size": "30 x 40 in",
     "medium": "Color poster, framed",
     "description": "Poster for Favor in red, blue and yellow, with two riders on motorcycles and the French line \"va droit au but\". Black frame, no glass glare in this photo.",
@@ -92,7 +92,7 @@
         "label": "Signature"
       }
     ],
-    "wall": "Building C, East wall",
-    "wallId": "building-c-east-wall"
+    "wall": "Building B, West Wall",
+    "wallId": "b-w1"
   }
 }
