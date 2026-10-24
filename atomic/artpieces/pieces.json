@@ -94,5 +94,201 @@
     ],
     "wall": "Building B, West Wall",
     "wallId": "b-w1"
+  },
+  "B-0116": {
+    "title": "Desert Highway Sunset",
+    "price": "$220",
+    "building": "B",
+    "location": "North wall 2, near the corner",
+    "size": "40 x 30 in",
+    "medium": "Acrylic on canvas",
+    "description": "Low sun over a desert road with purple mountains. Colors are bright. Small scuff on the lower frame corner.",
+    "shopify": "",
+    "photos": [
+      {
+        "src": "img/B-0116/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0116/detail-1.jpg",
+        "label": "Detail"
+      },
+      {
+        "src": "img/B-0116/signature.jpg",
+        "label": "Signature"
+      }
+    ],
+    "wall": "Building B, North Wall 2",
+    "wallId": "b-n2"
+  },
+  "B-0117": {
+    "title": "Checkered Flag",
+    "price": "$95",
+    "building": "B",
+    "location": "South wall, left of the main entrance",
+    "size": "24 x 32 in",
+    "medium": "Print on board",
+    "description": "Red print of a waving checkered flag on a pole. Unframed, with light wear on the corners.",
+    "shopify": "https://dratomics.com/collections/shop/products/magnet-atomic-motors",
+    "photos": [
+      {
+        "src": "img/B-0117/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0117/detail-1.jpg",
+        "label": "Detail"
+      }
+    ],
+    "wall": "Building B, South Wall",
+    "wallId": "b-s1"
+  },
+  "B-0118": {
+    "title": "Atomic Starburst",
+    "price": "$140",
+    "building": "B",
+    "location": "West wall, above the roll-up door",
+    "size": "30 x 30 in",
+    "medium": "Screen print, unframed",
+    "description": "Mid-century starburst in teal, orange and gold on a cream background. Paper has a faint crease on the right edge.",
+    "shopify": "",
+    "photos": [
+      {
+        "src": "img/B-0118/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0118/detail-1.jpg",
+        "label": "Detail"
+      },
+      {
+        "src": "img/B-0118/signature.jpg",
+        "label": "Signature"
+      }
+    ],
+    "wall": "Building B, West Wall",
+    "wallId": "b-w1"
+  },
+  "B-0119": {
+    "title": "Gas Pump No. 9",
+    "price": "$180",
+    "building": "B",
+    "location": "South wall, right of the main entrance",
+    "size": "24 x 32 in",
+    "medium": "Acrylic on canvas, framed",
+    "description": "Flat illustration of a vintage gas pump on a mustard background. Frame has a few nicks along the bottom.",
+    "shopify": "",
+    "photos": [
+      {
+        "src": "img/B-0119/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0119/detail-1.jpg",
+        "label": "Detail"
+      },
+      {
+        "src": "img/B-0119/signature.jpg",
+        "label": "Signature"
+      }
+    ],
+    "wall": "Building B, South Wall",
+    "wallId": "b-s1"
+  },
+  "B-0120": {
+    "title": "Neon Cactus",
+    "price": "$260",
+    "building": "B",
+    "location": "North wall 2, center",
+    "size": "24 x 32 in",
+    "medium": "Print on metal, framed",
+    "description": "Glowing green cactus and pink moon on a dark blue background. Surface is clean with no dents.",
+    "shopify": "",
+    "photos": [
+      {
+        "src": "img/B-0120/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0120/detail-1.jpg",
+        "label": "Detail"
+      }
+    ],
+    "wall": "Building B, North Wall 2",
+    "wallId": "b-n2"
+  },
+  "B-0121": {
+    "title": "Piston Study",
+    "price": "$350",
+    "building": "B",
+    "location": "East wall, next to the stairs",
+    "size": "36 x 36 in",
+    "medium": "Mixed media on panel, framed",
+    "description": "Three pistons in gray with red accents on a charcoal background. Frame is in good shape.",
+    "shopify": "https://dratomics.com/collections/shop/products/magnet-atomic-motors",
+    "photos": [
+      {
+        "src": "img/B-0121/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0121/detail-1.jpg",
+        "label": "Detail"
+      },
+      {
+        "src": "img/B-0121/signature.jpg",
+        "label": "Signature"
+      }
+    ],
+    "wall": "Building B, East Wall",
+    "wallId": "b-e1"
+  },
+  "B-0122": {
+    "title": "Rocket Garage",
+    "price": "$120",
+    "building": "B",
+    "location": "Hallway to the men's restroom",
+    "size": "40 x 30 in",
+    "medium": "Print, framed",
+    "description": "Retro rocket over orange stripes on a cream background. Glass has a few fingerprints.",
+    "shopify": "",
+    "photos": [
+      {
+        "src": "img/B-0122/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0122/detail-1.jpg",
+        "label": "Detail"
+      }
+    ],
+    "wall": "Building B, Men's Restroom",
+    "wallId": "b-mr"
+  },
+  "B-0123": {
+    "title": "Open Road Map",
+    "price": "$600",
+    "building": "B",
+    "location": "North wall 1, far left",
+    "size": "48 x 36 in",
+    "medium": "Acrylic on canvas",
+    "description": "Winding red and white road across a contour map in tan. Large piece with some paint wear at the corners.",
+    "shopify": "https://dratomics.com/collections/shop/products/magnet-atomic-motors",
+    "photos": [
+      {
+        "src": "img/B-0123/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0123/detail-1.jpg",
+        "label": "Detail"
+      },
+      {
+        "src": "img/B-0123/signature.jpg",
+        "label": "Signature"
+      }
+    ],
+    "wall": "Building B, North Wall 1",
+    "wallId": "b-n1"
   }
 }

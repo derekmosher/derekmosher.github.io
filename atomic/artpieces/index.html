@@ -23,6 +23,9 @@ body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--body);pa
 h1,p,dd{overflow-wrap:anywhere}
 .brand{font-family:var(--display);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:15px;display:flex;justify-content:space-between;gap:12px;color:var(--muted)}
 .brand b{color:var(--accent)}
+.brand a{color:inherit;text-decoration:none}.brand a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.tn{display:flex;gap:14px}.tn a[aria-current="page"]{color:var(--ink);border-bottom:2px solid var(--accent)}
+
 .card{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
 
 /* photo carousel */
@@ -84,7 +87,7 @@ p{margin:0}
 </head>
 <body>
 <div class="wrap">
-  <div class="brand"><span><b>Atomic</b> Motors</span><span>Art tag</span></div>
+  <div class="brand"><a href="home.html"><b>Atomic</b> Motors</a><span class="tn"><a href="home.html">All art</a><a href="map.html">Map</a></span></div>
   <div class="card" id="card" hidden>
     <div class="photo" id="photoBox">
       <div class="track" id="track" tabindex="0" aria-label="Photos of this piece. Swipe left or right."></div>
@@ -126,7 +129,7 @@ fit();window.addEventListener("resize",fit);window.addEventListener("orientation
   var sku=(params.get("s")||"").trim().toUpperCase();
   var card=document.getElementById("card"), msg=document.getElementById("msg");
   function say(t){msg.textContent=t;msg.hidden=false;card.hidden=true}
-  if(!sku){say("Scan the QR code on an art tag to see a piece.");return}
+  if(!sku){location.replace("home.html");return}
 
   function buildPhotos(list,title){
     var track=document.getElementById("track"),dots=document.getElementById("dots"),

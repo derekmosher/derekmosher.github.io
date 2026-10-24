@@ -23,6 +23,9 @@ body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--body);pa
 .wrap{max-width:720px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
 .brand{font-family:var(--display);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:15px;display:flex;justify-content:space-between;gap:12px;color:var(--muted)}
 .brand b{color:var(--accent)}
+.brand a{color:inherit;text-decoration:none}.brand a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.tn{display:flex;gap:14px}.tn a[aria-current="page"]{color:var(--ink);border-bottom:2px solid var(--accent)}
+
 h1{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(24px,8vw,34px);line-height:1.1}
 .sub{margin:0;color:var(--muted)}
 .mapbox{position:relative;background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
@@ -62,7 +65,7 @@ a:hover .wall,a:focus .wall{stroke-width:18}
 </head>
 <body>
 <div class="wrap">
-  <div class="brand"><span><b>Atomic</b> Motors</span><span>Art map</span></div>
+  <div class="brand"><a href="home.html"><b>Atomic</b> Motors</a><span class="tn"><a href="home.html">All art</a><a href="map.html" aria-current="page">Map</a></span></div>
   <h1>Building B</h1>
   <p class="sub">Tap a wall to see the art on it. Pinch or use + and &minus; to zoom, and drag to move around.</p>
 
