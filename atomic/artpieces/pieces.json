@@ -9,7 +9,14 @@
     "description": "Las Vegas Bikefest motorcycle rally artwork with a skull in a top hat, pistons, playing cards, dice and flames. Colors are bright. Frame has a few scuffs on the bottom edge.",
     "shopify": "https://dratomics.com/collections/shop/products/magnet-atomic-motors",
     "photos": [
-      "img/B-0112/front.jpg"
+      {
+        "src": "img/B-0112/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0112/detail-1.jpg",
+        "label": "Detail"
+      }
     ]
   },
   "B-0113": {
@@ -33,7 +40,14 @@
     "description": "Black-and-white photograph of two vintage motorcycles racing on an indoor track. Black frame with a white mat, under glass.",
     "shopify": "https://dratomics.com/collections/shop/products/magnet-atomic-motors",
     "photos": [
-      "img/B-0114/front.jpg"
+      {
+        "src": "img/B-0114/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0114/detail-1.jpg",
+        "label": "Detail"
+      }
     ]
   },
   "B-0115": {
@@ -46,7 +60,18 @@
     "description": "Poster for Favor in red, blue and yellow, with two riders on motorcycles and the French line \"va droit au but\". Black frame, no glass glare in this photo.",
     "shopify": "https://dratomics.com/collections/shop/products/magnet-atomic-motors",
     "photos": [
-      "img/B-0115/front.jpg"
+      {
+        "src": "img/B-0115/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0115/detail-1.jpg",
+        "label": "Detail"
+      },
+      {
+        "src": "img/B-0115/signature.jpg",
+        "label": "Signature"
+      }
     ]
   }
 }
