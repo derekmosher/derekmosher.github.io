@@ -28,6 +28,9 @@ body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--body);pa
 
 h1{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(24px,8vw,34px);line-height:1.1}
 .sub{margin:0;color:var(--muted)}
+.bhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 18px}
+.bnav{display:flex;flex-wrap:wrap;gap:2px 14px;font-size:14px;letter-spacing:.02em}
+.bnav .off{color:var(--empty);cursor:default}
 .mapbox{position:relative;background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
 svg{display:block;width:100%;height:auto;aspect-ratio:800/560;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
 svg.drag{cursor:grabbing}
@@ -62,7 +65,7 @@ a:hover .wall,a:focus .wall{stroke-width:18}
 .back{display:block;text-align:center;text-decoration:none;font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border:1px solid var(--line);background:var(--card);border-radius:4px;padding:10px}
 .foot{font-size:13px;color:var(--muted)}
 body.mini{padding:0;background:var(--card)}
-body.mini .brand,body.mini h1,body.mini .sub,body.mini .legend,body.mini .list,body.mini .back,body.mini .foot,body.mini .ctrl{display:none}
+body.mini .brand,body.mini .bhead,body.mini .sub,body.mini .legend,body.mini .list,body.mini .back,body.mini .foot,body.mini .ctrl{display:none}
 body.mini .wrap{gap:0;max-width:none}
 body.mini .mapbox{border:0;border-radius:0}
 body.mini svg{touch-action:auto;cursor:pointer}
@@ -72,7 +75,7 @@ body.mini svg{touch-action:auto;cursor:pointer}
 <body>
 <div class="wrap">
   <div class="brand"><a href="home.html"><b>Atomic</b> Motors</a><span class="tn"><a href="home.html">All art</a><a href="map.html" aria-current="page">Map</a></span></div>
-  <h1>Building B</h1>
+  <div class="bhead"><h1>Building B</h1><nav class="bnav" aria-label="Other buildings"><span class="off" aria-disabled="true" title="Coming soon">Building A</span><span class="off" aria-disabled="true" title="Coming soon">Building C</span><span class="off" aria-disabled="true" title="Coming soon">Building D</span></nav></div>
   <p class="sub" id="hint">Tap a wall to see its art. Pinch or use + and &minus; to zoom, and drag to move around.</p>
 
   <div class="mapbox">
