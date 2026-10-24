@@ -24,11 +24,24 @@
     "price": "$50",
     "building": "B",
     "location": "North wall, next to B-0112",
-    "size": "16 x 20 in",
-    "medium": "Oil on canvas",
-    "description": "Example row with made-up details. No photo yet, so the page will say photo coming soon.",
-    "shopify": "",
-    "photos": []
+    "size": "24 x 18 in",
+    "medium": "Framed print, white mat",
+    "description": "Colorful painting of many dogs playing on a green lawn, with balls, a bone and a game of tug in the middle. Black frame with a white mat.",
+    "shopify": "https://dratomics.com/products/figurine-donkey-democrat-1930s",
+    "photos": [
+      {
+        "src": "img/B-0113/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0113/detail-1.jpg",
+        "label": "Detail"
+      },
+      {
+        "src": "img/B-0113/signature.jpg",
+        "label": "Signature"
+      }
+    ]
   },
   "B-0114": {
     "title": "Two Racers, Indoor Track Photograph",
