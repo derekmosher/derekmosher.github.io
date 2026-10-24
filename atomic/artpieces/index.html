@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Atomic Motors Art</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#e9ecee; --card:#fff; --ink:#14202b; --muted:#5a6772; --line:#cdd3d8; --accent:#c41222; --accent-ink:#fff; --photo:#dde2e6;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Barlow",Arial,Helvetica,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0f161c; --card:#18222b; --ink:#eef1f3; --muted:#9aa7b2; --line:#2c3a46; --accent:#ff4a58; --accent-ink:#14202b; --photo:#223039; color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--body);padding:20px 16px 40px}
+.wrap{max-width:460px;margin:0 auto;display:grid;gap:14px}
+.brand{font-family:var(--display);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:15px;display:flex;justify-content:space-between;gap:12px;color:var(--muted)}
+.brand b{color:var(--accent)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.photo{background:var(--photo);display:grid;place-items:center}
+.photo img{display:block;width:100%;height:auto;max-height:70vh;object-fit:contain}
+.photo .none{padding:60px 16px;color:var(--muted);text-align:center}
+.thumbs{display:flex;gap:8px;padding:8px;background:var(--card);border-top:1px solid var(--line)}
+.thumbs button{flex:1;font:600 14px var(--body);letter-spacing:.06em;text-transform:uppercase;padding:8px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink);cursor:pointer}
+.thumbs button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.thumbs button:focus-visible,.buy:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.buy{display:block;text-align:center;text-decoration:none;font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);border:2px solid var(--ink);border-radius:4px;padding:10px}
+.sku{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line);border-top:1px solid var(--line)}
+.sku .code{font-family:var(--display);font-weight:700;font-size:44px;line-height:1;letter-spacing:.04em}
+.sku .lbl{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.body{padding:16px;display:grid;gap:14px}
+h1{margin:0;font-family:var(--display);font-weight:600;font-size:28px;line-height:1.1;text-wrap:balance}
+.price{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--accent);color:var(--accent-ink);padding:10px 14px;border-radius:4px}
+.price .amt{font-family:var(--display);font-weight:700;font-size:34px;line-height:1;font-variant-numeric:tabular-nums}
+.price .note{font-size:13px;text-align:right}
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 16px}
+dt{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.08em;padding-top:2px}
+dd{margin:0;min-width:0}
+p{margin:0}
+.demo{font-size:13px;color:var(--muted);border:1px dashed var(--line);border-radius:4px;padding:8px 10px}
+.msg{padding:24px 16px;text-align:center}
+.foot{font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><span><b>Atomic</b> Motors</span><span>Art tag</span></div>
+  <div class="card" id="card" hidden>
+    <div class="photo"><img id="photo" alt="" hidden><div class="none" id="nophoto" hidden>Photo coming soon</div></div>
+    <div class="thumbs" id="thumbs" hidden></div>
+    <div class="sku"><span class="code" id="sku"></span><span class="lbl">SKU</span></div>
+    <div class="body">
+      <h1 id="title"></h1>
+      <div class="price"><span class="amt" id="price"></span><span class="note">Ask at the gift shop<br>to buy this piece</span></div>
+      <a class="buy" id="buy" href="#" target="_blank" rel="noopener" hidden>Buy online</a>
+      <dl>
+        <dt>Building</dt><dd id="bldg"></dd>
+        <dt>Location</dt><dd id="loc"></dd>
+        <dt>Size</dt><dd id="size"></dd>
+        <dt>Medium</dt><dd id="med"></dd>
+      </dl>
+      <p id="desc"></p>
+      <div class="demo">Demo page. Prices and details are made-up samples to show the layout.</div>
+    </div>
+  </div>
+  <div class="card msg" id="msg" hidden></div>
+  <div class="foot">Tell the gift shop the SKU above and they can find this piece.</div>
+</div>
+<script>
+(function(){
+  var params=new URLSearchParams(location.search);
+  var sku=(params.get("s")||"").trim().toUpperCase();
+  var card=document.getElementById("card"), msg=document.getElementById("msg");
+  function say(t){msg.textContent=t;msg.hidden=false;card.hidden=true}
+  if(!sku){say("Scan the QR code on an art tag to see a piece.");return}
+  fetch("pieces.json").then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(all){
+    var d=all[sku];
+    if(!d){say("No piece found for SKU "+sku+". Ask at the gift shop.");return}
+    document.title=sku+" | Atomic Motors Art";
+    document.getElementById("sku").textContent=sku;
+    document.getElementById("title").textContent=d.title;
+    document.getElementById("price").textContent=d.price;
+    document.getElementById("bldg").textContent="Building "+d.building;
+    document.getElementById("loc").textContent=d.location;
+    document.getElementById("size").textContent=d.size;
+    document.getElementById("med").textContent=d.medium;
+    document.getElementById("desc").textContent=d.description;
+    var img=document.getElementById("photo"),th=document.getElementById("thumbs"),np=document.getElementById("nophoto");
+    var ph=d.photos||[];
+    if(ph.length){
+      img.hidden=false;np.hidden=true;
+      function show(i){img.src=ph[i];img.alt=d.title+(ph.length>1?(i?" (back)":" (front)"):"");
+        Array.prototype.forEach.call(th.children,function(b,j){b.setAttribute("aria-pressed",j===i?"true":"false")})}
+      if(ph.length>1){th.hidden=false;th.innerHTML="";["Front","Back"].forEach(function(n,i){
+        if(!ph[i])return;var b=document.createElement("button");b.type="button";b.textContent=n;
+        b.addEventListener("click",function(){show(i)});th.appendChild(b)})}
+      show(0);
+    }else{img.hidden=true;np.hidden=false}
+    var buy=document.getElementById("buy");
+    if(d.shopify&&/^https:\/\//.test(d.shopify)){buy.href=d.shopify;buy.hidden=false}
+    card.hidden=false;
+  }).catch(function(){say("Could not load this piece. Try again, or ask at the gift shop.")});
+})();
+</script>
+</body>
+</html>

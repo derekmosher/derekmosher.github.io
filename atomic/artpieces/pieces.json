@@ -1,0 +1,26 @@
+{
+  "B-0112": {
+    "title": "Las Vegas Bikefest Rally Print",
+    "price": "$75",
+    "building": "B",
+    "location": "North wall, 2nd row from the roll-up door",
+    "size": "24 x 30 in",
+    "medium": "Print on canvas, framed",
+    "description": "Las Vegas Bikefest motorcycle rally artwork with a skull in a top hat, pistons, playing cards, dice and flames. Colors are bright. Frame has a few scuffs on the bottom edge.",
+    "shopify": "https://dratomics.com/collections/shop/products/shot-glass-dr-atomics-ombre",
+    "photos": [
+      "img/B-0112/front.jpg"
+    ]
+  },
+  "B-0113": {
+    "title": "The Dog Park",
+    "price": "$50",
+    "building": "B",
+    "location": "North wall, next to B-0112",
+    "size": "16 x 20 in",
+    "medium": "Oil on canvas",
+    "description": "Example row with made-up details. No photo yet, so the page will say photo coming soon.",
+    "shopify": "",
+    "photos": []
+  }
+}
