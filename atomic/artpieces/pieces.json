@@ -30,10 +30,23 @@
     "location": "East wall, above the stairs",
     "size": "36 x 48 in",
     "medium": "Black-and-white photograph, framed under glass",
-    "description": "Black-and-white photograph of two vintage motorcycles racing on an indoor track. Black frame with a white mat. Glass has some reflections, so the photo here is cropped and brightened to show the print.",
+    "description": "Black-and-white photograph of two vintage motorcycles racing on an indoor track. Black frame with a white mat, under glass.",
     "shopify": "",
     "photos": [
       "img/B-0114/front.jpg"
+    ]
+  },
+  "B-0115": {
+    "title": "Favor Motorcycle Poster",
+    "price": "$450",
+    "building": "C",
+    "location": "East wall, next to B-0114",
+    "size": "30 x 40 in",
+    "medium": "Color poster, framed",
+    "description": "Poster for Favor in red, blue and yellow, with two riders on motorcycles and the French line \"va droit au but\". Black frame, no glass glare in this photo.",
+    "shopify": "",
+    "photos": [
+      "img/B-0115/front.jpg"
     ]
   }
 }
