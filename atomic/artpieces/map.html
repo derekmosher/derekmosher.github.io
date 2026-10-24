@@ -42,6 +42,7 @@ svg.drag{cursor:grabbing}
 .hit{stroke:transparent;stroke-width:36;fill:none;stroke-linecap:butt;cursor:pointer}
 a:hover .wall,a:focus .wall{stroke-width:18}
 .hl .wall{stroke-width:18}
+.has-hl a:not(.hl) .wall{opacity:.3}
 .ring{fill:none;stroke:var(--accent);stroke-width:3;opacity:.9}
 .door{stroke:var(--door);stroke-width:5;fill:none}
 .doorgap{stroke:var(--floor);stroke-width:14}
@@ -60,6 +61,11 @@ a:hover .wall,a:focus .wall{stroke-width:18}
 .list a.empty .n{color:var(--muted);font-weight:500}
 .back{display:block;text-align:center;text-decoration:none;font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border:1px solid var(--line);background:var(--card);border-radius:4px;padding:10px}
 .foot{font-size:13px;color:var(--muted)}
+body.mini{padding:0;background:var(--card)}
+body.mini .brand,body.mini h1,body.mini .sub,body.mini .legend,body.mini .list,body.mini .back,body.mini .foot,body.mini .ctrl{display:none}
+body.mini .wrap{gap:0;max-width:none}
+body.mini .mapbox{border:0;border-radius:0}
+body.mini svg{touch-action:auto;cursor:pointer}
 @media (prefers-reduced-motion:no-preference){.ring{animation:pulse 1.6s ease-in-out infinite}@keyframes pulse{50%{opacity:.2}}}
 </style>
 </head>
@@ -134,6 +140,7 @@ a:hover .wall,a:focus .wall{stroke-width:18}
   function shrink(){var x=window.innerWidth;document.body.style.zoom=(x>0&&x<300)?(x/340):""}
   shrink();window.addEventListener("resize",shrink);
 
+  var mini=/[?&]mini=1/.test(location.search);if(mini)document.body.classList.add("mini");
   var svg=document.getElementById("svg"),BASE={x:0,y:0,w:800,h:560},V={x:0,y:0,w:800,h:560};
   function apply(){svg.setAttribute("viewBox",V.x+" "+V.y+" "+V.w+" "+V.h)}
   function clamp(){
@@ -150,10 +157,11 @@ a:hover .wall,a:focus .wall{stroke-width:18}
   document.getElementById("zin").onclick=function(){zoomAt(1.5,V.x+V.w/2,V.y+V.h/2)};
   document.getElementById("zout").onclick=function(){zoomAt(1/1.5,V.x+V.w/2,V.y+V.h/2)};
   document.getElementById("zreset").onclick=function(){V={x:0,y:0,w:800,h:560};apply()};
-  svg.addEventListener("wheel",function(e){e.preventDefault();var p=toSvg(e.clientX,e.clientY);zoomAt(e.deltaY<0?1.2:1/1.2,p.x,p.y)},{passive:false});
+  svg.addEventListener("wheel",function(e){if(mini)return;e.preventDefault();var p=toSvg(e.clientX,e.clientY);zoomAt(e.deltaY<0?1.2:1/1.2,p.x,p.y)},{passive:false});
 
   var ptrs={},moved=false,start=null,lastDist=0;
   svg.addEventListener("pointerdown",function(e){
+    if(mini)return;
     ptrs[e.pointerId]={x:e.clientX,y:e.clientY};
     var ids=Object.keys(ptrs);
     if(ids.length===1){moved=false;start={x:e.clientX,y:e.clientY}}
@@ -188,7 +196,7 @@ a:hover .wall,a:focus .wall{stroke-width:18}
       var short=w.name.replace(/^Building (\w+), /,"$1 ");
       var href="wall.html?w="+encodeURIComponent(id);
       if(a){
-        a.setAttribute("href",href);
+        a.setAttribute("href",mini?"map.html?w="+encodeURIComponent(id):href);if(mini)a.setAttribute("target","_top");
         a.setAttribute("aria-label",w.name+", "+w.count+(w.count===1?" piece":" pieces"));
         if(!w.count)a.querySelector(".wall").classList.add("empty");
       }
@@ -199,7 +207,7 @@ a:hover .wall,a:focus .wall{stroke-width:18}
     });
     if(hl&&walls[hl]){
       var a=document.getElementById("a-"+hl);
-      if(a){a.classList.add("hl");
+      if(a){a.classList.add("hl");svg.classList.add("has-hl");
         var bb=a.querySelector(".wall").getBBox(),rg=document.getElementById("rings");
         var r=document.createElementNS("http://www.w3.org/2000/svg","rect");
         r.setAttribute("class","ring");r.setAttribute("x",bb.x-16);r.setAttribute("y",bb.y-16);r.setAttribute("width",bb.width+32);r.setAttribute("height",bb.height+32);r.setAttribute("rx",10);rg.appendChild(r);}

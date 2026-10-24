@@ -41,6 +41,9 @@ h1{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(24px,8vw,
 .msg{padding:24px 16px;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:6px}
 .shop{display:block;text-align:center;text-decoration:none;font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border:1px solid var(--line);background:var(--card);border-radius:4px;padding:10px}
 .shop.map{color:var(--ink);font-family:var(--body);font-weight:600;font-size:16px;letter-spacing:0;text-transform:none}
+.minimap{position:relative}
+.minimap iframe{display:block;width:100%;aspect-ratio:800/560;border:1px solid var(--line);border-radius:6px;background:var(--card)}
+.minimap .cap{font-size:13px;color:var(--muted);margin-top:4px}
 .foot{font-size:13px;color:var(--muted)}
 </style>
 </head>
@@ -49,6 +52,7 @@ h1{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(24px,8vw,
   <div class="brand"><a href="home.html"><b>Atomic</b> Motors</a><span class="tn"><a href="home.html">All art</a><a href="map.html">Map</a></span></div>
   <h1 id="h">Art wall</h1>
   <p class="sub" id="sub"></p>
+  <div class="minimap" id="mini" hidden><iframe id="miniFrame" title="Map of the building with this wall highlighted" loading="lazy"></iframe><div class="cap">This wall is outlined on the map. Tap the map to open it full size.</div></div>
   <div class="grid" id="grid"></div>
   <div class="msg" id="msg" hidden></div>
   <a class="shop map" id="mapLink" href="map.html" hidden>Find this wall on the building map</a>
@@ -71,6 +75,7 @@ h1{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(24px,8vw,
     if(!keys.length&&!info){say("No wall found for this code. Ask at the gift shop.");return}
     var name=info?info.name:all[keys[0]].wall;
     document.getElementById("mapLink").href="map.html?w="+encodeURIComponent(w);document.getElementById("mapLink").hidden=false;
+    document.getElementById("miniFrame").src="map.html?w="+encodeURIComponent(w)+"&mini=1";document.getElementById("mini").hidden=false;
     if(!keys.length){document.getElementById("h").textContent=name;document.title=name+" | Atomic Motors Art";document.getElementById("sub").textContent="No art on this wall yet.";return}
     document.getElementById("h").textContent=name;
     document.title=name+" | Atomic Motors Art";

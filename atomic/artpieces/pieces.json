@@ -290,5 +290,293 @@
     ],
     "wall": "Building B, North Wall 1",
     "wallId": "b-n1"
+  },
+  "B-0124": {
+    "title": "Highway 9 Shield",
+    "price": "$85",
+    "building": "B",
+    "location": "South wall, far left corner",
+    "size": "24 x 32 in",
+    "medium": "Print on aluminum",
+    "description": "White highway shield with the number 9 on a blue background. Edges are clean and the surface has a few light scratches.",
+    "shopify": "",
+    "photos": [
+      {
+        "src": "img/B-0124/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0124/detail-1.jpg",
+        "label": "Detail"
+      },
+      {
+        "src": "img/B-0124/signature.jpg",
+        "label": "Signature"
+      }
+    ],
+    "wall": "Building B, South Wall",
+    "wallId": "b-s1"
+  },
+  "B-0125": {
+    "title": "Teal Coupe",
+    "price": "$210",
+    "building": "B",
+    "location": "West wall, near the corner",
+    "size": "40 x 30 in",
+    "medium": "Acrylic on canvas",
+    "description": "Black coupe on a teal and gold gradient with a dark road. Colors are bright. One small paint chip on the lower left.",
+    "shopify": "https://dratomics.com/collections/shop/products/magnet-atomic-motors",
+    "photos": [
+      {
+        "src": "img/B-0125/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0125/detail-1.jpg",
+        "label": "Detail"
+      },
+      {
+        "src": "img/B-0125/signature.jpg",
+        "label": "Signature"
+      }
+    ],
+    "wall": "Building B, West Wall",
+    "wallId": "b-w1"
+  },
+  "B-0126": {
+    "title": "Sunset Ride",
+    "price": "$130",
+    "building": "B",
+    "location": "North wall 1, center",
+    "size": "24 x 32 in",
+    "medium": "Print, framed",
+    "description": "Black bike silhouette in front of a large orange sun on a gold background. Frame has a scuff on the top edge.",
+    "shopify": "",
+    "photos": [
+      {
+        "src": "img/B-0126/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0126/detail-1.jpg",
+        "label": "Detail"
+      }
+    ],
+    "wall": "Building B, North Wall 1",
+    "wallId": "b-n1"
+  },
+  "B-0127": {
+    "title": "High Stakes",
+    "price": "$175",
+    "building": "B",
+    "location": "Hallway to the men's restroom, left",
+    "size": "30 x 30 in",
+    "medium": "Acrylic on canvas",
+    "description": "Stacks of red, black and green poker chips on a green felt background. Corners show light wear.",
+    "shopify": "",
+    "photos": [
+      {
+        "src": "img/B-0127/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0127/detail-1.jpg",
+        "label": "Detail"
+      },
+      {
+        "src": "img/B-0127/signature.jpg",
+        "label": "Signature"
+      }
+    ],
+    "wall": "Building B, Men's Restroom",
+    "wallId": "b-mr"
+  },
+  "B-0128": {
+    "title": "Lucky Roll",
+    "price": "$160",
+    "building": "B",
+    "location": "East wall, high above the stairs",
+    "size": "40 x 30 in",
+    "medium": "Print, framed",
+    "description": "Two red dice mid-roll on a dark blue background. Hung high on the wall, so it is hard to see up close.",
+    "shopify": "",
+    "photos": [
+      {
+        "src": "img/B-0128/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0128/detail-1.jpg",
+        "label": "Detail"
+      }
+    ],
+    "wall": "Building B, East Wall",
+    "wallId": "b-e1"
+  },
+  "B-0129": {
+    "title": "Ace of Spades",
+    "price": "$90",
+    "building": "B",
+    "location": "North wall 2, right side",
+    "size": "24 x 32 in",
+    "medium": "Letterpress print, unframed",
+    "description": "Large black spade on a cream card with a red A in two corners. Paper has a soft crease near the bottom.",
+    "shopify": "",
+    "photos": [
+      {
+        "src": "img/B-0129/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0129/detail-1.jpg",
+        "label": "Detail"
+      }
+    ],
+    "wall": "Building B, North Wall 2",
+    "wallId": "b-n2"
+  },
+  "B-0130": {
+    "title": "Purple Ridgeline",
+    "price": "$240",
+    "building": "B",
+    "location": "North wall 1, right side",
+    "size": "40 x 30 in",
+    "medium": "Acrylic on canvas, framed",
+    "description": "Layered purple mountain ridges under a pale orange sky. Frame is in good shape.",
+    "shopify": "https://dratomics.com/collections/shop/products/magnet-atomic-motors",
+    "photos": [
+      {
+        "src": "img/B-0130/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0130/detail-1.jpg",
+        "label": "Detail"
+      },
+      {
+        "src": "img/B-0130/signature.jpg",
+        "label": "Signature"
+      }
+    ],
+    "wall": "Building B, North Wall 1",
+    "wallId": "b-n1"
+  },
+  "B-0131": {
+    "title": "Pacific Sunset",
+    "price": "$200",
+    "building": "B",
+    "location": "South wall, center",
+    "size": "40 x 30 in",
+    "medium": "Acrylic on canvas",
+    "description": "Round sun setting over layered blue waves on a coral sky. Light dust along the top edge.",
+    "shopify": "",
+    "photos": [
+      {
+        "src": "img/B-0131/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0131/detail-1.jpg",
+        "label": "Detail"
+      }
+    ],
+    "wall": "Building B, South Wall",
+    "wallId": "b-s1"
+  },
+  "B-0132": {
+    "title": "Gear Mandala",
+    "price": "$320",
+    "building": "B",
+    "location": "East wall, left of the stairs",
+    "size": "36 x 36 in",
+    "medium": "Mixed media on panel, framed",
+    "description": "Circular pattern of gray and red gears on a dark background. Panel is solid with no warping.",
+    "shopify": "",
+    "photos": [
+      {
+        "src": "img/B-0132/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0132/detail-1.jpg",
+        "label": "Detail"
+      },
+      {
+        "src": "img/B-0132/signature.jpg",
+        "label": "Signature"
+      }
+    ],
+    "wall": "Building B, East Wall",
+    "wallId": "b-e1"
+  },
+  "B-0133": {
+    "title": "Shop Tools",
+    "price": "$110",
+    "building": "B",
+    "location": "Hallway to the men's restroom, right",
+    "size": "24 x 32 in",
+    "medium": "Print, unframed",
+    "description": "Crossed yellow and white wrenches on a blue background. Small tear at one corner.",
+    "shopify": "",
+    "photos": [
+      {
+        "src": "img/B-0133/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0133/detail-1.jpg",
+        "label": "Detail"
+      }
+    ],
+    "wall": "Building B, Men's Restroom",
+    "wallId": "b-mr"
+  },
+  "B-0134": {
+    "title": "Flames",
+    "price": "$145",
+    "building": "B",
+    "location": "West wall, left of the roll-up door",
+    "size": "30 x 30 in",
+    "medium": "Print, framed",
+    "description": "Red, orange and yellow flames on a black background. Glass has a few fingerprints.",
+    "shopify": "",
+    "photos": [
+      {
+        "src": "img/B-0134/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0134/detail-1.jpg",
+        "label": "Detail"
+      }
+    ],
+    "wall": "Building B, West Wall",
+    "wallId": "b-w1"
+  },
+  "B-0135": {
+    "title": "Night City",
+    "price": "$280",
+    "building": "B",
+    "location": "North wall 2, left side",
+    "size": "40 x 30 in",
+    "medium": "Print on metal",
+    "description": "City skyline at night with lit windows and a full moon. Metal has a small dent near the right edge.",
+    "shopify": "",
+    "photos": [
+      {
+        "src": "img/B-0135/front.jpg",
+        "label": "Front"
+      },
+      {
+        "src": "img/B-0135/detail-1.jpg",
+        "label": "Detail"
+      },
+      {
+        "src": "img/B-0135/signature.jpg",
+        "label": "Signature"
+      }
+    ],
+    "wall": "Building B, North Wall 2",
+    "wallId": "b-n2"
   }
 }

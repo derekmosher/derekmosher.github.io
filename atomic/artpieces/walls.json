@@ -1,26 +1,26 @@
 {
   "b-n1": {
     "name": "Building B, North Wall 1",
-    "count": 3
+    "count": 5
   },
   "b-n2": {
     "name": "Building B, North Wall 2",
-    "count": 2
+    "count": 4
   },
   "b-e1": {
     "name": "Building B, East Wall",
-    "count": 2
+    "count": 4
   },
   "b-s1": {
     "name": "Building B, South Wall",
-    "count": 2
+    "count": 4
   },
   "b-w1": {
     "name": "Building B, West Wall",
-    "count": 2
+    "count": 4
   },
   "b-mr": {
     "name": "Building B, Men's Restroom",
-    "count": 1
+    "count": 3
   }
 }
