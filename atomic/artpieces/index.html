@@ -88,7 +88,7 @@ p{margin:0}
 </head>
 <body>
 <div class="wrap">
-  <div class="brand"><a href="home.html"><b>Atomic</b> Motors</a><span class="tn"><a href="home.html" data-i18n="nav_all"></a><a href="map.html" data-i18n="nav_map"></a><a href="picks.html"><span data-i18n="nav_picks"></span> <span id="pickCount"></span></a><select id="lang"></select></span></div>
+  <div class="brand"><a href="welcome.html"><b>Atomic</b> Motors</a><span class="tn"><a href="home.html" data-i18n="nav_all"></a><a href="map.html" data-i18n="nav_map"></a><a href="picks.html"><span data-i18n="nav_picks"></span> <span id="pickCount"></span></a><select id="lang"></select></span></div>
   <div class="card" id="card" hidden>
     <div class="photo" id="photoBox">
       <div class="track" id="track" tabindex="0" data-i18n-aria="photos_label"></div>
@@ -132,7 +132,7 @@ fit();window.addEventListener("resize",fit);window.addEventListener("orientation
   var sku=(params.get("s")||"").trim().toUpperCase();
   var card=document.getElementById("card"), msg=document.getElementById("msg");
   function say(t){msg.textContent=t;msg.hidden=false;card.hidden=true}
-  if(!sku){location.replace("home.html");return}
+  if(!sku){location.replace("welcome.html");return}
 
   function buildPhotos(list,title){
     var track=document.getElementById("track"),dots=document.getElementById("dots"),

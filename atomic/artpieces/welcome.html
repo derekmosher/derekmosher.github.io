@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Welcome to Atomic Motors</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#e9ecee; --card:#fff; --ink:#14202b; --muted:#5a6772; --line:#cdd3d8; --accent:#c41222; --accent-ink:#fff; --photo:#dde2e6; --floor:#f6f7f8; --room:#e4e8eb; --empty:#9aa5ae; --door:#2f6fb3;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Barlow",Arial,Helvetica,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0f161c; --card:#18222b; --ink:#eef1f3; --muted:#9aa7b2; --line:#2c3a46; --accent:#ff4a58; --accent-ink:#14202b; --photo:#223039; --floor:#1d2933; --room:#26343f; --empty:#5d6c78; --door:#6fb0f0; color-scheme:dark}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--body);padding:20px 16px 40px}
+.wrap{max-width:760px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.brand{font-family:var(--display);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:15px;display:flex;justify-content:space-between;gap:12px;color:var(--muted)}
+.brand a{color:inherit;text-decoration:none}.brand b{color:var(--accent)}
+.tn{display:flex;gap:14px}.tn a[aria-current="page"]{color:var(--ink);border-bottom:2px solid var(--accent)}
+.brand a:focus-visible,.chips button:focus-visible,.item:focus-visible,#q:focus-visible,.shop:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+h1{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(24px,8vw,34px);line-height:1.1}
+.sub{margin:0;color:var(--muted)}
+#q{width:100%;font:16px var(--body);padding:10px 12px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+.chips button{flex:0 0 auto;font:600 14px var(--body);padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);cursor:pointer;white-space:nowrap}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:300px){.grid{grid-template-columns:minmax(0,1fr)}}
+@media (min-width:560px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:720px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.item{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;min-width:0}
+.thumb{aspect-ratio:1/1;background:var(--photo);display:grid;place-items:center}
+.thumb img{width:100%;height:100%;object-fit:contain;display:block}
+.thumb span{color:var(--muted);font-size:13px}
+.meta{padding:8px 10px 10px;border-top:1px solid var(--line)}
+.meta .sku{font-family:var(--display);font-weight:700;font-size:24px;letter-spacing:.05em;line-height:1.1}
+.meta .t{font-size:14px;line-height:1.25;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.meta .w{font-size:12px;color:var(--muted);margin-top:2px}
+.meta .p{font-family:var(--display);font-weight:700;font-size:20px;color:var(--accent);font-variant-numeric:tabular-nums}
+.adm{display:block;text-align:center;text-decoration:none;font:600 15px var(--body);color:var(--ink);background:var(--card);border:1px dashed var(--muted);border-radius:4px;padding:10px}.adm small{color:var(--muted);font-weight:400}.adm:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.hs{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}.hs input{width:20px;height:20px;accent-color:var(--accent)}
+.msg{padding:24px 16px;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:6px}
+.shop{display:block;text-align:center;text-decoration:none;font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border:1px solid var(--line);background:var(--card);border-radius:4px;padding:10px}
+.foot{font-size:13px;color:var(--muted)}
+.hero h1{font-size:clamp(28px,9vw,44px)}
+.lead{margin:0;font-size:18px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.stat3{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:10px 6px;text-align:center;min-width:0}
+.stat3 small{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.stat3 b{display:block;font:700 clamp(26px,9vw,38px)/1.1 var(--display);color:var(--accent)}
+.stat3 span{display:block;font-size:13px;line-height:1.25;overflow-wrap:anywhere}
+.note{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:12px 14px}
+h2{margin:0;font:600 24px var(--display);letter-spacing:.04em;text-transform:uppercase}
+.mapbox{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+svg{display:block;width:100%;height:auto;aspect-ratio:800/520}
+.road{fill:var(--room)}.lot{fill:var(--floor)}
+.bld{fill:var(--room);stroke:var(--empty);stroke-width:3}
+.bld.on{fill:var(--card);stroke:var(--accent);stroke-width:5}
+svg a:hover .bld.on,svg a:focus .bld.on{stroke-width:8}
+svg a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.bl{font:700 62px var(--display);fill:var(--muted);text-anchor:middle}
+.on-t .bl,.bl.on{fill:var(--accent)}
+.sm{font:600 22px var(--body);fill:var(--muted);text-anchor:middle}
+.door{stroke:var(--door);stroke-width:8;stroke-linecap:butt}
+.dl{font:700 22px var(--body);fill:var(--door);text-anchor:middle}
+.pin{fill:var(--accent)}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0;padding:0;list-style:none}
+@media (max-width:300px){.cards{grid-template-columns:minmax(0,1fr)}}
+.cards li{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:10px 12px;min-width:0}
+.cards li.off{color:var(--muted)}
+.cards b{font:700 24px var(--display);letter-spacing:.04em;display:block}
+.cards a{color:var(--accent);font-weight:600}
+.btns{display:grid;gap:10px}
+.btn{display:block;text-align:center;text-decoration:none;font:700 20px var(--display);letter-spacing:.06em;text-transform:uppercase;padding:12px;border-radius:4px;border:2px solid var(--ink);color:var(--ink);background:var(--card)}
+.btn.main{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="common.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><a href="welcome.html"><b>Atomic</b> Motors</a><span class="tn"><a href="home.html" data-i18n="nav_all"></a><a href="map.html" data-i18n="nav_map"></a><a href="picks.html"><span data-i18n="nav_picks"></span> <span id="pickCount"></span></a><select id="lang"></select></span></div>
+  <div class="hero"><h1 data-i18n="w_title"></h1></div>
+  <p class="lead" data-i18n="w_lead"></p>
+  <div class="stats">
+    <div class="stat3"><small data-i18n="w_about"></small><b>4</b><span data-i18n="w_bld"></span></div>
+    <div class="stat3"><small data-i18n="w_about"></small><b>300</b><span data-i18n="w_cars"></span></div>
+    <div class="stat3"><small data-i18n="w_about"></small><b>3,000</b><span data-i18n="w_art"></span></div>
+  </div>
+  <h2 data-i18n="w_map_h"></h2>
+  <p class="sub" data-i18n="w_map_hint"></p>
+  <div class="mapbox">
+    <svg viewBox="0 0 800 520" role="group" data-i18n-aria="w_bld_aria">
+      <rect class="lot" x="0" y="0" width="800" height="520"/>
+      <rect class="road" x="0" y="448" width="800" height="72"/>
+      <rect class="road" x="372" y="0" width="56" height="448"/>
+      <a id="bA"><rect class="bld" x="40" y="30" width="310" height="180" rx="6"/><text class="bl" x="195" y="135">A</text><text class="sm" x="195" y="170" data-b="A"></text><line class="door" x1="350" y1="90" x2="350" y2="140"/></a>
+      <a id="bB" href="map.html"><rect class="bld on" x="450" y="30" width="310" height="180" rx="6"/><text class="bl on" x="605" y="135">B</text><text class="sm" x="605" y="170" data-i18n="w_art_map"></text><line class="door" x1="450" y1="90" x2="450" y2="140"/><line class="door" x1="560" y1="210" x2="650" y2="210"/></a>
+      <a id="bC"><rect class="bld" x="40" y="238" width="310" height="180" rx="6"/><text class="bl" x="195" y="343">C</text><text class="sm" x="195" y="378" data-b="C"></text><line class="door" x1="350" y1="300" x2="350" y2="350"/></a>
+      <a id="bD"><rect class="bld" x="450" y="238" width="310" height="180" rx="6"/><text class="bl" x="605" y="343">D</text><text class="sm" x="605" y="378" data-b="D"></text><line class="door" x1="450" y1="300" x2="450" y2="350"/></a>
+      <g><circle class="pin" cx="400" cy="486" r="13"/><circle cx="400" cy="486" r="5" fill="#fff"/><text class="dl" x="400" y="446" style="fill:var(--accent)" data-i18n="w_here"></text></g>
+    </svg>
+  </div>
+  <ul class="cards">
+    <li class="off"><b data-b="A"></b><span data-i18n="soon"></span></li>
+    <li><b data-b="B"></b><a href="map.html" data-i18n="w_btn_map"></a></li>
+    <li class="off"><b data-b="C"></b><span data-i18n="soon"></span></li>
+    <li class="off"><b data-b="D"></b><span data-i18n="soon"></span></li>
+  </ul>
+  <div class="note" data-i18n="w_mech"></div>
+  <div class="note" data-i18n="w_hang"></div>
+  <div class="note" data-i18n="w_noprice"></div>
+  <div class="note" data-i18n="w_guide"></div>
+  <div class="btns"><a class="btn main" href="home.html" data-i18n="w_btn_art"></a><a class="btn" href="map.html" data-i18n="w_btn_map"></a><a class="btn" href="https://dratomics.com/" target="_blank" rel="noopener" data-i18n="shop"></a></div>
+  <div class="foot" data-i18n="w_demo"></div>
+</div>
+<script src="common.js"></script>
+<script>
+(function(){
+  function shrink(){var x=window.innerWidth;document.body.style.zoom=(x>0&&x<300)?(x/340):""}
+  shrink();window.addEventListener("resize",shrink);
+  [].forEach.call(document.querySelectorAll("[data-b]"),function(e){e.textContent=AM.T("bld_n",{b:e.getAttribute("data-b")})});
+  [].forEach.call(document.querySelectorAll("svg .sm[data-b]"),function(e){e.textContent=AM.T("soon")});
+})();
+</script>
+</body>
+</html>
