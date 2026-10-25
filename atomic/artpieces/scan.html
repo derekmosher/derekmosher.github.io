@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Scan a QR code | Atomic Motors Art</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#e9ecee; --card:#fff; --ink:#14202b; --muted:#5a6772; --line:#cdd3d8; --accent:#c41222; --accent-ink:#fff; --photo:#dde2e6;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Barlow",Arial,Helvetica,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0f161c; --card:#18222b; --ink:#eef1f3; --muted:#9aa7b2; --line:#2c3a46; --accent:#ff4a58; --accent-ink:#14202b; --photo:#223039; color-scheme:dark}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--body);padding:20px 16px 40px}
+.wrap{max-width:760px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.brand{font-family:var(--display);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:15px;display:flex;justify-content:space-between;gap:12px;color:var(--muted)}
+.brand a{color:inherit;text-decoration:none}.brand b{color:var(--accent)}
+.tn{display:flex;gap:14px}.tn a[aria-current="page"]{color:var(--ink);border-bottom:2px solid var(--accent)}
+.brand a:focus-visible,.chips button:focus-visible,.item:focus-visible,#q:focus-visible,.shop:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+h1{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(24px,8vw,34px);line-height:1.1}
+.sub{margin:0;color:var(--muted)}
+#q{width:100%;font:16px var(--body);padding:10px 12px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+.chips button{flex:0 0 auto;font:600 14px var(--body);padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);cursor:pointer;white-space:nowrap}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:300px){.grid{grid-template-columns:minmax(0,1fr)}}
+@media (min-width:560px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:720px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.item{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;min-width:0}
+.thumb{aspect-ratio:1/1;background:var(--photo);display:grid;place-items:center}
+.thumb img{width:100%;height:100%;object-fit:contain;display:block}
+.thumb span{color:var(--muted);font-size:13px}
+.meta{padding:8px 10px 10px;border-top:1px solid var(--line)}
+.meta .sku{font-family:var(--display);font-weight:700;font-size:24px;letter-spacing:.05em;line-height:1.1}
+.meta .t{font-size:14px;line-height:1.25;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.meta .w{font-size:12px;color:var(--muted);margin-top:2px}
+.meta .p{font-family:var(--display);font-weight:700;font-size:20px;color:var(--accent);font-variant-numeric:tabular-nums}
+.adm{display:block;text-align:center;text-decoration:none;font:600 15px var(--body);color:var(--ink);background:var(--card);border:1px dashed var(--muted);border-radius:4px;padding:10px}.adm small{color:var(--muted);font-weight:400}.adm:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.hs{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}.hs input{width:20px;height:20px;accent-color:var(--accent)}
+.msg{padding:24px 16px;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:6px}
+.shop{display:block;text-align:center;text-decoration:none;font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border:1px solid var(--line);background:var(--card);border-radius:4px;padding:10px}
+.foot{font-size:13px;color:var(--muted)}
+video{display:block;width:100%;max-height:60vh;background:#000;border-radius:6px;object-fit:cover}
+.vbox{position:relative}
+.vbox::after{content:"";position:absolute;inset:18% 18%;border:3px solid #fff;border-radius:10px;pointer-events:none;z-index:2}
+.vbox video{position:relative}
+.stt{min-height:1.5em;color:var(--muted)}
+.stt.err{color:var(--accent);font-weight:600}
+.row{display:flex;gap:8px}
+.row input{flex:1;min-width:0;font:16px var(--body);padding:10px 12px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink);text-transform:uppercase}
+.row button{font:700 18px var(--display);letter-spacing:.06em;text-transform:uppercase;padding:0 18px;border:2px solid var(--ink);border-radius:4px;background:var(--card);color:var(--ink);cursor:pointer}
+.row input:focus-visible,.row button:focus-visible,.btn2:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.btn2{display:grid;place-content:center;min-height:48px;font:700 20px var(--display);letter-spacing:.06em;text-transform:uppercase;border:2px solid var(--ink);border-radius:4px;background:var(--card);color:var(--ink);cursor:pointer;padding:0 14px;text-align:center}
+.btn2.main{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+h3{margin:4px 0 0;font:600 18px var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+</style>
+<link rel="stylesheet" href="common.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><a href="welcome.html"><b>Atomic</b> Motors</a><span class="tn"><a href="home.html" data-i18n="nav_all"></a><a href="welcome.html#map" data-i18n="nav_map"></a><a href="picks.html"><span data-i18n="nav_picks"></span> <span id="pickCount"></span></a><select id="lang"></select></span></div>
+  <h1 data-i18n="nav_scan"></h1>
+  <p class="sub" data-i18n="s_hint"></p>
+  <div class="vbox" id="vbox" hidden><video id="vid" playsinline muted></video></div>
+  <p class="stt" id="stt" role="status"></p>
+  <button type="button" class="btn2 main" id="start" data-i18n="s_start"></button>
+  <label class="btn2" id="photoLbl"><span data-i18n="s_photo"></span><input type="file" id="photo" accept="image/*" capture="environment" hidden></label>
+  <h3 data-i18n="s_type"></h3>
+  <form class="row" id="f"><input id="sku" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" data-i18n-ph="s_ph" data-i18n-aria="s_type"><button type="submit" data-i18n="s_go"></button></form>
+  <a class="shop" href="home.html" data-i18n="home_title"></a>
+</div>
+<canvas id="cv" hidden></canvas>
+<script src="common.js"></script>
+<script src="jsQR.js"></script>
+<script>
+(function(){
+  var T=AM.T,$=function(i){return document.getElementById(i)},stt=$("stt"),vid=$("vid"),cv=$("cv"),ctx=cv.getContext("2d",{willReadFrequently:true}),stream=null,timer=0,done=false;
+  function say(k,err){stt.textContent=k?T(k):"";stt.className="stt"+(err?" err":"")}
+  /* Only our own codes are accepted. We pull out a validated SKU or wall id and open our own page, never the address in the code. */
+  function route(text){
+    text=String(text||"").trim();var m;
+    if(/^[A-D]-\d{4}$/i.test(text))return "index.html?s="+text.toUpperCase();
+    try{var u=new URL(text);var ok=u.host===location.host||u.host==="derekmosher.github.io";
+      if(ok){var s=(u.searchParams.get("s")||"").toUpperCase(),w=(u.searchParams.get("w")||"").toLowerCase();
+        if(/^[A-D]-\d{4}$/.test(s))return "index.html?s="+s;
+        if(/^[a-z0-9-]{1,20}$/.test(w))return "wall.html?w="+w}}catch(e){}
+    return null;
+  }
+  function found(text){if(done)return;var r=route(text);if(!r){say("s_bad",true);return false}done=true;stop();location.href=r;return true}
+  function decode(img,w,h){var q=jsQR(img.data,w,h,{inversionAttempts:"attemptBoth"});return q&&q.data}
+  function tick(){
+    if(!stream||done)return;
+    if(vid.readyState>=2&&vid.videoWidth){var w=vid.videoWidth,h=vid.videoHeight,sc=Math.min(1,640/w);cv.width=Math.round(w*sc);cv.height=Math.round(h*sc);
+      ctx.drawImage(vid,0,0,cv.width,cv.height);var t=decode(ctx.getImageData(0,0,cv.width,cv.height),cv.width,cv.height);if(t)found(t)}
+    timer=setTimeout(tick,180);
+  }
+  function stop(){clearTimeout(timer);if(stream){stream.getTracks().forEach(function(t){t.stop()});stream=null}$("vbox").hidden=true;$("start").textContent=T("s_start")}
+  $("start").addEventListener("click",function(){
+    if(stream){stop();say("");return}
+    if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){say("s_denied",true);return}
+    navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}},audio:false}).then(function(s){
+      stream=s;vid.srcObject=s;$("vbox").hidden=false;vid.play().catch(function(){});$("start").textContent=T("s_stop");say("s_looking");tick();
+    }).catch(function(){say("s_denied",true)});
+  });
+  $("photo").addEventListener("change",function(){
+    var f=this.files&&this.files[0];if(!f)return;var img=new Image(),url=URL.createObjectURL(f);
+    img.onload=function(){var tries=[1600,1000,600],hit=null;
+      for(var i=0;i<tries.length&&!hit;i++){var sc=Math.min(1,tries[i]/Math.max(img.naturalWidth,img.naturalHeight));cv.width=Math.round(img.naturalWidth*sc);cv.height=Math.round(img.naturalHeight*sc);
+        ctx.drawImage(img,0,0,cv.width,cv.height);hit=decode(ctx.getImageData(0,0,cv.width,cv.height),cv.width,cv.height)}
+      URL.revokeObjectURL(url);if(hit)found(hit);else say("s_none",true)};
+    img.onerror=function(){say("s_none",true)};img.src=url;this.value="";
+  });
+  $("f").addEventListener("submit",function(e){e.preventDefault();var v=$("sku").value.trim().toUpperCase();if(!found(v))return});
+  window.addEventListener("pagehide",stop);
+})();
+</script>
+</body>
+</html>
