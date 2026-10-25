@@ -58,7 +58,7 @@ h1{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(24px,8vw,
 h2{margin:0;font:600 24px var(--display);letter-spacing:.04em;text-transform:uppercase}
 .mapbox{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
 svg{display:block;width:100%;height:auto;aspect-ratio:800/1060}
-.road{fill:var(--room)}.lot{fill:var(--floor)}.pave{fill:var(--room);opacity:.55}.stripe{stroke:var(--empty);stroke-width:2;opacity:.6}.dash{stroke:var(--empty);stroke-width:3;stroke-dasharray:22 16}.road-t{font:700 30px var(--display);letter-spacing:.12em;fill:var(--muted);text-anchor:middle}.north path{fill:var(--ink)}.north text{font:700 22px var(--body);fill:var(--ink);text-anchor:middle}.tbc{font-style:italic;font-weight:500}.svc{fill:var(--accent);font-weight:700}.vt{font:600 20px var(--body);fill:var(--muted);text-anchor:middle}.gift polygon{fill:var(--accent);stroke:#fff;stroke-width:2}.gl{fill:var(--accent);font-weight:700}.plane path{fill:var(--ink)}.split{stroke:var(--accent);stroke-width:3;stroke-dasharray:8 6}.sm.on{fill:var(--accent)}
+.road{fill:var(--room)}.lot{fill:var(--floor)}.pave{fill:var(--room);opacity:.55}.stripe{stroke:var(--empty);stroke-width:2;opacity:.6}.dash{stroke:var(--empty);stroke-width:3;stroke-dasharray:22 16}.road-t{font:700 30px var(--display);letter-spacing:.12em;fill:var(--muted);text-anchor:middle}.north path{fill:var(--ink)}.north text{font:700 22px var(--body);fill:var(--ink);text-anchor:middle}.tbc{font-style:italic;font-weight:500}.svc{fill:var(--accent);font-weight:700}.vt{font:600 20px var(--body);fill:var(--muted);text-anchor:middle}.route path{fill:none;stroke:var(--accent);stroke-width:5;stroke-dasharray:3 11;stroke-linecap:round}.sm.dl2{fill:var(--door);font-weight:700;font-size:19px}.gift polygon{fill:var(--accent);stroke:#fff;stroke-width:2}.gl{fill:var(--accent);font-weight:700}.plane path{fill:var(--ink)}.split{stroke:var(--accent);stroke-width:3;stroke-dasharray:8 6}.sm.on{fill:var(--accent)}
 .bld{fill:var(--room);stroke:var(--empty);stroke-width:3}
 .bld.on{fill:var(--card);stroke:var(--accent);stroke-width:5}
 svg a:hover .bld.on,svg a:focus .bld.on{stroke-width:8}
@@ -110,11 +110,16 @@ svg a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
       <text class="vt svc" transform="translate(171 425) rotate(-90)" data-i18n="w_service"></text>
       <text class="vt" transform="translate(171 540) rotate(-90)" data-i18n="w_garage"></text>
       <text class="vt" transform="translate(171 715) rotate(-90)" data-i18n="w_show"></text>
-      <text class="sm on" x="164" y="868" data-i18n="w_art_map"></text>
-      <a id="bC"><rect class="bld" x="297" y="564" width="163" height="201" rx="6"/><text class="bl" x="378" y="650">C</text></a>
+      <line class="door" x1="116" y1="829" x2="162" y2="829"/>
+      <text class="sm dl2" x="139" y="862" data-i18n="w_entrance"></text>
+      <text class="sm on" x="164" y="900" data-i18n="w_art_map"></text>
+      <a id="bC"><rect class="bld" x="297" y="564" width="163" height="201" rx="6"/><text class="bl" x="378" y="690">C</text></a>
       <g class="gift"><polygon points="452,731 459,748 478,749 463,761 468,779 452,769 436,779 441,761 426,749 445,748"/></g>
-      <text class="sm gl" x="378" y="812" data-i18n="w_gift"></text>
-      <text class="sm" x="378" y="690" data-i18n="w_show"></text>
+      <g class="route"><path d="M326 765V590H432V738"/></g>
+      <line class="door" x1="304" y1="765" x2="348" y2="765"/>
+      <text class="sm dl2" x="326" y="800" data-i18n="w_entrance"></text>
+      <text class="sm gl" x="378" y="842" data-i18n="w_gift"></text>
+      <text class="sm" x="378" y="548" data-i18n="w_show"></text>
       <a id="bD"><rect class="bld" x="630" y="627" width="72" height="195" rx="6"/><text class="bl" x="666" y="735" style="font-size:52px">D</text></a>
       <text class="sm" x="620" y="700" style="text-anchor:end;font-size:18px" data-i18n="w_show"></text>
       <g class="plane" transform="translate(666 660)"><path d="M0 -18L5 -4L22 6L22 11L5 7L3 15L9 19L9 22L0 20L-9 22L-9 19L-3 15L-5 7L-22 11L-22 6L-5 -4Z"/></g>
@@ -129,6 +134,7 @@ svg a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
   </ul>
   <div class="note" style="border-color:var(--accent);border-width:2px" data-i18n="w_service_note"></div>
   <div class="note" data-i18n="w_gift_note"></div>
+  <div class="note" data-i18n="w_gift_path"></div>
   <div class="note" data-i18n="w_mech"></div>
   <div class="note" data-i18n="w_plane_note"></div>
   <div class="note" data-i18n="w_hang"></div>

@@ -97,6 +97,12 @@ Object.assign(S.fr,{"w_service": "Service", "w_tbc": "À confirmer", "w_service_
 Object.assign(S.de,{"w_service": "Service", "w_tbc": "Noch offen", "w_service_note": "Ihr Auto muss repariert werden? Die Serviceabteilung befindet sich im nördlichen Teil von Gebäude B, im Werkstattbereich."});
 Object.assign(S.zh,{"w_service": "维修部", "w_tbc": "待确认", "w_service_note": "需要修车？维修部在 B 楼北部的车间区域。"});
 
+Object.assign(S.en,{"w_entrance": "Entrance", "w_gift_path": "How to reach the gift shop: go in the door on the left side of Building C, walk to the back, turn right, then walk all the way to the front. The gift shop has no outside door.", "w_gift_note": "The gift shop is in the bottom right corner of Building C. It is worth finding."});
+Object.assign(S.es,{"w_entrance": "Entrada", "w_gift_path": "Cómo llegar a la tienda de regalos: entre por la puerta del lado izquierdo del Edificio C, camine hasta el fondo, gire a la derecha y camine hasta el frente. La tienda de regalos no tiene puerta exterior."});
+Object.assign(S.fr,{"w_entrance": "Entrée", "w_gift_path": "Pour atteindre la boutique de cadeaux : entrez par la porte du côté gauche du bâtiment C, allez jusqu'au fond, tournez à droite, puis marchez jusqu'à l'avant. La boutique n'a pas de porte extérieure."});
+Object.assign(S.de,{"w_entrance": "Eingang", "w_gift_path": "So kommen Sie zum Geschenkeladen: Gehen Sie durch die Tür auf der linken Seite von Gebäude C, bis nach hinten, biegen Sie rechts ab und gehen Sie dann bis ganz nach vorn. Der Geschenkeladen hat keine Außentür."});
+Object.assign(S.zh,{"w_entrance": "入口", "w_gift_path": "去礼品店的路线：从 C 楼左侧的门进入，走到最里面，向右转，再一直走到前面。礼品店没有对外的门。"});
+
 function sget(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function sset(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 var qp=new URLSearchParams(location.search);
