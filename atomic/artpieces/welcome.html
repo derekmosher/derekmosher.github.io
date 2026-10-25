@@ -58,7 +58,7 @@ h1{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(24px,8vw,
 h2{margin:0;font:600 24px var(--display);letter-spacing:.04em;text-transform:uppercase}
 .mapbox{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
 svg{display:block;width:100%;height:auto;aspect-ratio:800/1060}
-.road{fill:var(--room)}.lot{fill:var(--floor)}.pave{fill:var(--room);opacity:.55}.stripe{stroke:var(--empty);stroke-width:2;opacity:.6}.dash{stroke:var(--empty);stroke-width:3;stroke-dasharray:22 16}.road-t{font:700 30px var(--display);letter-spacing:.12em;fill:var(--muted);text-anchor:middle}.north path{fill:var(--ink)}.north text{font:700 22px var(--body);fill:var(--ink);text-anchor:middle}.split{stroke:var(--accent);stroke-width:3;stroke-dasharray:8 6}.sm.on{fill:var(--accent)}
+.road{fill:var(--room)}.lot{fill:var(--floor)}.pave{fill:var(--room);opacity:.55}.stripe{stroke:var(--empty);stroke-width:2;opacity:.6}.dash{stroke:var(--empty);stroke-width:3;stroke-dasharray:22 16}.road-t{font:700 30px var(--display);letter-spacing:.12em;fill:var(--muted);text-anchor:middle}.north path{fill:var(--ink)}.north text{font:700 22px var(--body);fill:var(--ink);text-anchor:middle}.vt{font:600 22px var(--body);fill:var(--muted);text-anchor:middle}.gift polygon{fill:var(--accent);stroke:#fff;stroke-width:2}.gl{fill:var(--accent);font-weight:700}.plane path{fill:var(--ink)}.split{stroke:var(--accent);stroke-width:3;stroke-dasharray:8 6}.sm.on{fill:var(--accent)}
 .bld{fill:var(--room);stroke:var(--empty);stroke-width:3}
 .bld.on{fill:var(--card);stroke:var(--accent);stroke-width:5}
 svg a:hover .bld.on,svg a:focus .bld.on{stroke-width:8}
@@ -105,21 +105,27 @@ svg a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
       <g class="north" transform="translate(745 60)"><path d="M0 -34L12 6L0 -2L-12 6Z"/><text x="0" y="34">N</text></g>
       <a id="bA"><rect class="bld" x="201" y="80" width="443" height="104" rx="6"/><text class="bl" x="422" y="136">A</text></a>
       <text class="sm" x="422" y="170" data-b="A"></text>
-      <a id="bB" href="map.html"><rect class="bld on" x="104" y="259" width="120" height="570" rx="6"/><line class="split" x1="104" y1="509" x2="224" y2="509"/><text class="bl on" x="164" y="560">B</text></a>
-      <text class="sm on" x="240" y="520" data-i18n="w_art_map" style="text-anchor:start"></text>
-      <a id="bC"><rect class="bld" x="297" y="564" width="163" height="201" rx="6"/><text class="bl" x="378" y="665">C</text></a>
-      <text class="sm" x="378" y="705" data-b="C"></text>
+      <a id="bB" href="map.html"><rect class="bld on" x="104" y="259" width="120" height="570" rx="6"/><line class="split" x1="104" y1="601" x2="224" y2="601"/><text class="bl on" x="164" y="340">B</text></a>
+      <text class="vt" transform="translate(171 470) rotate(-90)" data-i18n="w_garage"></text>
+      <text class="vt" transform="translate(171 715) rotate(-90)" data-i18n="w_show"></text>
+      <text class="sm on" x="164" y="868" data-i18n="w_art_map"></text>
+      <a id="bC"><rect class="bld" x="297" y="564" width="163" height="201" rx="6"/><text class="bl" x="378" y="650">C</text></a>
+      <g class="gift"><polygon points="452,731 459,748 478,749 463,761 468,779 452,769 436,779 441,761 426,749 445,748"/></g>
+      <text class="sm gl" x="378" y="812" data-i18n="w_gift"></text>
       <a id="bD"><rect class="bld" x="630" y="627" width="72" height="195" rx="6"/><text class="bl" x="666" y="735" style="font-size:52px">D</text></a>
-      <text class="sm" x="620" y="650" style="text-anchor:end" data-b="D"></text>
+      <g class="plane" transform="translate(666 660)"><path d="M0 -18L5 -4L22 6L22 11L5 7L3 15L9 19L9 22L0 20L-9 22L-9 19L-3 15L-5 7L-22 11L-22 6L-5 -4Z"/></g>
+      <text class="sm" x="666" y="615" data-i18n="w_plane" style="font-size:19px"></text>
     </svg>
   </div>
   <ul class="cards">
     <li class="off"><b data-b="A"></b><span data-i18n="soon"></span></li>
     <li><b data-b="B"></b><a href="map.html" data-i18n="w_btn_map"></a></li>
-    <li class="off"><b data-b="C"></b><span data-i18n="soon"></span></li>
+    <li class="off"><b data-b="C"></b><span data-i18n="w_gift_here"></span></li>
     <li class="off"><b data-b="D"></b><span data-i18n="soon"></span></li>
   </ul>
+  <div class="note" data-i18n="w_gift_note"></div>
   <div class="note" data-i18n="w_mech"></div>
+  <div class="note" data-i18n="w_plane_note"></div>
   <div class="note" data-i18n="w_hang"></div>
   <div class="note" data-i18n="w_noprice"></div>
   <div class="note" data-i18n="w_guide"></div>
