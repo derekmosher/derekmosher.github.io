@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Print tags and wall signs | Atomic Motors Art (staff)</title>
+<style>
+:root{--bg:#e9ecee;--card:#fff;--ink:#14202b;--muted:#5a6772;--line:#cdd3d8;--accent:#c41222;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Arial,Helvetica,sans-serif}
+.bar{max-width:760px;margin:0 auto;padding:16px;display:grid;gap:12px}
+.bar h1{margin:0;font-size:24px}
+.bar p{margin:0;color:var(--muted);font-size:14px}
+.row{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+label{display:flex;gap:6px;align-items:center;font-size:15px}
+select,button{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink)}
+button.go{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:700;cursor:pointer}
+select:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.pages{display:grid;gap:16px;justify-items:center;padding:0 0 40px;overflow-x:auto}
+.page{background:#fff;width:8.5in;height:11in;position:relative;box-shadow:0 1px 6px rgba(0,0,0,.2);overflow:hidden;color:#000;page-break-after:always;break-after:page}
+.grid{position:absolute;display:grid}
+.cell{overflow:hidden;display:flex;align-items:center;gap:.06in;padding:.06in;border:1px dashed #ccc;background:#fff}
+.cell img{image-rendering:pixelated;flex:none}
+.cell .t{min-width:0;line-height:1.1}
+.cell .sku{font:700 var(--sku) Arial,sans-serif;letter-spacing:.02em}
+.cell .ti{font:var(--ti) Arial,sans-serif;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+.sign{display:grid;place-items:center;align-content:center;gap:.25in;height:100%;text-align:center;padding:.5in}
+.sign img{image-rendering:pixelated;width:4.8in;height:4.8in}
+.sign .scan{font:700 .42in Arial,sans-serif}
+.sign .name{font:700 .55in/1.05 Arial,sans-serif}
+.sign .sub{font:.28in Arial,sans-serif;color:#444}
+.sign.half{display:flex;flex-direction:row;gap:.4in;padding:.3in .4in;height:50%;border-bottom:1px dashed #ccc;text-align:left;place-items:center}
+.sign.half img{width:3.6in;height:3.6in}
+.sign.half .name{font-size:.5in}.sign.half .scan{font-size:.28in}.sign.half .sub{font-size:.2in}
+.empty{max-width:760px;margin:0 auto;padding:16px;color:var(--muted)}
+@page{size:letter;margin:0}
+@media print{
+  body{background:#fff}.bar,.empty{display:none}
+  .pages{padding:0;gap:0;display:block;overflow:visible}
+  .page{box-shadow:none;margin:0}
+  .cell{border-color:transparent}.sign.half{border-bottom-color:#ccc}
+}
+</style>
+</head>
+<body>
+<div class="bar">
+  <h1>Print tags and wall signs</h1>
+  <p>Staff page. It is not linked from the public pages. Choose what to print, then press Print (or choose Save as PDF). In the print dialog set scale to 100% (not "Fit to page") and margins to None.</p>
+  <div class="row">
+    <label>Print <select id="mode"><option value="wallfull">Wall signs, one per page</option><option value="wallhalf">Wall signs, two per page</option><option value="a5160">Piece tags, Avery 5160 (30 per sheet)</option><option value="a5163">Piece tags, Avery 5163 (10 per sheet)</option></select></label>
+    <label id="wallLbl">Wall <select id="wall"></select></label>
+    <label id="qrLbl"><input type="checkbox" id="qr" checked> QR code on piece tags</label>
+    <button class="go" id="print" type="button">Print</button>
+  </div>
+  <p id="count"></p>
+</div>
+<div class="pages" id="pages"></div>
+<div class="empty" id="empty" hidden></div>
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var all={},walls={};
+  function j(u){return fetch(u).then(function(r){if(!r.ok)throw 0;return r.json()})}
+  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+  function page(){var p=el("div","page");$("pages").appendChild(p);return p}
+  function qrImg(id,size){var i=new Image();i.src="qr/"+id+".png";i.alt="";i.style.width=i.style.height=size;return i}
+  var LAY={
+    a5160:{cols:3,rows:10,w:2.625,h:1,left:.1875,top:.5,gx:.125,gy:0,qr:.8,sku:"22pt",ti:"0pt"},
+    a5163:{cols:2,rows:5,w:4,h:2,left:.15625,top:.5,gx:.1875,gy:0,qr:1.6,sku:"34pt",ti:"11pt"}
+  };
+  function wallsList(){var w=$("wall").value;return Object.keys(walls).filter(function(id){return w==="all"||w===id})}
+  function render(){
+    $("pages").innerHTML="";$("empty").hidden=true;
+    var m=$("mode").value,isWall=m.indexOf("wall")===0;
+    $("wallLbl").hidden=isWall&&false;$("qrLbl").hidden=isWall;
+    var n=0;
+    if(isWall){
+      var ids=wallsList();
+      if(m==="wallfull"){ids.forEach(function(id){var p=page(),s=sign(id,false);p.appendChild(s);n++})}
+      else{for(var i=0;i<ids.length;i+=2){var p=page();p.appendChild(sign(ids[i],true));if(ids[i+1])p.appendChild(sign(ids[i+1],true));n+=ids.slice(i,i+2).length}}
+      $("count").textContent=n+(n===1?" wall sign":" wall signs")+" on "+Math.ceil(m==="wallfull"?n:n/2)+" page(s). Taped or mounted at eye level, next to the wall.";
+    }else{
+      var L=LAY[m],w=$("wall").value;
+      var keys=Object.keys(all).sort().filter(function(k){return w==="all"||all[k].wallId===w});
+      var per=L.cols*L.rows,p,g;
+      keys.forEach(function(k,i){
+        if(i%per===0){p=page();g=el("div","grid");g.style.cssText="left:"+L.left+"in;top:"+L.top+"in;grid-template-columns:repeat("+L.cols+","+L.w+"in);grid-auto-rows:"+L.h+"in;column-gap:"+L.gx+"in;row-gap:"+L.gy+"in";p.appendChild(g)}
+        var c=el("div","cell");c.style.setProperty("--sku",L.sku);c.style.setProperty("--ti",L.ti);
+        var t=el("div","t");t.appendChild(el("div","sku",k));
+        if(L.ti!=="0pt")t.appendChild(el("div","ti",all[k].title));
+        if($("qr").checked){c.appendChild(qrImg(k,L.qr+"in"))}
+        c.appendChild(t);g.appendChild(c);
+      });
+      n=keys.length;$("count").textContent=n+(n===1?" tag":" tags")+" on "+Math.ceil(n/per)+" sheet(s). Print a test page on plain paper first and hold it against a label sheet.";
+    }
+    if(!n){$("empty").hidden=false;$("empty").textContent="Nothing to print for this choice."}
+  }
+  function sign(id,half){
+    var w=walls[id],s=el("div","sign"+(half?" half":""));
+    s.appendChild(qrImg("wall-"+id,half?"3.6in":"4.8in"));
+    var t=el("div","");t.style.display="grid";t.style.gap=".12in";
+    t.appendChild(el("div","scan","Scan to see the art on this wall"));
+    t.appendChild(el("div","name",w.name));
+    t.appendChild(el("div","sub","Atomic Motors Art"));
+    if(half){s.appendChild(t)}
+    else{var im=s.firstChild;s.innerHTML="";s.appendChild(t.children[0]);s.appendChild(im);s.appendChild(t.children[0]);s.appendChild(t.children[0])}
+    return s;
+  }
+  Promise.all([j("pieces.json"),j("walls.json")]).then(function(r){
+    all=r[0];walls=r[1];
+    var sel=$("wall");sel.appendChild(new Option("All walls","all"));
+    Object.keys(walls).forEach(function(id){sel.appendChild(new Option(walls[id].name+" ("+walls[id].count+")",id))});
+    ["mode","wall","qr"].forEach(function(i){$(i).addEventListener("change",render)});
+    $("print").addEventListener("click",function(){window.print()});
+    render();
+  }).catch(function(){$("empty").hidden=false;$("empty").textContent="Could not load pieces.json and walls.json."});
+})();
+</script>
+</body>
+</html>
