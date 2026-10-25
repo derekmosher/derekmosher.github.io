@@ -84,7 +84,7 @@ svg a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 </head>
 <body>
 <div class="wrap">
-  <div class="brand"><a href="welcome.html"><b>Atomic</b> Motors</a><span class="tn"><a href="home.html" data-i18n="nav_all"></a><a href="map.html" data-i18n="nav_map"></a><a href="picks.html"><span data-i18n="nav_picks"></span> <span id="pickCount"></span></a><select id="lang"></select></span></div>
+  <div class="brand"><a href="welcome.html"><b>Atomic</b> Motors</a><span class="tn"><a href="home.html" data-i18n="nav_all"></a><a href="welcome.html#map" data-i18n="nav_map"></a><a href="picks.html"><span data-i18n="nav_picks"></span> <span id="pickCount"></span></a><select id="lang"></select></span></div>
   <div class="hero"><h1 data-i18n="w_title"></h1></div>
   <p class="lead" data-i18n="w_lead"></p>
   <div class="stats">
@@ -94,7 +94,7 @@ svg a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
   </div>
   <h2 data-i18n="w_map_h"></h2>
   <p class="sub" data-i18n="w_map_hint"></p>
-  <div class="mapbox">
+  <div class="mapbox" id="map">
     <svg viewBox="0 0 800 1060" role="group" data-i18n-aria="w_bld_aria">
       <rect class="lot" x="0" y="0" width="800" height="1060"/>
       <rect class="pave" x="226" y="196" width="440" height="690" rx="6"/>
@@ -152,6 +152,8 @@ svg a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 (function(){
   function shrink(){var x=window.innerWidth;document.body.style.zoom=(x>0&&x<300)?(x/340):""}
   shrink();window.addEventListener("resize",shrink);
+  function toMap(){if(location.hash==="#map"){var m=document.getElementById("map");setTimeout(function(){m.scrollIntoView({block:"center"})},60)}}
+  toMap();window.addEventListener("hashchange",toMap);window.addEventListener("load",toMap);
   [].forEach.call(document.querySelectorAll("[data-b]"),function(e){e.textContent=AM.T("bld_n",{b:e.getAttribute("data-b")})});
   [].forEach.call(document.querySelectorAll("svg .sm[data-b]"),function(e){e.textContent=AM.T("soon")});
 })();
