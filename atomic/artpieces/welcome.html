@@ -58,7 +58,7 @@ h1{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(24px,8vw,
 h2{margin:0;font:600 24px var(--display);letter-spacing:.04em;text-transform:uppercase}
 .mapbox{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
 svg{display:block;width:100%;height:auto;aspect-ratio:800/1060}
-.road{fill:var(--room)}.lot{fill:var(--floor)}.pave{fill:var(--room);opacity:.55}.stripe{stroke:var(--empty);stroke-width:2;opacity:.6}.dash{stroke:var(--empty);stroke-width:3;stroke-dasharray:22 16}.road-t{font:700 30px var(--display);letter-spacing:.12em;fill:var(--muted);text-anchor:middle}.north path{fill:var(--ink)}.north text{font:700 22px var(--body);fill:var(--ink);text-anchor:middle}.tbc{font-style:italic;font-weight:500}.svc{fill:var(--accent);font-weight:700}.vt{font:600 20px var(--body);fill:var(--muted);text-anchor:middle}.route path{fill:none;stroke:var(--accent);stroke-width:5;stroke-dasharray:3 11;stroke-linecap:round}.sm.dl2{fill:var(--door);font-weight:700;font-size:19px}.gift polygon{fill:var(--accent);stroke:#fff;stroke-width:2}.sm.gl{fill:var(--accent);font-weight:700;font-size:29px}.plane path{fill:var(--ink)}.split{stroke:var(--accent);stroke-width:3;stroke-dasharray:8 6}.sm.on{fill:var(--accent)}
+.road{fill:var(--room)}.lot{fill:var(--floor)}.pave{fill:var(--room);opacity:.55}.stripe{stroke:var(--empty);stroke-width:2;opacity:.6}.dash{stroke:var(--empty);stroke-width:3;stroke-dasharray:22 16}.road-t{font:700 30px var(--display);letter-spacing:.12em;fill:var(--muted);text-anchor:middle}.north path{fill:var(--ink)}.north text{font:700 22px var(--body);fill:var(--ink);text-anchor:middle}.tbc{font-style:italic;font-weight:500}.svc{fill:var(--accent);font-weight:700}.vt{font:600 20px var(--body);fill:var(--muted);text-anchor:middle}.route path{fill:none;stroke:var(--accent);stroke-width:5;stroke-dasharray:3 11;stroke-linecap:round}.sm.dl2{fill:var(--door);font-weight:700;font-size:19px}.gift polygon{fill:var(--accent);stroke:#fff;stroke-width:2}.star2 polygon{fill:var(--door);stroke:#fff;stroke-width:2}.sm.sv{fill:var(--door);font-weight:700;font-size:29px}.sm.gl{fill:var(--accent);font-weight:700;font-size:29px}.plane path{fill:var(--ink)}.split{stroke:var(--accent);stroke-width:3;stroke-dasharray:8 6}.sm.on{fill:var(--accent)}
 .bld{fill:var(--room);stroke:var(--empty);stroke-width:3}
 .bld.on{fill:var(--card);stroke:var(--accent);stroke-width:5}
 svg a:hover .bld.on,svg a:focus .bld.on{stroke-width:8}
@@ -107,7 +107,8 @@ svg a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
       <text class="sm" x="335" y="170" data-i18n="w_show"></text>
       <text class="sm tbc" x="533" y="140" data-i18n="w_tbc"></text>
       <a id="bB" href="map.html"><rect class="bld on" x="104" y="259" width="120" height="570" rx="6"/><line class="split" x1="104" y1="601" x2="224" y2="601"/><text class="bl on" x="164" y="340">B</text></a>
-      <text class="vt svc" transform="translate(171 425) rotate(-90)" data-i18n="w_service"></text>
+      <g class="star2"><polygon points="164,372 171,389 190,390 175,402 180,420 164,410 148,420 153,402 138,390 157,389"/></g>
+      <text class="sm sv" x="240" y="404" style="text-anchor:start" data-i18n="w_service"></text>
       <text class="vt" transform="translate(171 540) rotate(-90)" data-i18n="w_garage"></text>
       <text class="vt" transform="translate(171 715) rotate(-90)" data-i18n="w_show"></text>
       <line class="door" x1="116" y1="829" x2="162" y2="829"/>
