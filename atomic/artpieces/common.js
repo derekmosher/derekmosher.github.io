@@ -103,6 +103,12 @@ Object.assign(S.fr,{"w_entrance": "Entrée", "w_gift_path": "Pour atteindre la b
 Object.assign(S.de,{"w_entrance": "Eingang", "w_gift_path": "So kommen Sie zum Geschenkeladen: Gehen Sie durch die Tür auf der linken Seite von Gebäude C, bis nach hinten, biegen Sie rechts ab und gehen Sie dann bis ganz nach vorn. Der Geschenkeladen hat keine Außentür."});
 Object.assign(S.zh,{"w_entrance": "入口", "w_gift_path": "去礼品店的路线：从 C 楼左侧的门进入，走到最里面，向右转，再一直走到前面。礼品店没有对外的门。"});
 
+Object.assign(S.en,{"w_back_note": "Building C also has a door in the middle of its back (north) side. It leads into the showroom."});
+Object.assign(S.es,{"w_back_note": "El Edificio C también tiene una puerta en el centro de su parte trasera (norte). Da a la sala de exhibición."});
+Object.assign(S.fr,{"w_back_note": "Le bâtiment C a aussi une porte au milieu de sa face arrière (nord). Elle mène à la salle d'exposition."});
+Object.assign(S.de,{"w_back_note": "Gebäude C hat außerdem in der Mitte der Rückseite (Nordseite) eine Tür. Sie führt in den Ausstellungsraum."});
+Object.assign(S.zh,{"w_back_note": "C 楼背面（北侧）中间还有一扇门，通向展厅。"});
+
 function sget(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function sset(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 var qp=new URLSearchParams(location.search);
