@@ -35,3 +35,16 @@
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);max-width:calc(100vw - 32px);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:6px;font:600 15px var(--body);z-index:50;box-shadow:0 4px 16px rgba(0,0,0,.3);transition:opacity .4s;overflow-wrap:anywhere;text-align:center}
 .toast.out{opacity:0}
 [hidden]{display:none!important}
+
+/* sticky top bar */
+.bar{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));background:var(--card);border:1px solid var(--line);border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.12);overflow:hidden}
+.bar a{display:grid;justify-items:center;align-content:center;gap:2px;min-height:56px;padding:6px 2px;text-decoration:none;color:var(--muted);font:600 11px/1.1 var(--body);text-align:center;border-right:1px solid var(--line);min-width:0}
+.bar a:last-child{border-right:0}
+.bar a .bl2{overflow-wrap:anywhere}
+.bar a b{color:var(--accent)}
+.bar a[aria-current="page"]{color:var(--ink);background:var(--bg);box-shadow:inset 0 -3px 0 var(--accent)}
+.bar a:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.bar a[data-k="scan"]{color:var(--accent)}
+.bar a svg{width:24px!important;height:24px!important;max-width:none;display:block}
+body.mini .bar{display:none}
+@media (max-width:300px){.bar a{font-size:10px}.bar a svg{width:20px!important;height:20px!important}}

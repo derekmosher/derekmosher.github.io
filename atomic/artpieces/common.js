@@ -115,6 +115,12 @@ Object.assign(S.fr,{"nav_scan": "Scanner un code QR", "s_hint": "Pointez la cam�
 Object.assign(S.de,{"nav_scan": "QR-Code scannen", "s_hint": "Richten Sie die Kamera auf den QR-Code auf einem Etikett oder Wandschild.", "s_start": "Kamera starten", "s_stop": "Kamera stoppen", "s_photo": "Foto des Codes verwenden", "s_type": "Oder SKU eingeben", "s_go": "Los", "s_denied": "Die Kamera ist nicht verfügbar. Sie können ein Foto des Codes verwenden oder die SKU eingeben.", "s_bad": "Dieser Code gehört nicht zu dieser Kunstsammlung. Versuchen Sie einen anderen.", "s_none": "Auf dem Foto wurde kein Code gefunden. Versuchen Sie es näher und ruhiger noch einmal.", "s_ph": "Zum Beispiel B-0112", "s_looking": "Suche nach einem Code..."});
 Object.assign(S.zh,{"nav_scan": "扫描二维码", "s_hint": "请将摄像头对准标签或墙面标牌上的二维码。", "s_start": "开启摄像头", "s_stop": "关闭摄像头", "s_photo": "使用二维码照片", "s_type": "或输入 SKU", "s_go": "前往", "s_denied": "无法使用摄像头。您可以使用二维码照片，或输入 SKU。", "s_bad": "这个二维码不属于本艺术收藏。请试试别的。", "s_none": "照片中没有找到二维码。请靠近一些、拿稳后重试。", "s_ph": "例如 B-0112", "s_looking": "正在寻找二维码..."});
 
+Object.assign(S.en,{"nav_home": "Home", "nav_scan_s": "Scan"});
+Object.assign(S.es,{"nav_home": "Inicio", "nav_scan_s": "Escanear"});
+Object.assign(S.fr,{"nav_home": "Accueil", "nav_scan_s": "Scanner"});
+Object.assign(S.de,{"nav_home": "Start", "nav_scan_s": "Scannen"});
+Object.assign(S.zh,{"nav_home": "首页", "nav_scan_s": "扫码"});
+
 function sget(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function sset(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 var qp=new URLSearchParams(location.search);
@@ -167,7 +173,33 @@ function share(data){
 function baseUrl(){return location.origin+location.pathname.replace(/[^\/]*$/,"")}
 
 /* static text + language picker */
+
+/* Sticky top bar on every page: Home, Scan, Map, All art, My picks */
+var ICON={
+ home:'<path d="M3 11.5L12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-6h4v6"/>',
+ scan:'<path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4"/><path d="M4 12h16"/>',
+ map:'<path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/>',
+ art:'<rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><circle cx="9" cy="10" r="1.7"/><path d="M4 18l5-5 4 3 3-3 4 4"/>',
+ picks:'<path d="M12 20.5l-1.2-1.1C6 15.2 3 12.5 3 9.2 3 6.7 5 4.8 7.4 4.8c1.7 0 3.2.9 4.6 2.5 1.4-1.6 2.9-2.5 4.6-2.5C19 4.8 21 6.7 21 9.2c0 3.3-3 6-7.8 10.2L12 20.5z"/>'};
+function buildBar(){
+  var brand=document.querySelector(".brand");if(!brand||document.getElementById("topbar"))return;
+  var tn=brand.querySelector(".tn");
+  if(tn){[].slice.call(tn.children).forEach(function(c){if(c.id!=="lang")tn.removeChild(c)})}
+  var items=[["home","welcome.html","nav_home"],["scan","scan.html","nav_scan_s"],["map","welcome.html#map","nav_map"],["art","home.html","nav_all"],["picks","picks.html","nav_picks"]];
+  var nav=document.createElement("nav");nav.className="bar";nav.id="topbar";nav.setAttribute("aria-label","Menu");
+  items.forEach(function(it){
+    var a=document.createElement("a");a.href=it[1];a.setAttribute("data-k",it[0]);
+    a.innerHTML='<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+ICON[it[0]]+'</svg><span class="bl2">'+T(it[2])+(it[0]==="picks"?' <b id="pickCount"></b>':"")+'</span>';
+    nav.appendChild(a)});
+  brand.parentNode.insertBefore(nav,brand.nextSibling);
+  function cur(){var p=location.pathname.split("/").pop()||"index.html",k="";
+    if(p==="welcome.html")k=location.hash==="#map"?"map":"home";else if(p==="scan.html")k="scan";else if(p==="home.html")k="art";else if(p==="picks.html")k="picks";
+    [].forEach.call(nav.children,function(a){if(a.getAttribute("data-k")===k)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")})}
+  cur();window.addEventListener("hashchange",cur);
+}
+
 function applyStatic(){
+  buildBar();
   document.documentElement.lang=LANG;
   [].forEach.call(document.querySelectorAll("[data-i18n]"),function(e){e.textContent=T(e.getAttribute("data-i18n"))});
   [].forEach.call(document.querySelectorAll("[data-i18n-ph]"),function(e){e.setAttribute("placeholder",T(e.getAttribute("data-i18n-ph")))});
