@@ -57,15 +57,15 @@ h1{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(24px,8vw,
 .note{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:12px 14px}
 h2{margin:0;font:600 24px var(--display);letter-spacing:.04em;text-transform:uppercase}
 .mapbox{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
-svg{display:block;width:100%;height:auto;aspect-ratio:800/520}
-.road{fill:var(--room)}.lot{fill:var(--floor)}
+svg{display:block;width:100%;height:auto;aspect-ratio:800/1060}
+.road{fill:var(--room)}.lot{fill:var(--floor)}.pave{fill:var(--room);opacity:.55}.stripe{stroke:var(--empty);stroke-width:2;opacity:.6}.dash{stroke:var(--empty);stroke-width:3;stroke-dasharray:22 16}.road-t{font:700 30px var(--display);letter-spacing:.12em;fill:var(--muted);text-anchor:middle}.north path{fill:var(--ink)}.north text{font:700 22px var(--body);fill:var(--ink);text-anchor:middle}.split{stroke:var(--accent);stroke-width:3;stroke-dasharray:8 6}.sm.on{fill:var(--accent)}
 .bld{fill:var(--room);stroke:var(--empty);stroke-width:3}
 .bld.on{fill:var(--card);stroke:var(--accent);stroke-width:5}
 svg a:hover .bld.on,svg a:focus .bld.on{stroke-width:8}
 svg a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .bl{font:700 62px var(--display);fill:var(--muted);text-anchor:middle}
 .on-t .bl,.bl.on{fill:var(--accent)}
-.sm{font:600 22px var(--body);fill:var(--muted);text-anchor:middle}
+.sm{font:600 21px var(--body);fill:var(--muted);text-anchor:middle}
 .door{stroke:var(--door);stroke-width:8;stroke-linecap:butt}
 .dl{font:700 22px var(--body);fill:var(--door);text-anchor:middle}
 .pin{fill:var(--accent)}
@@ -95,15 +95,22 @@ svg a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
   <h2 data-i18n="w_map_h"></h2>
   <p class="sub" data-i18n="w_map_hint"></p>
   <div class="mapbox">
-    <svg viewBox="0 0 800 520" role="group" data-i18n-aria="w_bld_aria">
-      <rect class="lot" x="0" y="0" width="800" height="520"/>
-      <rect class="road" x="0" y="448" width="800" height="72"/>
-      <rect class="road" x="372" y="0" width="56" height="448"/>
-      <a id="bA"><rect class="bld" x="40" y="30" width="310" height="180" rx="6"/><text class="bl" x="195" y="135">A</text><text class="sm" x="195" y="170" data-b="A"></text><line class="door" x1="350" y1="90" x2="350" y2="140"/></a>
-      <a id="bB" href="map.html"><rect class="bld on" x="450" y="30" width="310" height="180" rx="6"/><text class="bl on" x="605" y="135">B</text><text class="sm" x="605" y="170" data-i18n="w_art_map"></text><line class="door" x1="450" y1="90" x2="450" y2="140"/><line class="door" x1="560" y1="210" x2="650" y2="210"/></a>
-      <a id="bC"><rect class="bld" x="40" y="238" width="310" height="180" rx="6"/><text class="bl" x="195" y="343">C</text><text class="sm" x="195" y="378" data-b="C"></text><line class="door" x1="350" y1="300" x2="350" y2="350"/></a>
-      <a id="bD"><rect class="bld" x="450" y="238" width="310" height="180" rx="6"/><text class="bl" x="605" y="343">D</text><text class="sm" x="605" y="378" data-b="D"></text><line class="door" x1="450" y1="300" x2="450" y2="350"/></a>
-      <g><circle class="pin" cx="400" cy="486" r="13"/><circle cx="400" cy="486" r="5" fill="#fff"/><text class="dl" x="400" y="446" style="fill:var(--accent)" data-i18n="w_here"></text></g>
+    <svg viewBox="0 0 800 1060" role="group" data-i18n-aria="w_bld_aria">
+      <rect class="lot" x="0" y="0" width="800" height="1060"/>
+      <rect class="pave" x="226" y="196" width="440" height="690" rx="6"/>
+      <g class="stripe"><line x1="270" y1="230" x2="270" y2="264"/><line x1="298" y1="230" x2="298" y2="264"/><line x1="326" y1="230" x2="326" y2="264"/><line x1="354" y1="230" x2="354" y2="264"/><line x1="382" y1="230" x2="382" y2="264"/><line x1="410" y1="230" x2="410" y2="264"/><line x1="438" y1="230" x2="438" y2="264"/><line x1="466" y1="230" x2="466" y2="264"/><line x1="494" y1="230" x2="494" y2="264"/><line x1="522" y1="230" x2="522" y2="264"/><line x1="550" y1="230" x2="550" y2="264"/><line x1="578" y1="230" x2="578" y2="264"/><line x1="606" y1="230" x2="606" y2="264"/><line x1="634" y1="230" x2="634" y2="264"/><line x1="270" y1="330" x2="270" y2="364"/><line x1="298" y1="330" x2="298" y2="364"/><line x1="326" y1="330" x2="326" y2="364"/><line x1="354" y1="330" x2="354" y2="364"/><line x1="382" y1="330" x2="382" y2="364"/><line x1="410" y1="330" x2="410" y2="364"/><line x1="438" y1="330" x2="438" y2="364"/><line x1="466" y1="330" x2="466" y2="364"/><line x1="494" y1="330" x2="494" y2="364"/><line x1="522" y1="330" x2="522" y2="364"/><line x1="550" y1="330" x2="550" y2="364"/><line x1="578" y1="330" x2="578" y2="364"/><line x1="606" y1="330" x2="606" y2="364"/><line x1="634" y1="330" x2="634" y2="364"/><line x1="270" y1="430" x2="270" y2="464"/><line x1="298" y1="430" x2="298" y2="464"/><line x1="326" y1="430" x2="326" y2="464"/><line x1="354" y1="430" x2="354" y2="464"/><line x1="382" y1="430" x2="382" y2="464"/><line x1="410" y1="430" x2="410" y2="464"/><line x1="438" y1="430" x2="438" y2="464"/><line x1="466" y1="430" x2="466" y2="464"/><line x1="494" y1="430" x2="494" y2="464"/><line x1="522" y1="430" x2="522" y2="464"/><line x1="550" y1="430" x2="550" y2="464"/><line x1="578" y1="430" x2="578" y2="464"/><line x1="606" y1="430" x2="606" y2="464"/><line x1="634" y1="430" x2="634" y2="464"/></g>
+      <rect class="road" x="0" y="930" width="800" height="130"/>
+      <line class="dash" x1="0" y1="995" x2="800" y2="995"/>
+      <text class="road-t" x="400" y="968">W Sunset Rd</text>
+      <g class="north" transform="translate(745 60)"><path d="M0 -34L12 6L0 -2L-12 6Z"/><text x="0" y="34">N</text></g>
+      <a id="bA"><rect class="bld" x="201" y="80" width="443" height="104" rx="6"/><text class="bl" x="422" y="136">A</text></a>
+      <text class="sm" x="422" y="170" data-b="A"></text>
+      <a id="bB" href="map.html"><rect class="bld on" x="104" y="259" width="120" height="570" rx="6"/><line class="split" x1="104" y1="509" x2="224" y2="509"/><text class="bl on" x="164" y="560">B</text></a>
+      <text class="sm on" x="240" y="520" data-i18n="w_art_map" style="text-anchor:start"></text>
+      <a id="bC"><rect class="bld" x="297" y="564" width="163" height="201" rx="6"/><text class="bl" x="378" y="665">C</text></a>
+      <text class="sm" x="378" y="705" data-b="C"></text>
+      <a id="bD"><rect class="bld" x="630" y="627" width="72" height="195" rx="6"/><text class="bl" x="666" y="735" style="font-size:52px">D</text></a>
+      <text class="sm" x="620" y="650" style="text-anchor:end" data-b="D"></text>
     </svg>
   </div>
   <ul class="cards">
