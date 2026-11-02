@@ -78,6 +78,12 @@ h3{margin:4px 0 0;font:600 18px var(--display);letter-spacing:.06em;text-transfo
   <label class="btn2" id="photoLbl"><span data-i18n="s_photo"></span><input type="file" id="photo" accept="image/*" capture="environment" hidden></label>
   <h3 data-i18n="s_type"></h3>
   <form class="row" id="f"><input id="sku" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" data-i18n-ph="s_ph" data-i18n-aria="s_type"><button type="submit" data-i18n="s_go"></button></form>
+  <h3 data-i18n="s_id_h"></h3>
+  <p class="sub" data-i18n="s_id_hint"></p>
+  <label class="btn2" id="idLbl"><span data-i18n="s_id_btn"></span><input type="file" id="idPhoto" accept="image/*" capture="environment" hidden></label>
+  <p class="stt" id="idStt" role="status"></p>
+  <div class="grid" id="idRes"></div>
+  <p class="foot" data-i18n="s_id_note"></p>
   <a class="shop" href="home.html" data-i18n="home_title"></a>
 </div>
 <canvas id="cv" hidden></canvas>
@@ -123,6 +129,49 @@ h3{margin:4px 0 0;font:600 18px var(--display);letter-spacing:.06em;text-transfo
   });
   $("f").addEventListener("submit",function(e){e.preventDefault();var v=$("sku").value.trim().toUpperCase();if(!found(v))return});
   window.addEventListener("pagehide",stop);
+})();
+</script>
+<script>
+/* Identify by photo: compares a photo with fingerprints of our own photos, all on the phone. */
+(function(){
+  var T=AM.T,$=function(i){return document.getElementById(i)},st=$("idStt"),ready=null,lib=null;
+  function say(k,err){st.textContent=k?T(k):"";st.className="stt"+(err?" err":"")}
+  function load(src){return new Promise(function(ok,no){var s=document.createElement("script");s.src=src;s.onload=ok;s.onerror=no;document.head.appendChild(s)})}
+  function b64(s){var b=atob(s),a=new Int8Array(b.length);for(var i=0;i<b.length;i++)a[i]=b.charCodeAt(i)<<24>>24;return a}
+  function unit(a){var n=0,i,o=new Float32Array(a.length);for(i=0;i<a.length;i++)n+=a[i]*a[i];n=Math.sqrt(n)||1;for(i=0;i<a.length;i++)o[i]=a[i]/n;return o}
+  function init(){
+    if(ready)return ready;
+    ready=Promise.all([load("ort/ort.wasm.min.js"),fetch("embeddings.json").then(function(r){if(!r.ok)throw 0;return r.json()}),fetch("pieces.json").then(function(r){return r.json()})]).then(function(r){
+      ort.env.wasm.numThreads=1;ort.env.wasm.wasmPaths=new URL("ort/",location.href).href;
+      lib={items:{},pieces:r[2]};Object.keys(r[1].items).forEach(function(k){lib.items[k]=r[1].items[k].map(function(x){return unit(b64(x))})});
+      return ort.InferenceSession.create("model/embed.onnx",{executionProviders:["wasm"]}).then(function(s){lib.sess=s});
+    });
+    ready.catch(function(){ready=null});return ready;
+  }
+  function vec(img){
+    var c=document.createElement("canvas");c.width=c.height=224;var x=c.getContext("2d");x.drawImage(img,0,0,224,224);
+    var d=x.getImageData(0,0,224,224).data,m=[.485,.456,.406],sd=[.229,.224,.225],f=new Float32Array(3*224*224);
+    for(var i=0;i<224*224;i++)for(var ch=0;ch<3;ch++)f[ch*224*224+i]=(d[i*4+ch]/255-m[ch])/sd[ch];
+    return lib.sess.run({input:new ort.Tensor("float32",f,[1,3,224,224])}).then(function(o){return unit(o[Object.keys(o)[0]].data)});
+  }
+  function show(list){
+    var g=$("idRes");g.innerHTML="";
+    list.forEach(function(k){var p=lib.pieces[k];if(!p)return;var a=AM.tile?AM.tile(k,p):null;
+      if(a){g.appendChild(a)}else{var l=document.createElement("a");l.className="item";l.href="index.html?s="+encodeURIComponent(k);l.textContent=k;g.appendChild(l)}});
+    say("s_id_top");
+  }
+  $("idPhoto").addEventListener("change",function(){
+    var f=this.files&&this.files[0];this.value="";if(!f)return;say("s_id_busy");$("idRes").innerHTML="";
+    var img=new Image(),url=URL.createObjectURL(f);
+    img.onload=function(){
+      init().then(function(){return vec(img)}).then(function(q){
+        URL.revokeObjectURL(url);
+        var sc=Object.keys(lib.items).map(function(k){var b=-1;lib.items[k].forEach(function(v){var d=0;for(var i=0;i<v.length;i++)d+=v[i]*q[i];if(d>b)b=d});return[b,k]}).sort(function(a,b){return b[0]-a[0]});
+        show(sc.slice(0,3).map(function(x){return x[1]}));
+      }).catch(function(e){console.error("idfail",e&&e.message||e);say("s_id_fail",true)});
+    };
+    img.onerror=function(){say("s_id_none",true)};img.src=url;
+  });
 })();
 </script>
 </body>

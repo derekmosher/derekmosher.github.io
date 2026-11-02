@@ -1,0 +1,1 @@
+ONNX Runtime Web (MIT License, Microsoft) and a MobileNetV2 image model from the ONNX Model Zoo (Apache-2.0), with its final classification layer removed. Used only for the "Identify by photo" feature. Photos are processed on the visitor's phone and are not uploaded.
