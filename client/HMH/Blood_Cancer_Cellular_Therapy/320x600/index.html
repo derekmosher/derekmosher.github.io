@@ -18,7 +18,7 @@
             padding: 36px 16px 56px;
         }
         h1 { font-size: 18px; font-weight: 600; margin: 0 0 4px; text-align: center; }
-        p.sub { font-size: 13px; font-weight: 400; margin: 0 0 32px; opacity: .7; text-align: center; }
+        p.sub { font-size: 13px; font-weight: 400; margin: 0 0 16px; opacity: .7; text-align: center; }
         #banners {
             display: flex;
             flex-wrap: wrap;
@@ -36,37 +36,35 @@
             box-shadow: 0 10px 40px rgba(0,0,0,.45);
         }
         .frameWrap iframe { display: block; width: 320px; height: 600px; border: 0; }
-        .controls { display: flex; gap: 10px; margin-top: 22px; }
-        .replay, .playpause {
+        .controls { display: flex; gap: 8px; margin-top: 18px; }
+        .btn, .replay, .playpause, .back {
+            display: inline-block;
             font-family: "Poppins", sans-serif;
-            font-weight: 600;
-            font-size: 15px;
-            color: #0f1938;
-            background: #5dd146;
-            border: 0;
-            padding: 11px 0;
-            width: 112px;
+            font-weight: 500;
+            font-size: 12px;
+            letter-spacing: .03em;
+            line-height: 1;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 99px;
+            padding: 8px 18px;
+            min-width: 88px;
             cursor: pointer;
-            transition: transform .25s ease;
+            transition: transform .2s ease, background .2s ease, border-color .2s ease;
         }
-        .replay:hover, .playpause:hover { transform: scale(1.06); }
-        .replay:focus-visible, .playpause:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
-        .playpause { background: #fff; }
+        .replay { color: #0f1938; background: #5dd146; border: 1px solid #5dd146; }
+        .playpause, .back { color: #fff; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.35); }
+        .replay:hover, .playpause:hover, .back:hover { transform: translateY(-1px); }
+        .playpause:hover, .back:hover { background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.6); }
+        .replay:focus-visible, .playpause:focus-visible, .back:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
         .playpause:disabled { opacity: .4; cursor: default; transform: none; }
-        .back {
-            position: absolute; top: 18px; left: 18px;
-            font-family: "Poppins", sans-serif; font-weight: 600; font-size: 13px;
-            color: #0f1938; background: #5dd146; text-decoration: none;
-            padding: 8px 16px; transition: transform .25s ease;
-        }
-        .back:hover { transform: scale(1.06); }
-        .back:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+        .nav { text-align: center; margin: 0 0 30px; }
     </style>
 </head>
 <body>
-    <a class="back" href="../index.html">&larr; Back</a>
     <h1>Blood Cancer Cellular Therapy</h1>
     <p class="sub">320x600 &middot; HTML5</p>
+    <p class="nav"><a class="back" href="../index.html">&larr; Back</a></p>
 
     <div id="banners">
         <div class="item">
