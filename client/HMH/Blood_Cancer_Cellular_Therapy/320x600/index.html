@@ -53,9 +53,18 @@
         .replay:focus-visible, .playpause:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
         .playpause { background: #fff; }
         .playpause:disabled { opacity: .4; cursor: default; transform: none; }
+        .back {
+            position: absolute; top: 18px; left: 18px;
+            font-family: "Poppins", sans-serif; font-weight: 600; font-size: 13px;
+            color: #0f1938; background: #5dd146; text-decoration: none;
+            padding: 8px 16px; transition: transform .25s ease;
+        }
+        .back:hover { transform: scale(1.06); }
+        .back:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
     </style>
 </head>
 <body>
+    <a class="back" href="../index.html">&larr; Back</a>
     <h1>Blood Cancer Cellular Therapy</h1>
     <p class="sub">320x600 &middot; HTML5</p>
 
