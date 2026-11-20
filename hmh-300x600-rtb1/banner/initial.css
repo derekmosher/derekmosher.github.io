@@ -1,0 +1,142 @@
+/*************** MAIN ELEMENTS ***************/
+body {
+    margin: 0;
+    padding: 0;
+    display: block;
+    pointer-events: none;
+}
+div,img,svg{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+}
+#wrapper {
+    display: block;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 600px;
+    overflow: hidden;
+    background-color: #fff;
+}
+#stage {
+    width: 300px;
+    height: 469px;
+    overflow: hidden;
+}
+#bannerCover {
+    width: inherit;
+    height: inherit;
+    background: #fff;
+    opacity: 0;
+    pointer-events: none;
+}
+#border {
+    border: 1px solid #ababab;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: inherit;
+    height: inherit;
+    pointer-events: none;
+}
+#bgexit {
+    width: inherit;
+    height: inherit;
+    cursor:pointer;
+    pointer-events: auto;
+    /* background-color: #ff0000; */
+}
+/******************** BACKGROUND ********************/
+#bg_light, #bg_blue {
+    top: 0px;
+    width: 300px;
+    height: 600px;
+}
+#bg_blue {
+    opacity: 0;
+}
+/********************** TEXT **********************/
+.textGroup{
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-size: 31.4px;
+    text-align: center;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+    width: 300px;
+    left: 0;
+    color: #0f1938;
+    line-height: 40px;
+}
+.bold{ font-weight: 700; }
+.med{  font-weight: 500; }
+.oswald{
+    font-family: "Oswald", sans-serif;
+    font-weight: 500;
+    font-size: 43px;
+    letter-spacing: 0.5px;
+    line-height: 50px;
+    color: #fff;
+}
+/* -------- Frame 1 / 2 / 3 copy (frame 1 positions) -------- */
+#text11{ top: 202px; }
+#text12{ top: 240px; }
+#text13{ top: 278px; }
+#text14{ top: 316px; }
+#text15{ top: 353px; }
+/* -------- Frame 3 end copy -------- */
+.lineMask{
+    left: 0;
+    width: 300px;
+    height: 50px;
+    overflow: hidden;
+}
+#mask31{ top: 325px; }
+#mask32{ top: 371px; }
+#text31{ top: 0px; }
+#text32{ top: 0px; color: #00bae1; }
+/******************** FOOTER ********************/
+#footer{
+    top: 469px;
+    width: 300px;
+    height: 131px;
+    background-color: #fff;
+}
+#logo_hmh{
+    top: 21px;
+    left: 32px;
+    width: 235px;
+    height: auto;
+}
+/******************** CTA ********************/
+#cta{
+    top: 75px;
+    left: 84px;
+    width: 132px;
+    height: 36px;
+    line-height: 39px;
+    overflow: hidden;
+    cursor: pointer;
+    color: #0f1938;
+    background-color: #5dd146;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 18.5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#shine{
+    top: -4px;
+    left: -60px;
+    width: 46px;
+    height: 44px;
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.85), rgba(255,255,255,0));
+    -webkit-transform: skewX(-20deg);
+    transform: skewX(-20deg);
+    pointer-events: none;
+}

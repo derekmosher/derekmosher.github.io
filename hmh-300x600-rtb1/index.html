@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>HMH Blood Cancer Cellular Therapy | 300x600 RTB1 | Banner Review</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        html, body { margin: 0; min-height: 100%; }
+        body {
+            background: #0f1938;
+            color: #fff;
+            font-family: "Poppins", sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 36px 16px 48px;
+        }
+        h1 { font-size: 18px; font-weight: 600; margin: 0 0 4px; text-align: center; }
+        p.sub { font-size: 13px; font-weight: 400; margin: 0 0 28px; opacity: .7; text-align: center; }
+        #frameWrap {
+            width: 300px; height: 600px;
+            background: #fff;
+            box-shadow: 0 10px 40px rgba(0,0,0,.45);
+        }
+        #bannerFrame { display: block; width: 300px; height: 600px; border: 0; }
+        #replay {
+            margin-top: 28px;
+            font-family: "Poppins", sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0f1938;
+            background: #5dd146;
+            border: 0;
+            padding: 12px 34px;
+            cursor: pointer;
+            transition: transform .25s ease;
+        }
+        #replay:hover { transform: scale(1.06); }
+        #replay:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+        p.note { font-size: 12px; margin: 22px 0 0; opacity: .55; text-align: center; }
+    </style>
+</head>
+<body>
+    <h1>Blood Cancer Cellular Therapy</h1>
+    <p class="sub">300x600 &middot; RTB1 &middot; HTML5 / GSAP</p>
+
+    <div id="frameWrap">
+        <iframe id="bannerFrame" src="banner/index.html" width="300" height="600" scrolling="no" title="300x600 banner"></iframe>
+    </div>
+
+    <button id="replay" type="button">&#8635; Replay</button>
+    <p class="note">The banner plays twice, then holds on the end frame.</p>
+
+    <script>
+        // Replay: reload the banner so it starts again from frame 1
+        document.getElementById('replay').addEventListener('click', function () {
+            var f = document.getElementById('bannerFrame');
+            try { f.contentWindow.location.reload(); }
+            catch (e) { f.src = f.src; }
+        });
+    </script>
+</body>
+</html>
