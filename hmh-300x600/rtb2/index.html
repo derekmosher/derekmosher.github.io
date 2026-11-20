@@ -8,7 +8,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         <script async src="https://s0.2mdn.net/ads/studio/cached_libs/gsap_3.1.0_min.js"></script>
-        <title>HMH | Blood Cancer Cellular Therapy | 300x600 RTB1</title>
+        <title>HMH | Refer Blood Cancer Patients | 300x600 RTB2</title>
     </head>
 
 <body>
@@ -22,12 +22,19 @@
             <img id="bg_blue" src="bg_blue.jpg">
 
             <!-- Frames 1 + 2 + 3 copy: one group that slides up between frames -->
+            <!-- Badge + hospital name (appears in frame 2, shrinks up in frame 3) -->
+            <div id="badgeGroup">
+                <img id="badge" src="badge_usnews.svg">
+                <div class="caption" id="cap1">Hackensack University</div>
+                <div class="caption" id="cap2">Medical Center</div>
+            </div>
+
             <div id="textGroup1">
-                <div class="textGroup bold" id="text11">NJ’s most</div>
-                <div class="textGroup bold" id="text12">experienced</div>
-                <div class="textGroup med"  id="text13">blood cancer</div>
-                <div class="textGroup med"  id="text14">cellular therapy</div>
-                <div class="textGroup med"  id="text15">program.</div>
+                <div class="textGroup med"  id="text11">Refer blood</div>
+                <div class="textGroup med"  id="text12">cancer patients</div>
+                <div class="textGroup med"  id="text13">to <span class="bold">NJ’s #1</span></div>
+                <div class="textGroup bold" id="text14">cancer center</div>
+                <div class="textGroup bold" id="text15">physicians.</div>
             </div>
 
             <!-- Frame 3 end copy -->
@@ -44,6 +51,9 @@
             <img id="logo_hmh" src="logo_hmh.svg">
             <div id="cta" class="clickable">Refer Now<div id="shine"></div></div>
         </div>
+
+        <!-- Preload cover + spinning logo loader: stays up until fonts are ready (and it has spun at least 1s), then fades out and the animation starts -->
+        <div id="preCover"><img id="loader" src="logo_hmh_circle.svg"></div>
 
         <div id="bgexit" class="clickable"></div>
         <div id="border"></div>

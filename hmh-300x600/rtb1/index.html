@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="ad.size" content="width=300,height=600">
+        <link rel="stylesheet" type="text/css" href="initial.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <script async src="https://s0.2mdn.net/ads/studio/cached_libs/gsap_3.1.0_min.js"></script>
+        <title>HMH | Blood Cancer Cellular Therapy | 300x600 RTB1</title>
+    </head>
+
+<body>
+ <!--------- Wrapper --------->
+    <div id="wrapper" class="clickable">
+        <!-- <img src="guide3.jpg"> -->
+
+        <!--------- Stage (top 469px: backgrounds + copy) --------->
+        <div id="stage">
+            <img id="bg_light" src="bg_light.jpg">
+            <img id="bg_blue" src="bg_blue.jpg">
+
+            <!-- Frames 1 + 2 + 3 copy: one group that slides up between frames -->
+            <div id="textGroup1">
+                <div class="textGroup bold" id="text11">NJ’s most</div>
+                <div class="textGroup bold" id="text12">experienced</div>
+                <div class="textGroup med"  id="text13">blood cancer</div>
+                <div class="textGroup med"  id="text14">cellular therapy</div>
+                <div class="textGroup med"  id="text15">program.</div>
+            </div>
+
+            <!-- Frame 3 end copy -->
+            <div id="text3">
+                <div class="lineMask" id="mask31"><div class="textGroup oswald" id="text31">KNOW THE</div></div>
+                <div class="lineMask" id="mask32"><div class="textGroup oswald" id="text32">DIFFERENCE</div></div>
+            </div>
+
+            <div id="bannerCover"></div>
+        </div>
+
+        <!--------- Footer (static all frames) --------->
+        <div id="footer">
+            <img id="logo_hmh" src="logo_hmh.svg">
+            <div id="cta" class="clickable">Refer Now<div id="shine"></div></div>
+        </div>
+
+        <!-- Preload cover + spinning logo loader: stays up until fonts are ready (and it has spun at least 1s), then fades out and the animation starts -->
+        <div id="preCover"><img id="loader" src="logo_hmh_circle.svg"></div>
+
+        <div id="bgexit" class="clickable"></div>
+        <div id="border"></div>
+    </div>
+
+    <script src="initial.js"></script>
+</body>
+</html>

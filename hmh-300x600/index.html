@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>HMH Blood Cancer Cellular Therapy | 300x600 | Banner Review</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        html, body { margin: 0; min-height: 100%; }
+        body {
+            background: #0f1938;
+            color: #fff;
+            font-family: "Poppins", sans-serif;
+            padding: 36px 16px 56px;
+        }
+        h1 { font-size: 18px; font-weight: 600; margin: 0 0 4px; text-align: center; }
+        p.sub { font-size: 13px; font-weight: 400; margin: 0 0 32px; opacity: .7; text-align: center; }
+        #banners {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 44px 36px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .item { width: 300px; display: flex; flex-direction: column; align-items: center; }
+        .item h2 { font-size: 14px; font-weight: 600; margin: 0 0 4px; letter-spacing: .04em; }
+        .item p.copy { font-size: 12px; line-height: 1.45; font-weight: 400; margin: 0 0 14px; opacity: .65; text-align: center; min-height: 36px; }
+        .frameWrap {
+            width: 300px; height: 600px;
+            background: #fff;
+            box-shadow: 0 10px 40px rgba(0,0,0,.45);
+        }
+        .frameWrap iframe { display: block; width: 300px; height: 600px; border: 0; }
+        .replay {
+            margin-top: 22px;
+            font-family: "Poppins", sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            color: #0f1938;
+            background: #5dd146;
+            border: 0;
+            padding: 11px 32px;
+            cursor: pointer;
+            transition: transform .25s ease;
+        }
+        .replay:hover { transform: scale(1.06); }
+        .replay:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+    </style>
+</head>
+<body>
+    <h1>Blood Cancer Cellular Therapy</h1>
+    <p class="sub">300x600 &middot; HTML5</p>
+
+    <div id="banners">
+        <div class="item">
+            <h2>RTB1</h2>
+            <p class="copy">NJ’s most experienced blood cancer cellular therapy program.</p>
+            <div class="frameWrap"><iframe src="rtb1/index.html" width="300" height="600" scrolling="no" title="300x600 banner RTB1"></iframe></div>
+            <button class="replay" type="button">&#8635; Replay</button>
+        </div>
+        <div class="item">
+            <h2>RTB2</h2>
+            <p class="copy">Refer blood cancer patients to NJ’s #1 cancer center physicians.</p>
+            <div class="frameWrap"><iframe src="rtb2/index.html" width="300" height="600" scrolling="no" title="300x600 banner RTB2"></iframe></div>
+            <button class="replay" type="button">&#8635; Replay</button>
+        </div>
+        <div class="item">
+            <h2>RTB3</h2>
+            <p class="copy">NJ’s best blood cancer outcomes for donor-recipient stem cell transplants.</p>
+            <div class="frameWrap"><iframe src="rtb3/index.html" width="300" height="600" scrolling="no" title="300x600 banner RTB3"></iframe></div>
+            <button class="replay" type="button">&#8635; Replay</button>
+        </div>
+        <div class="item">
+            <h2>RTB3 Pic</h2>
+            <p class="copy">NJ’s best blood cancer outcomes for donor-recipient stem cell transplants. (with photo)</p>
+            <div class="frameWrap"><iframe src="rtb3_pic/index.html" width="300" height="600" scrolling="no" title="300x600 banner RTB3 Pic"></iframe></div>
+            <button class="replay" type="button">&#8635; Replay</button>
+        </div>
+    </div>
+
+    <script>
+        // Replay: reload that banner's iframe so it starts again from frame 1
+        document.querySelectorAll('.item').forEach(function (item) {
+            item.querySelector('.replay').addEventListener('click', function () {
+                var f = item.querySelector('iframe');
+                try { f.contentWindow.location.reload(); }
+                catch (e) { f.src = f.src; }
+            });
+        });
+    </script>
+</body>
+</html>
