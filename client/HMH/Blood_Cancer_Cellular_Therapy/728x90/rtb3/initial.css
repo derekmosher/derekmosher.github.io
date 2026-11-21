@@ -1,0 +1,127 @@
+/*************** MAIN ELEMENTS ***************/
+body {
+    margin: 0;
+    padding: 0;
+    display: block;
+    pointer-events: none;
+}
+div,img,svg{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+}
+#wrapper {
+    display: block;
+    top: 0;
+    left: 0;
+    width: 728px;
+    height: 90px;
+    overflow: hidden;
+    background-color: #fff;
+}
+#stage {
+    width: 574px;
+    height: 90px;
+    overflow: hidden;
+}
+#bannerCover {
+    width: inherit;
+    height: inherit;
+    background: #fff;
+    opacity: 0;
+    pointer-events: none;
+}
+#border {
+    border: 1px solid #ababab;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: inherit;
+    height: inherit;
+    pointer-events: none;
+}
+#preCover {
+    width: inherit;
+    height: inherit;
+    background: #fff;
+    pointer-events: none;
+}
+/* Spinning logo loader - centered in the banner (CSS animation, so it spins even before the JS loads) */
+#loader {
+    width: 48px;
+    height: 48px;
+    left: 340px;
+    top: 21px;
+    -webkit-animation: loaderSpin 1.8s linear infinite;
+    animation: loaderSpin 1.8s linear infinite;
+}
+@-webkit-keyframes loaderSpin { from { -webkit-transform: rotate(0deg); } to { -webkit-transform: rotate(360deg); } }
+@keyframes loaderSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+#bgexit {
+    width: inherit;
+    height: inherit;
+    cursor:pointer;
+    pointer-events: auto;
+    /* background-color: #ff0000; */
+}
+/******************** BACKGROUND ********************/
+#bg_light, #bg_blue {
+    top: 0px;
+}
+#bg_blue {
+    opacity: 0;
+    width: 574px;               /* asset is 572px wide: stretched 2px so the blue reaches the footer edge, as in the guide */
+    height: 90px;
+}
+/********************** TEXT **********************/
+.textGroup{
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-size: 17.6px;
+    text-align: center;
+    letter-spacing: 0.22px;
+    white-space: nowrap;
+    width: 567px;
+    left: 0;
+    color: #0f1938;
+    line-height: 20px;
+}
+.bold{ font-weight: 700; }
+.med{  font-weight: 500; }
+.oswald{
+    font-family: "Oswald", sans-serif;
+    font-weight: 500;
+    font-size: 19.6px;
+    letter-spacing: 0.5px;
+    line-height: 24px;
+    color: #fff;
+}
+/* -------- Frame 1 / 2 / 3 copy (frame 1 positions) -------- */
+#text11{ top: 36px; left: 0px; }
+#text12{ top: 57px; left: 0px; }
+/* -------- Frame 3 end copy (one line: KNOW THE DIFFERENCE, 3 separate masks) -------- */
+.lineMask{
+    height: 24px;
+    overflow: hidden;
+}
+#mask31{ top: 58px; left: 189px; width: 52px; }
+#mask33{ top: 58px; left: 243px; width: 34px; }
+#mask32{ top: 58px; left: 279px; width: 100px; }
+.lineMask .textGroup{ width: auto; left: 0; }
+#text31{ top: 0px; }
+#text33{ top: 0px; }
+#text32{ top: 0px; color: #00bae1; }
+/******************** FOOTER ********************/
+#footer{
+    top: 0px;
+    left: 574px;
+    width: 154px;
+    height: 90px;
+    background-color: #fff;
+}
+#logo_hmh{
+    top: 20px;
+    left: 8px;
+    width: 130px;
+    height: auto;
+}
