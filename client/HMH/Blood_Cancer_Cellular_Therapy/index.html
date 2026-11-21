@@ -50,15 +50,15 @@
         .card:nth-child(2) { animation-delay: .12s; }
         .card:hover { transform: translateY(-4px); border-color: rgba(93,209,70,.6); background: rgba(255,255,255,.07); }
         .card:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
-        .top { display: flex; flex-direction: column; align-items: center; gap: 2px; text-align: center; }
+        .top { display: flex; align-items: baseline; gap: 12px; }
         .size { font-size: 28px; font-weight: 700; letter-spacing: .02em; }
-        .tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 12px 0 20px; }
+        .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 20px; }
         .tag { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 99px; background: rgba(255,255,255,.1); }
-        .thumbs { display: flex; justify-content: center; gap: 8px; align-items: flex-start; margin-bottom: 22px; }
+        .thumbs { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 22px; }
         .thumbs img { display: block; flex: 0 0 auto; width: calc(25% - 6px); height: auto; box-shadow: 0 6px 18px rgba(0,0,0,.4); }
         .open {
             margin-top: auto;
-            align-self: center;
+            align-self: flex-start;
             font-weight: 500; font-size: 12px; letter-spacing: .03em; line-height: 1;
             color: #0f1938; background: #5dd146;
             border: 1px solid #5dd146; border-radius: 5px;
