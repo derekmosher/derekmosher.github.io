@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="ad.size" content="width=970,height=250">
+        <link rel="stylesheet" type="text/css" href="initial.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <script async src="https://s0.2mdn.net/ads/studio/cached_libs/gsap_3.1.0_min.js"></script>
+        <script>var clickTag = "https://www.hackensackmeridianhealth.org/en/services/cancer-care/blood-cancer-referrals?placement=%7Bplacement%7D&target=%7Btarget%7D&keyword=%7Bkeyword%7D&matchtype=%7Bmatchtype%7D&hgcrm_trackingsetid=71318&utm_source=Vendor-WebMD&utm_medium=Display&utm_campaign=Display_Blood_Cancer_Referrals";</script>
+        <title>HMH | NJ's Best Blood Cancer Outcomes (Dr. Donato) | 970x250 RTB3 Pic</title>
+    </head>
+
+<body>
+ <!--------- Wrapper --------->
+    <a href="javascript:window.open(window.clickTag)">
+    <div id="wrapper" class="clickable">
+        <!-- <img src="guide3.jpg"> -->
+
+        <!--------- Stage (left 684px: photo + blue panel + copy) --------->
+        <div id="stage">
+            <img id="bg_blue" src="bg_blue.jpg">
+
+            <!-- One photo that scales down + slides between frames; the caption box rides on its bottom edge -->
+            <div id="photoWrap">
+                <div id="photoJump"><img id="photo" src="photo_donato.jpg"></div>   <!-- parent = jump between frames, child = slow scale from center -->
+                <div id="captionBox">
+                    <div class="capLine" id="cap1">Michele Donato, M.D.</div>
+                    <div class="capLine" id="cap2">Chief, Cellular Therapy</div>
+                </div>
+            </div>
+
+            <!-- Frames 1 + 2 + 3 copy: one group that slides up between frames -->
+            <div id="textGroup1">
+                <div class="textGroup" id="text11"><span class="bold">NJ’s best blood</span></div>
+                <div class="textGroup" id="text12"><span class="bold">cancer outcomes</span> for</div>
+                <div class="textGroup med"  id="text13">donor-recipient</div>
+                <div class="textGroup med"  id="text14">stem cell transplants.</div>
+            </div>
+
+            <!-- Frame 3 end copy -->
+            <div id="text3">
+                <div class="lineMask" id="mask31"><div class="textGroup oswald" id="text31">KNOW</div></div>
+                <div class="lineMask" id="mask33"><div class="textGroup oswald" id="text33">THE</div></div>
+                <div class="lineMask" id="mask32"><div class="textGroup oswald" id="text32">DIFFERENCE</div></div>
+            </div>
+
+            <div id="bannerCover"></div>
+        </div>
+
+        <!--------- Footer (static all frames) --------->
+        <div id="footer">
+            <img id="logo_hmh" src="logo_hmh.svg">
+            <div id="cta" class="clickable">Refer Now<div id="shine"></div></div>
+        </div>
+
+        <!-- Preload cover + spinning logo loader: stays up until fonts are ready (and it has spun at least 1s), then fades out and the animation starts -->
+        <div id="preCover"><img id="loader" src="logo_hmh_circle.svg"></div>
+
+        <div id="bgexit" class="clickable"></div>
+        <div id="border"></div>
+    </div>
+    </a>
+
+    <script src="initial.js"></script>
+</body>
+</html>
