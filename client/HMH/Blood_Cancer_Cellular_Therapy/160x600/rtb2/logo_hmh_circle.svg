@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115.2 115.2">
+  <defs>
+    <style>
+      .a {
+        fill: #144991;
+      }
+
+      .b {
+        fill: #007abd;
+      }
+
+      .c {
+        fill: #00b7e3;
+      }
+
+      .d {
+        fill: #252f6b;
+      }
+    </style>
+  </defs>
+  <title>Hackensack Meridian Health circle</title>
+  <g>
+    <rect class="a" x="48.5" y="19.6" width="18.3" height="14.8"/>
+    <rect class="a" x="67.4" y="4.2" width="18.3" height="14.8"/>
+    <rect class="b" x="26.81363" y="28.62243" width="18.29982" height="14.79986" transform="translate(-14.93817 35.98077) rotate(-45)"/>
+    <rect class="b" x="29.29625" y="4.29695" width="18.29982" height="14.79986" transform="translate(2.98968 30.61148) rotate(-45)"/>
+    <rect class="c" x="19.6" y="48.5" width="14.8" height="18.3"/>
+    <rect class="c" x="4.2" y="29.6" width="14.8" height="18.3"/>
+    <polygon class="d" points="47.7 80.4 34.8 67.5 24.3 78 37.2 90.9 47.7 80.4"/>
+    <rect class="d" x="4.29606" y="67.60154" width="14.79986" height="18.29982" transform="translate(-50.8458 30.75029) rotate(-45)"/>
+    <polygon class="a" points="66.7 80.8 48.5 80.8 48.5 95.6 66.7 95.6 66.7 80.8"/>
+    <rect class="a" x="29.5" y="96.2" width="18.3" height="14.8"/>
+    <rect class="b" x="67.59716" y="96.0885" width="18.29982" height="14.79986" transform="translate(-50.69867 84.57943) rotate(-45)"/>
+    <rect class="b" x="70.07268" y="71.76602" width="18.29982" height="14.79986" transform="translate(-32.77502 79.206) rotate(-45)"/>
+    <rect class="c" x="96.2" y="67.4" width="14.8" height="18.3"/>
+    <rect class="c" x="80.7" y="48.5" width="14.8" height="18.3"/>
+    <polygon class="d" points="115.2 39.7 102.3 26.8 91.8 37.2 104.7 50.2 115.2 39.7"/>
+    <rect class="d" x="71.82754" y="26.88412" width="14.79986" height="18.29982" transform="translate(-2.27472 66.57641) rotate(-45)"/>
+  </g>
+</svg>
