@@ -68,10 +68,7 @@ div,img,svg{
 #bg_light, #bg_blue {
     top: 0px;
     width: 300px;
-    height: 600px;
-}
-#bg_light {
-    top: -48px;          /* pattern offset per the 300x250 guides */
+    height: 250px;
 }
 #bg_blue {
     opacity: 0;
