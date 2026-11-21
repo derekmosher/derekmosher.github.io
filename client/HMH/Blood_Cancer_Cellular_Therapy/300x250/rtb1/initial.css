@@ -1,0 +1,164 @@
+/*************** MAIN ELEMENTS ***************/
+body {
+    margin: 0;
+    padding: 0;
+    display: block;
+    pointer-events: none;
+}
+div,img,svg{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+}
+#wrapper {
+    display: block;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 250px;
+    overflow: hidden;
+    background-color: #fff;
+}
+#stage {
+    width: 300px;
+    height: 206px;
+    overflow: hidden;
+}
+#bannerCover {
+    width: inherit;
+    height: inherit;
+    background: #fff;
+    opacity: 0;
+    pointer-events: none;
+}
+#border {
+    border: 1px solid #ababab;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: inherit;
+    height: inherit;
+    pointer-events: none;
+}
+#preCover {
+    width: inherit;
+    height: inherit;
+    background: #fff;
+    pointer-events: none;
+}
+/* Spinning logo loader - centered in the banner (CSS animation, so it spins even before the JS loads) */
+#loader {
+    width: 56px;
+    height: 56px;
+    left: 122px;
+    top: 97px;
+    -webkit-animation: loaderSpin 1.8s linear infinite;
+    animation: loaderSpin 1.8s linear infinite;
+}
+@-webkit-keyframes loaderSpin { from { -webkit-transform: rotate(0deg); } to { -webkit-transform: rotate(360deg); } }
+@keyframes loaderSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+#bgexit {
+    width: inherit;
+    height: inherit;
+    cursor:pointer;
+    pointer-events: auto;
+    /* background-color: #ff0000; */
+}
+/******************** BACKGROUND ********************/
+#bg_light, #bg_blue {
+    top: 0px;
+    width: 300px;
+    height: 600px;
+}
+#bg_light {
+    top: -48px;          /* pattern offset per the 300x250 guides */
+}
+#bg_blue {
+    opacity: 0;
+}
+/********************** TEXT **********************/
+.textGroup{
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-size: 21.2px;
+    text-align: center;
+    letter-spacing: 0.27px;
+    white-space: nowrap;
+    width: 300px;
+    left: -2px;          /* guide copy is centered ~2px left of center */
+    color: #0f1938;
+    line-height: 24px;
+}
+.bold{ font-weight: 700; }
+.med{  font-weight: 500; }
+.oswald{
+    font-family: "Oswald", sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    letter-spacing: 0.3px;
+    line-height: 30px;
+    color: #fff;
+    width: auto;
+    text-align: left;
+}
+/* -------- Frame 1 / 2 / 3 copy (frame 1 positions) -------- */
+#text11{ top: 76px; }
+#text12{ top: 100px; }
+#text13{ top: 124px; }
+#text14{ top: 148px; }
+#text15{ top: 172px; }
+/* -------- Frame 3 end copy: one line, two masked words -------- */
+.lineMask{
+    height: 30px;
+    overflow: hidden;
+}
+#mask31{ top: 164px; left: 34px; width: 62px; }      /* KNOW */
+#mask33{ top: 164px; left: 100.4px; width: 40px; }    /* THE */
+#mask32{ top: 164px; left: 145px; width: 124px; }
+#text31{ top: 0px; left: 0px; }
+#text33{ top: 0px; left: 0px; }
+#text32{ top: 0px; left: 0px; color: #00bae1; }
+/******************** FOOTER ********************/
+#footer{
+    top: 206px;
+    width: 300px;
+    height: 44px;
+    background-color: #fff;
+}
+#logo_hmh{
+    top: 10px;
+    left: 8px;
+    width: 174px;
+    height: auto;
+}
+/******************** CTA ********************/
+#cta{
+    top: 11px;
+    left: 198px;
+    width: 90px;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+    cursor: pointer;
+    color: #0f1938;
+    background-color: #5dd146;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 14.5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#shine{
+    top: -4px;
+    left: -60px;
+    width: 34px;
+    height: 33px;
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.85), rgba(255,255,255,0));
+    -webkit-transform: skewX(-20deg);
+    transform: skewX(-20deg);
+    pointer-events: none;
+}
