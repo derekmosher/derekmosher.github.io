@@ -53,13 +53,13 @@ function politeInit(){
                 TEXT_SCALE_F3 = 1.035,
                 // Slow scale of the photo (child, scales from its center). It keeps shrinking across all 3 frames and
                 // each frame's scale-down starts together with that frame's jump, so there is never a pause.
-                SCALE_START = 1.26,        // Frame 1 start (bigger = more movement)
-                SCALE_F1_END = 1.15,       // reached as the banner goes to Frame 2
-                SCALE_F2_END = 1.075,       // reached as the banner goes to Frame 3
+                SCALE_START = 1.45,        // Frame 1 start (bigger = more movement)
+                SCALE_F1_END = 1.27,       // reached as the banner goes to Frame 2
+                SCALE_F2_END = 1.12,       // reached as the banner goes to Frame 3
                 SCALE_END = 1,             // final resting size
-                DRIFT_F3_TIME = 2.8,       // seconds for the Frame 3 scale-down to ease to rest
+                DRIFT_F3_TIME = 4.2,       // seconds for the Frame 3 scale-down to ease to rest
                 SCALE_ORIGIN = "410px 140px", // point the slow scale grows from: the doctor's face. Use "50% 50%" for the image center
-                DRIFT_EASE = "power2.out",
+                DRIFT_EASE = "power1.out",
                 EASE = "power3.inOut";
             // Both photo layers use hand-written transforms (full precision - GSAP rounds scale to 3 decimals,
             // which made the photo step slightly while scaling slowly).
@@ -91,14 +91,14 @@ function politeInit(){
             .to(text12_arr, {duration:0.6, alpha:1, y:0, stagger:0.15, ease:"power2.out"}, 0.4)
 
             //////// PHOTO - Frame 1: slow scale-down (ease out), finishes as the banner moves to Frame 2 ////////
-            .to(pd, {s:SCALE_F1_END, duration:3.2, ease:DRIFT_EASE, onUpdate:applyDrift}, 0)
+            .to(pd, {s:SCALE_F1_END, duration:3.15, ease:DRIFT_EASE, onUpdate:applyDrift}, 0)
 
             //////// FRAME 2 - copy slides up, rest of headline in ////////
             .addLabel("f2", 3.2)
             .to(photoWrap, {duration:0.8, height:PANEL.f2, ease:EASE}, "f2")
             .to(textGroup1, {duration:0.8, y:F2_Y, ease:EASE}, "f2")
             .to(pj, Object.assign({duration:0.8, ease:EASE, onUpdate:applyJump}, jumpTo(PIC2)), "f2")                       // jump to Frame 2 size
-            .to(pd, {s:SCALE_F2_END, duration:3.4, ease:DRIFT_EASE, onUpdate:applyDrift}, "f2")                              // scale-down starts WITH the jump
+            .to(pd, {s:SCALE_F2_END, duration:3.35, ease:DRIFT_EASE, onUpdate:applyDrift}, "f2")                              // scale-down starts WITH the jump
             .to(text35_arr, {duration:0.55, alpha:1, y:0, stagger:0.12, ease:"power2.out"}, "f2+=0.45")
 
             //////// FRAME 3 - end frame: KNOW THE DIFFERENCE ////////
@@ -158,9 +158,8 @@ function politeInit(){
             gsap.to(bannerCover, {duration:0.4, alpha:1, ease:"none", onComplete:function(){
                 tl.pause(0);
                 Object.assign(pj, jumpTo(PIC1)); applyJump(); pd.s = SCALE_START; applyDrift();   // pause(0) suppresses onUpdate, so reset the photo by hand (it is hidden under the white cover)
-                gsap.to(bannerCover, {duration:0.4, alpha:0, ease:"none", onComplete:function(){
-                    tl.restart();
-                }});
+                gsap.to(bannerCover, {duration:0.4, alpha:0, ease:"none"});
+                tl.restart();   // restart together with the fade-in, so the photo is already moving
             }});
         }
 

@@ -1,0 +1,204 @@
+/*************** MAIN ELEMENTS ***************/
+body {
+    margin: 0;
+    padding: 0;
+    display: block;
+    pointer-events: none;
+}
+div,img,svg{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+}
+#wrapper {
+    display: block;
+    top: 0;
+    left: 0;
+    width: 160px;
+    height: 600px;
+    overflow: hidden;
+    background-color: #fff;
+}
+#stage {
+    width: 160px;
+    height: 480px;
+    overflow: hidden;
+}
+#bannerCover {
+    width: inherit;
+    height: inherit;
+    background: #fff;
+    opacity: 0;
+    pointer-events: none;
+}
+#border {
+    border: 1px solid #ababab;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: inherit;
+    height: inherit;
+    pointer-events: none;
+}
+#preCover {
+    width: inherit;
+    height: inherit;
+    background: #fff;
+    pointer-events: none;
+}
+/* Spinning logo loader - centered in the banner (CSS animation, so it spins even before the JS loads) */
+#loader {
+    width: 56px;
+    height: 56px;
+    left: 52px;
+    top: 272px;
+    -webkit-animation: loaderSpin 1.8s linear infinite;
+    animation: loaderSpin 1.8s linear infinite;
+}
+@-webkit-keyframes loaderSpin { from { -webkit-transform: rotate(0deg); } to { -webkit-transform: rotate(360deg); } }
+@keyframes loaderSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+#bgexit {
+    width: inherit;
+    height: inherit;
+    cursor:pointer;
+    pointer-events: auto;
+    /* background-color: #ff0000; */
+}
+/******************** BACKGROUND ********************/
+#bg_blue {
+    top: 0px;
+    width: 160px;
+    height: 600px;
+}
+/******************** PHOTO + CAPTION ********************/
+#photoWrap {
+    top: 0px;
+    left: 0px;
+    width: 160px;
+    height: 285px;          /* frame 1 (grows shorter in frames 2 + 3) */
+    overflow: hidden;
+    background-color: #dfe3ea;
+}
+#photoJump {               /* PARENT: frame-to-frame jump (position + size) - moved with GSAP */
+    left: 0px;
+    top: 0px;
+    width: 457px;
+    height: 304.69px;
+    transform-origin: 0 0;
+    will-change: transform;
+}
+#photo {                    /* CHILD: the slow scale-down, from the doctor's face */
+    left: 0px;
+    top: 0px;
+    width: 457px;
+    height: 304.69px;
+    transform-origin: 50% 50%;
+    will-change: transform;
+}
+#captionBox {
+    top: auto;
+    bottom: 0px;
+    left: 0px;
+    width: 160px;
+    height: 27px;
+    background-color: rgba(255,255,255,0.8);   /* white box, 80% opacity */
+}
+.capLine {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 10.2px;
+    line-height: 11px;
+    text-align: center;
+    white-space: nowrap;
+    width: 160px;
+    left: 0;
+    color: #0f1938;
+}
+#cap1{ top: 3px; }
+#cap2{ top: 14px; }
+/********************** TEXT **********************/
+.textGroup{
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-size: 17px;
+    text-align: center;
+    letter-spacing: 0px;
+    white-space: nowrap;
+    width: 160px;
+    left: 0;
+    color: #ffffff;
+    line-height: 22px;
+}
+.bold{ font-weight: 700; }
+.med{  font-weight: 500; }
+.textGroup span.bold{ font-weight: 700; }
+.oswald{
+    font-family: "Oswald", sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    letter-spacing: 0.25px;
+    line-height: 27px;
+    color: #fff;
+}
+/* -------- Frame 1 / 2 / 3 copy (frame 1 positions) -------- */
+#text11{ top: 343.5px; }
+#text12{ top: 365.5px; }
+#text13{ top: 387.5px; }
+#text14{ top: 409.5px; }
+#text15{ top: 431.5px; }
+#text16{ top: 453.5px; }
+/* -------- Frame 3 end copy -------- */
+.lineMask{
+    left: 0;
+    width: 160px;
+    height: 27px;
+    overflow: hidden;
+}
+#mask31{ top: 399.6px; left: 0px; }
+#mask32{ top: 425.6px; left: 0px; }
+#text31{ top: 0px; }
+#text32{ top: 0px; color: #00bae1; }
+/******************** FOOTER ********************/
+#footer{
+    top: 480px;
+    width: 160px;
+    height: 120px;
+    background-color: #fff;
+}
+#logo_hmh{
+    top: 16px;
+    left: 18.5px;
+    width: 117.5px;
+    height: auto;
+}
+/******************** CTA ********************/
+#cta{
+    top: 80px;
+    left: 36px;
+    width: 90px;
+    height: 25px;
+    line-height: 27px;
+    overflow: hidden;
+    cursor: pointer;
+    color: #0f1938;
+    background-color: #5dd146;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 14.5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#shine{
+    top: -4px;
+    left: -60px;
+    width: 34px;
+    height: 33px;
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.85), rgba(255,255,255,0));
+    -webkit-transform: skewX(-20deg);
+    transform: skewX(-20deg);
+    pointer-events: none;
+}
