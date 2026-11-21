@@ -41,7 +41,7 @@ function politeInit(){
             // Frame positions: how far the copy slides up (px) to reach each frame
             // (CSS tops are the Frame 2 positions; the group starts F1_Y lower in Frame 1 and ends F3_Y higher in Frame 3)
             var F1_Y = 53,
-                F2_Y = 0,
+                F2_Y = -8,
                 F3_Y = -46,
                 EASE = "power3.inOut";
 /***************** //end of VARIABLES  *****************/
