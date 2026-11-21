@@ -68,8 +68,7 @@ div,img,svg{
 #bg_blue {
     top: 0px;
     left: 0px;
-    width: 574px;               /* asset is 572px wide: stretched 2px so the blue reaches the footer edge, as in the guide */
-    height: 90px;
+    /* 596px bg file at natural size (no stretch); stage clips at 574px */
 }
 /******************** PHOTO + CAPTION ********************/
 #photoWrap {
