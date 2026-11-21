@@ -38,7 +38,7 @@ function politeInit(){
 
             // Frame positions: how far the copy slides up (px) to reach each frame
             var F2_Y = -7.5,
-                F3_Y = -11.5,
+                F3_Y = -12.5,
                 EASE = "power3.inOut";
 /***************** //end of VARIABLES  *****************/
 
