@@ -39,7 +39,7 @@ function politeInit(){
             /************** Modify VARIABLES ********************/
             colors.dark = "#0f1938";
             colors.white = "#ffffff";
-            var CTA_OVER_SCALE = 1.08;   // rollover scale amount
+            var CTA_OVER_SCALE = 1.06;   // rollover scale amount
 
             // Frame positions: how far the copy slides up (px) to reach each frame
             // Photo framing: one photo that jumps (position + size) between frames and keeps scaling down slowly.
@@ -51,8 +51,8 @@ function politeInit(){
             var PIC1 = framed(334.8, 150, 30),     // Frame 1 start: larger than the guide (x1.03), face stays at the same spot
                 PIC2 = framed(325,   150, 30),     // Frame 2 start: guide size (x1.0)
                 PIC3 = framed(315.3, 150, 30),     // Frame 3 resting size: x0.97 (with the end scale below, the photo ends ~6% smaller than the guide)
-                F2_Y = -10,
-                F3_Y = -21,
+                F2_Y = -13,
+                F3_Y = -24,
                 F3_X = 0,                  // no sideways movement: all copy is centered in the blue area (x 249-723)
                 // Slow scale of the photo (child, scales from the face). It keeps shrinking across all 3 frames and
                 // each frame's scale-down starts together with that frame's jump, so there is never a pause.
@@ -167,10 +167,10 @@ function politeInit(){
 /********************  EVENTS  ********************/
         // Rollover: CTA scales up a little, scales back down on rolloff
         bgexit.addEventListener('mouseover', (e) => {
-            gsap.to(cta, {duration:0.25, scale:CTA_OVER_SCALE, ease:"power2.out", overwrite:"auto"});
+            gsap.to(cta, {duration:0.9, scale:CTA_OVER_SCALE, ease:"power4.out", overwrite:"auto"});
         });
         bgexit.addEventListener('mouseout', (e) => {
-            gsap.to(cta, {duration:0.25, scale:1, ease:"power2.out", overwrite:"auto"});
+            gsap.to(cta, {duration:0.45, scale:1, ease:"power4.out", overwrite:"auto"});
         });
 
         let type = 'click';
