@@ -36,7 +36,7 @@ function politeInit(){
             /************** Modify VARIABLES ********************/
             colors.dark = "#0f1938";
             colors.white = "#ffffff";
-            var CTA_OVER_SCALE = 1.08;   // rollover scale amount
+            var CTA_OVER_SCALE = 1.06;   // rollover scale amount
 
             // Frame positions: how far the copy slides up (px) to reach each frame
             // (CSS tops are the Frame 2 positions; the group starts F1_Y lower and ends F3_Y higher)
@@ -134,10 +134,10 @@ function politeInit(){
 /********************  EVENTS  ********************/
         // Rollover: CTA scales up a little, scales back down on rolloff
         bgexit.addEventListener('mouseover', (e) => {
-            gsap.to(cta, {duration:0.25, scale:CTA_OVER_SCALE, ease:"power2.out", overwrite:"auto"});
+            gsap.to(cta, {duration:0.9, scale:CTA_OVER_SCALE, ease:"power4.out", overwrite:"auto"});
         });
         bgexit.addEventListener('mouseout', (e) => {
-            gsap.to(cta, {duration:0.25, scale:1, ease:"power2.out", overwrite:"auto"});
+            gsap.to(cta, {duration:0.45, scale:1, ease:"power4.out", overwrite:"auto"});
         });
 
         let type = 'click';
