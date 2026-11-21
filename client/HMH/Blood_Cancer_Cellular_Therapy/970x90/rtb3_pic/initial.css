@@ -1,0 +1,201 @@
+/*************** MAIN ELEMENTS ***************/
+body {
+    margin: 0;
+    padding: 0;
+    display: block;
+    pointer-events: none;
+}
+div,img,svg{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+}
+#wrapper {
+    display: block;
+    top: 0;
+    left: 0;
+    width: 970px;
+    height: 90px;
+    overflow: hidden;
+    background-color: #fff;
+}
+#stage {
+    width: 723px;
+    height: 90px;
+    overflow: hidden;
+}
+#bannerCover {
+    width: inherit;
+    height: inherit;
+    background: #fff;
+    opacity: 0;
+    pointer-events: none;
+}
+#border {
+    border: 1px solid #ababab;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: inherit;
+    height: inherit;
+    pointer-events: none;
+}
+#preCover {
+    width: inherit;
+    height: inherit;
+    background: #fff;
+    pointer-events: none;
+}
+/* Spinning logo loader - centered in the banner (CSS animation, so it spins even before the JS loads) */
+#loader {
+    width: 48px;
+    height: 48px;
+    left: 461px;
+    top: 21px;
+    -webkit-animation: loaderSpin 1.8s linear infinite;
+    animation: loaderSpin 1.8s linear infinite;
+}
+@-webkit-keyframes loaderSpin { from { -webkit-transform: rotate(0deg); } to { -webkit-transform: rotate(360deg); } }
+@keyframes loaderSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+#bgexit {
+    width: inherit;
+    height: inherit;
+    cursor:pointer;
+    pointer-events: auto;
+    /* background-color: #ff0000; */
+}
+/******************** BACKGROUND ********************/
+#bg_blue {
+    top: 0px;
+    left: 80px;                 /* asset is 643px wide: covers x 80-723 (flush right against the footer) */
+}
+/******************** PHOTO + CAPTION ********************/
+#photoWrap {
+    top: 0px;
+    left: 0px;
+    width: 249px;
+    height: 90px;
+    overflow: hidden;
+    background-color: #dfe3ea;
+}
+#photoJump {               /* PARENT: frame-to-frame jump (position + size) - moved by hand (see initial.js) */
+    left: 0px;
+    top: 0px;
+    width: 325px;
+    height: 144px;
+    transform-origin: 0 0;
+    will-change: transform;
+}
+#photo {                    /* CHILD: the slow scale-down, from the doctor's face */
+    left: 0px;
+    top: 0px;
+    width: 325px;
+    height: 144px;
+    transform-origin: 50% 50%;
+    will-change: transform;
+}
+#captionBox {
+    top: auto;
+    bottom: 0px;
+    left: 0px;
+    width: 249px;
+    height: 17px;
+    background-color: rgba(255,255,255,0.8);   /* white box, 80% opacity */
+}
+.capLine {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 9.3px;
+    line-height: 12px;
+    text-align: center;
+    white-space: nowrap;
+    width: 249px;
+    left: 0px;
+    color: #0f1938;
+}
+#cap1{ top: 2px; }
+/********************** TEXT **********************/
+.textGroup{
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-size: 18.2px;
+    text-align: center;
+    letter-spacing: 0.23px;
+    white-space: nowrap;
+    width: 460px;
+    left: 255px;
+    color: #ffffff;
+    line-height: 20px;
+}
+.bold{ font-weight: 700; }
+.med{  font-weight: 500; }
+.oswald{
+    font-family: "Oswald", sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    line-height: 24px;
+    color: #fff;
+}
+/* -------- Frame 1 / 2 / 3 copy (frame 1 positions) -------- */
+#text11{ top: 33px; }
+#text12{ top: 54px; }
+.textGroup span.bold{ font-weight: 700; }
+/* -------- Frame 3 end copy (one line, 3 separate masks) -------- */
+.lineMask{
+    height: 24px;
+    overflow: hidden;
+}
+#mask31{ top: 57px; left: 392px; width: 52px; }
+#mask33{ top: 57px; left: 445px; width: 34px; }
+#mask32{ top: 57px; left: 482px; width: 100px; }
+.lineMask .textGroup{ width: auto; left: 0; }
+#text31{ top: 0px; }
+#text33{ top: 0px; }
+#text32{ top: 0px; color: #00bae1; }
+/******************** FOOTER ********************/
+#footer{
+    top: 0px;
+    left: 723px;
+    width: 247px;
+    height: 90px;
+    background-color: #fff;
+}
+#logo_hmh{
+    top: 10px;
+    left: 19px;
+    width: 210px;
+    height: auto;
+}
+/******************** CTA ********************/
+#cta{
+    top: 52px;
+    left: 61px;
+    width: 130px;
+    height: 30px;
+    line-height: 31px;
+    overflow: hidden;
+    cursor: pointer;
+    color: #0f1938;
+    background-color: #5dd146;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 18px;
+    text-indent: -4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#shine{
+    top: -2px;
+    left: -100px;
+    width: 34px;
+    height: 34px;
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.85), rgba(255,255,255,0));
+    -webkit-transform: skewX(-20deg);
+    transform: skewX(-20deg);
+    pointer-events: none;
+}
