@@ -62,13 +62,14 @@ function politeInit(){
                 DRIFT_F3_TIME = 4.2,       // seconds for the Frame 3 scale-down to ease to rest
                 SCALE_ORIGIN = "410px 140px", // point the slow scale grows from: the doctor's face. Use "50% 50%" for the image center
                 DRIFT_EASE = "power1.out",
+                DRIFT_X = 3,               // px the photo slowly moves right in each frame
                 EASE = "power3.inOut";
             // Both photo layers use hand-written transforms (full precision - GSAP rounds scale to 3 decimals,
             // which made the photo step slightly while scaling slowly).
             var pj = { x: 0, y: 0, scale: 1 };       // parent: jump between frames
-            var pd = { s: 1 };                       // child: slow scale
+            var pd = { s: 1, x: 0 };                 // child: slow scale + slow move right (x in banner px)
             function applyJump()  { photoJump.style.transform = "translate3d(" + pj.x + "px," + pj.y + "px,0) scale(" + pj.scale + ")"; }
-            function applyDrift() { photo.style.transform = "scale(" + pd.s + ")"; }
+            function applyDrift() { photo.style.transform = "translate3d(" + (pd.x / pj.scale) + "px,0,0) scale(" + pd.s + ")"; }
             function framed(w, fx, fy) { var s = w / PIC_NATURAL; return frame(fx - FACE.x * s, fy - FACE.y * s, w); }
             function jumpTo(p) { return { x: p.left, y: p.top, scale: p.width / PIC_NATURAL }; }
 /***************** //end of VARIABLES  *****************/
@@ -77,7 +78,7 @@ function politeInit(){
         function setStart(){
             Object.assign(pj, jumpTo(PIC1)); applyJump();
             photo.style.transformOrigin = SCALE_ORIGIN;
-            pd.s = SCALE_START; applyDrift();
+            pd.s = SCALE_START; pd.x = 0; applyDrift();
             gsap.set(textGroup1, {x: 0, y: 0});
             gsap.set(text1_arr, {alpha: 0, y: 14, scale: 1});
             gsap.set([text31, text32], {yPercent: 105});
@@ -93,20 +94,24 @@ function politeInit(){
             .to(text12_arr, {duration:0.6, alpha:1, y:0, stagger:0.15, ease:"power2.out"}, 0.4)
 
             //////// PHOTO - Frame 1: slow scale-down (ease out), finishes as the banner moves to Frame 2 ////////
-            .to(pd, {s:SCALE_F1_END, duration:3.15, ease:DRIFT_EASE, onUpdate:applyDrift}, 0)
+            .to(pd, {s:SCALE_F1_END, x:DRIFT_X, duration:3.15, ease:DRIFT_EASE, onUpdate:applyDrift}, 0)
 
             //////// FRAME 2 - copy slides up, rest of headline in ////////
             .addLabel("f2", 3.2)
             .to(textGroup1, {duration:0.8, y:F2_Y, ease:EASE}, "f2")
             .to(pj, Object.assign({duration:0.8, ease:EASE, onUpdate:applyJump}, jumpTo(PIC2)), "f2")                       // jump to Frame 2 size
+            .to(pd, {x:0, duration:0.8, ease:EASE, onUpdate:applyDrift}, "f2")                                              // the jump takes over the sideways move
             .to(pd, {s:SCALE_F2_END, duration:3.35, ease:DRIFT_EASE, onUpdate:applyDrift}, "f2")                              // scale-down starts WITH the jump
+            .to(pd, {x:DRIFT_X, duration:2.55, ease:DRIFT_EASE, onUpdate:applyDrift}, "f2+=0.8")                           // slow move right
             .to(text35_arr, {duration:0.55, alpha:1, y:0, stagger:0.12, ease:"power2.out"}, "f2+=0.45")
 
             //////// FRAME 3 - end frame: KNOW THE DIFFERENCE ////////
             .addLabel("f3", 6.6)
             .to(textGroup1, {duration:0.8, y:F3_Y, ease:EASE}, "f3")
             .to(pj, Object.assign({duration:0.8, ease:EASE, onUpdate:applyJump}, jumpTo(PIC3)), "f3")                       // jump to Frame 3 size
-            .to(pd, {s:SCALE_END, duration:DRIFT_F3_TIME, ease:DRIFT_EASE, onUpdate:applyDrift}, "f3")                       // scale-down starts WITH the jump, eases to rest
+            .to(pd, {x:0, duration:0.8, ease:EASE, onUpdate:applyDrift}, "f3")
+            .to(pd, {s:SCALE_END, duration:DRIFT_F3_TIME, ease:DRIFT_EASE, onUpdate:applyDrift}, "f3")
+            .to(pd, {x:DRIFT_X, duration:DRIFT_F3_TIME-0.8, ease:DRIFT_EASE, onUpdate:applyDrift}, "f3+=0.8")   // slow move right, ends with the scale                       // scale-down starts WITH the jump, eases to rest
             .to(text31, {duration:0.6, yPercent:0, ease:"power3.out"}, "f3+=0.55")
             .to(text32, {duration:0.6, yPercent:0, ease:"power3.out"}, "f3+=0.72")
 
@@ -156,7 +161,7 @@ function politeInit(){
             // quick fade to white, reset to frame 1, fade back in, play again
             gsap.to(bannerCover, {duration:0.4, alpha:1, ease:"none", onComplete:function(){
                 tl.pause(0);
-                Object.assign(pj, jumpTo(PIC1)); applyJump(); pd.s = SCALE_START; applyDrift();   // pause(0) suppresses onUpdate, so reset the photo by hand (it is hidden under the white cover)
+                Object.assign(pj, jumpTo(PIC1)); applyJump(); pd.s = SCALE_START; pd.x = 0; applyDrift();   // pause(0) suppresses onUpdate, so reset the photo by hand (it is hidden under the white cover)
                 gsap.to(bannerCover, {duration:0.4, alpha:0, ease:"none"});
                 tl.restart();   // restart together with the fade-in, so the photo is already moving
             }});
